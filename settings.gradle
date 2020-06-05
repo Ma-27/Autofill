@@ -1,0 +1,2 @@
+rootProject.name='Stand Up'
+include ':app'

@@ -18,12 +18,9 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class CheckPostedNetworkUtils {
 
-    private static int responseCode = 000;
-
     private static int gettime() {
         long timeStamp = System.currentTimeMillis();
-        int timeStamp1 = (int) (timeStamp / 1000);
-        return timeStamp1;
+        return (int) (timeStamp / 1000);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -62,7 +59,7 @@ public class CheckPostedNetworkUtils {
                 DataOutputStream os = new DataOutputStream(conn.getOutputStream());
                 os.writeBytes(jsonParam1.toString());
                 os.flush();
-                responseCode = conn.getResponseCode();
+                int responseCode = conn.getResponseCode();
                 if (responseCode == 200) {
                     // 获取响应的输入流对象
                     InputStream is = conn.getInputStream();
@@ -71,7 +68,7 @@ public class CheckPostedNetworkUtils {
                     // 定义读取的长度
                     int len = 0;
                     // 定义缓冲区
-                    byte buffer[] = new byte[1024];
+                    byte[] buffer = new byte[1024];
                     // 按照缓冲区的大小，循环读取
                     while ((len = is.read(buffer)) != -1) {
                         // 根据读取的长度写入到os对象中
@@ -79,8 +76,7 @@ public class CheckPostedNetworkUtils {
                     }
                     is.close();
                     message.close();
-                    String msg = new String(message.toByteArray());
-                    responseMessage = msg;
+                    responseMessage = new String(message.toByteArray());
                     Log.d("STATUS", "查询次数成功状态码" + responseMessage);
                 }
                 conn.disconnect();

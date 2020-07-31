@@ -9,7 +9,6 @@ import androidx.core.app.NotificationCompat;
 
 public class Notify {
 
-    private NotificationManager mNotificationManager;
     private static final int NOTIFICATION_ID = 0;
     private static final String PRIMARY_CHANNEL_ID =
             "primary_notification_channel";
@@ -24,7 +23,7 @@ public class Notify {
     }
 
     protected void deliverNotification() {
-        mNotificationManager = (NotificationManager)
+        NotificationManager mNotificationManager = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
         Intent contentIntent = new Intent(context, MainActivity.class);
         PendingIntent contentPendingIntent = PendingIntent.getActivity

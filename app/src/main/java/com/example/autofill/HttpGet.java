@@ -12,7 +12,6 @@ import java.net.URL;
 
 class HttpGet {
 
-    private static final String LOCATION_BASE_URL =  "https://apis.map.qq.com/ws/location/v1/ip";
     private String locationUri;
     private String key;
     private String sig;

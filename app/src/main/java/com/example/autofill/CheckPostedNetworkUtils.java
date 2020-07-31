@@ -1,10 +1,9 @@
 package com.example.autofill;
 
 import android.os.Build;
+import androidx.annotation.RequiresApi;
 import android.util.Base64;
 import android.util.Log;
-
-import androidx.annotation.RequiresApi;
 
 import org.json.JSONObject;
 
@@ -16,9 +15,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.cert.CertificateFactory;
 
 import javax.net.ssl.HttpsURLConnection;
-
-import static android.content.ContentValues.TAG;
-//import static com.example.autofill.MainActivity.SchoolnumberString;
 
 public class CheckPostedNetworkUtils {
 

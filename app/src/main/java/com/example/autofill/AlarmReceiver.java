@@ -1,7 +1,5 @@
 package com.example.autofill;
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +8,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import androidx.annotation.RequiresApi;
-import androidx.core.app.NotificationCompat;
 
 import android.os.Build;
 import android.util.Log;
@@ -46,7 +43,7 @@ public class AlarmReceiver extends BroadcastReceiver
 
         if (networkInfo != null && networkInfo.isConnected() && mData.length() != 0) {
             //执行自动打卡
-            GetPosition getPosition = new GetPosition();
+            PositionParse getPosition = new PositionParse();
             getPosition.execute();
 
             CheckPostedData checkPostedData = new CheckPostedData();

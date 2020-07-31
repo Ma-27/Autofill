@@ -2,10 +2,10 @@ package com.example.autofill;
 
 import android.content.SharedPreferences;
 import android.os.Build;
+import androidx.annotation.RequiresApi;
+
 import android.util.Base64;
 import android.util.Log;
-
-import androidx.annotation.RequiresApi;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,7 +19,7 @@ import java.util.Iterator;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
-import static com.example.autofill.GetPosition.position;
+import static com.example.autofill.PositionParse.position;
 
 public class POSTNetWorkUtils {
     private static final String TAG = "sfs";
@@ -58,7 +58,7 @@ public class POSTNetWorkUtils {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.d(TAG, "成功finalstring"+position);
+        Log.d(TAG, "成功finalstringpos"+position);
         return finalString;
     }
 

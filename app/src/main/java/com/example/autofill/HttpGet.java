@@ -10,25 +10,29 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class GETNetWorkUtils {
+class HttpGet {
 
-    private static final String LOG_TAG =
-            GETNetWorkUtils.class.getSimpleName();
-
-    private static final String BOOK_BASE_URL =  "https://apis.map.qq.com/ws/location/v1/ip";
-    private static final String KEY_PARAM = "key";
-    private static final String SIG_PARAM = "sig";
+    private static final String LOCATION_BASE_URL =  "https://apis.map.qq.com/ws/location/v1/ip";
+    private String locationUri;
+    private String key;
+    private String sig;
 
 
-    static String getLocation(){
+    public HttpGet(String locationUrl,String key,String sig){
+        this.locationUri = locationUrl;
+        this.key = key;
+        this.sig = sig;
+    }
+
+    protected String getLocation(){
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
-        String bookJSONString = null;
+        String bookJSONString = "";
 
         try {
-            Uri builtURI = Uri.parse(BOOK_BASE_URL).buildUpon()
-                    .appendQueryParameter(KEY_PARAM, "IVOBZ-QNW6P-SUKDY-LFQSE-LUFCJ-3CFUE")
-                    .appendQueryParameter(SIG_PARAM, "afebe5ad5227ec75a1f3d8b97f888cda")
+            Uri builtURI = Uri.parse(locationUri).buildUpon()
+                    .appendQueryParameter("key", key)
+                    .appendQueryParameter("sig", sig)
                     .build();
 
             URL requestURL = new URL(builtURI.toString());

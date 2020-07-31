@@ -1,6 +1,11 @@
-# Autofill
-感谢@NPBeta提供的python源代码。部分代码借鉴了google fundamental
+# we重邮自动每日打卡app
+感谢@NPBeta提供的python源代码。部分代码借鉴自google fundamental训练课程
 
-这是用于we重邮疫情期间自动打卡的小软件，android系统，java语言
+这个版本为在家的同学提供，是最新的版本。 
+然而，作者还没有时间更新最新版，目前这一版暂时保持和master分支相同
+当然，master分支有很多可以优化的地方，这一版将在之后陆续完善。
+
+特别提醒： 
 请勿滥用，请确认信息正确再启用。
+
 谢谢大家

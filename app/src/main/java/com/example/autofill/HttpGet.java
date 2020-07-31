@@ -1,7 +1,6 @@
 package com.example.autofill;
 
 import android.net.Uri;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,18 +22,21 @@ class HttpGet {
         this.sig = sig;
     }
 
-    protected String getLocation(){
+    //position的uri
+    protected String initialUri(){
+        Uri builtURI = Uri.parse(locationUri).buildUpon()
+                .appendQueryParameter("key", key)
+                .appendQueryParameter("sig", sig)
+                .build();
+        return builtURI.toString();
+    }
+
+    protected String getData(){
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
-        String bookJSONString = "";
-
+        String dataJSONString = "";
         try {
-            Uri builtURI = Uri.parse(locationUri).buildUpon()
-                    .appendQueryParameter("key", key)
-                    .appendQueryParameter("sig", sig)
-                    .build();
-
-            URL requestURL = new URL(builtURI.toString());
+            URL requestURL = new URL(initialUri());
             urlConnection = (HttpURLConnection) requestURL.openConnection();
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
@@ -52,7 +54,7 @@ class HttpGet {
             if (builder.length() == 0) {
                 return null;
             }
-            bookJSONString = builder.toString();
+            dataJSONString = builder.toString();
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
@@ -67,7 +69,7 @@ class HttpGet {
                 }
             }
         }
-        return bookJSONString;
+        return dataJSONString;
     }
 
 }

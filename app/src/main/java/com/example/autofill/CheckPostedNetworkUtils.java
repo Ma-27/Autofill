@@ -46,7 +46,6 @@ public class CheckPostedNetworkUtils {
                 jsonParam.put("xh",schoolNumberString);
                 jsonParam.put("sign", "c4cb4739a0b923820scc509a6f75849b");
                 jsonParam.put("timestamp", gettime());
-
                 String s0 = jsonParam.toString();
                 String s1 = new String(s0.getBytes(), StandardCharsets.UTF_8);
                 //base64 编码一下

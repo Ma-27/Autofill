@@ -2,12 +2,16 @@ package com.example.autofill;
 
 import android.os.AsyncTask;
 import android.os.Build;
+import android.util.Base64;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.nio.charset.StandardCharsets;
+
 import static android.content.ContentValues.TAG;
 
 
@@ -16,10 +20,36 @@ public class CheckPostedData extends AsyncTask<String, Void, String> {
     private static final String LOG_TAG = "CheckPostedTimes";
     public ResponseCode1Interface delegate1 = null;
 
+    private static int gettime() {
+        long timeStamp = System.currentTimeMillis();
+        return (int) (timeStamp / 1000);
+    }
+
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected String doInBackground(String... strings) {
-        return CheckPostedNetworkUtils.post(strings[0]);
+        JSONObject jsonParam = new JSONObject();
+        try {
+            jsonParam.put("xh",strings[0]);
+            jsonParam.put("sign", "c4cb4739a0b923820scc509a6f75849b");
+            jsonParam.put("timestamp", gettime());
+
+        String s0 = jsonParam.toString();
+        String s1 = new String(s0.getBytes(), StandardCharsets.UTF_8);
+        //base64 编码一下
+        byte[] data_encode = s1.getBytes();
+        String stringbase64 = Base64.encodeToString(data_encode, Base64.DEFAULT);
+        //构建查询数据
+        JSONObject jsonParam1 = new JSONObject();
+        jsonParam1.put("key", stringbase64);
+
+        HttpPost checkPostedData = new
+                HttpPost("https://we.cqu.pt/api/mrdk/get_mrdk_flag.php",jsonParam1.toString());
+        } catch (JSONException e) {
+             e.printStackTrace();
+        }
+        return httpPost.post(strings[0]);
     }
 
     @Override

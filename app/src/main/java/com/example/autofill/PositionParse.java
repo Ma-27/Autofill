@@ -21,7 +21,7 @@ public class PositionParse extends AsyncTask<String, Void, String> {
        final String KEY_PARAM = "IVOBZ-QNW6P-SUKDY-LFQSE-LUFCJ-3CFUE";
        final String SIG_PARAM = "afebe5ad5227ec75a1f3d8b97f888cda";
         HttpGet httpGet = new HttpGet(BOOK_BASE_URL,KEY_PARAM,SIG_PARAM);
-        result = httpGet.getLocation();
+        result = httpGet.getData();
         return result;
     }
 

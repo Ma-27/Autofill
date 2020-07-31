@@ -46,6 +46,7 @@ public class PostData extends AsyncTask<String, Void, String> {
             }
         }else{
             // 空指针错误
+            returnmessage = "UNKNOWNERROR";
         }
         delegate.onPostDataFinish(returnmessage);
     }

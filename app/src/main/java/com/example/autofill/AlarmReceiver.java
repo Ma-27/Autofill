@@ -19,10 +19,11 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.example.autofill.MainActivity.sharedPrefFile;
 
 public class AlarmReceiver extends BroadcastReceiver
-        implements ResponseCode1Interface,ResponseCodeInterface {
+        implements Response {
     public String mData = "";
     public String mSchoolNumber = "";
     public Context mcontext;
+    private static final String TAG = "AlarmReceiver成功";
 
         @Override
     public void onReceive(Context context, Intent intent) {
@@ -54,7 +55,7 @@ public class AlarmReceiver extends BroadcastReceiver
             //网络状况判断
             } else if (mData.length() == 0) {
             //数据库错误
-            Notify notify3 = new Notify(mcontext,"今日打卡失败","服务器端数据错误");
+            Notify notify3 = new Notify(mcontext,"今日打卡失败","未能得到有效数据，服务器可能出现问题");
             notify3.deliverNotification();
             } else {
             //未知原因错误
@@ -63,38 +64,35 @@ public class AlarmReceiver extends BroadcastReceiver
             }
         }
 
-
     @Override
-    public void onCheckPostedFinish(String responsecode1) {
-        if (responsecode1.equals("TODAYNOFILL")) {
-            PostData postData = new PostData();
-            postData.delegate = this;
-            postData.execute(mData);
-        } else if (responsecode1.equals("TODAYHASFILL")) {
-            Notify notify3 = new Notify(mcontext,"今日已经打过卡","本APP不再重复打卡");
-            notify3.deliverNotification();
-        }else{
-            Notify notify2 = new Notify(mcontext,"今日打卡失败","未知原因错误，请重试");
-            notify2.deliverNotification();
-        }
-    }
-
-
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    @Override
-    public void onPostDataFinish(String responsecode) {
-        if (Objects.equals(responsecode, "OK")) {
-            //打卡成功
-            Notify notify1 = new Notify(mcontext,"今日打卡成功！","无需点击此通知");
-            notify1.deliverNotification();
-        } else if (Objects.equals(responsecode, "REFUSE")) {
-            //服务器拒绝
-            Notify notify4 = new Notify(mcontext,"今日打卡失败","服务器拒绝了打卡请求");
-            notify4.deliverNotification();
-        } else {
-            //未知原因错误
-            Notify notify2 = new Notify(mcontext,"今日打卡失败","未知原因错误，请重试");
-            notify2.deliverNotification();
+    public void onPostFinish(String responseCode) {
+        Log.d(TAG, responseCode);
+        switch (responseCode){
+            case "REFUSE":
+                //服务器拒绝
+                Notify notify4 = new Notify(mcontext,"今日打卡失败","服务器拒绝了打卡请求");
+                notify4.deliverNotification();
+                break;
+            case "TODAYNOFILL":
+                //今天还没打卡
+                PostDataParse postDataParse = new PostDataParse();
+                postDataParse.delegate = this;
+                postDataParse.execute(mData);
+                break;
+            case "TODAYHASFILL":
+                Notify notify3 = new Notify(mcontext,"今日已经打过卡","本APP不再重复打卡");
+                notify3.deliverNotification();
+                break;
+            case  "OK":
+                //打卡成功
+                Notify notify1 = new Notify(mcontext,"今日打卡成功！","无需点击此通知");
+                notify1.deliverNotification();
+                break;
+            default:
+                //未知原因错误
+                Notify notify2 = new Notify(mcontext,"今日打卡失败","未知原因错误，请重试");
+                notify2.deliverNotification();
+                break;
         }
     }
 }

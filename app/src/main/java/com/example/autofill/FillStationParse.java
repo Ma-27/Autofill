@@ -18,9 +18,9 @@ import static android.content.ContentValues.TAG;
 public class FillStationParse extends AsyncTask<String, Void, String> {
     public String returnmessage1 = "";
     private static final String LOG_TAG = "CheckPostedTimes";
-    public ResponseCode1Interface delegate1 = null;
+    public Response delegate1 = null;
 
-    private static int gettime() {
+    private int gettime() {
         long timeStamp = System.currentTimeMillis();
         return (int) (timeStamp / 1000);
     }
@@ -69,8 +69,10 @@ public class FillStationParse extends AsyncTask<String, Void, String> {
                     try {
                         if (count == 0)
                             returnmessage1 = "TODAYNOFILL";
-                        else {
+                        else if(count == 1){
                             returnmessage1 = "TODAYHASFILL";
+                        }else {
+                            returnmessage1 = "UNKNOWN_ERROR";
                         }
                     } catch (Exception e) {
                         returnmessage1 = "UNKNOWN_ERROR";
@@ -85,7 +87,8 @@ public class FillStationParse extends AsyncTask<String, Void, String> {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        delegate1.onCheckPostedFinish(returnmessage1);
+        Log.d(TAG, "成功出错returnmessage："+returnmessage1);
+        delegate1.onPostFinish(returnmessage1);
 
     }
 }

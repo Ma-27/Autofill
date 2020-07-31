@@ -306,6 +306,8 @@
 
             </LinearLayout>
 
+            <!--
+
             <View
                 android:id="@+id/divider1"
                 android:layout_width="match_parent"
@@ -344,6 +346,7 @@
                     android:textColor="#4CAF50"
                     android:textSize="20sp"
                     android:textStyle="normal" />
+
 
                 <EditText
                     android:id="@+id/editRoutine"
@@ -601,6 +604,8 @@
                 android:background="@android:drawable/divider_horizontal_bright"
                 android:orientation="horizontal"
                 android:layout_marginEnd="8dp" />
+
+            -->
 
             <LinearLayout
                 android:id="@+id/EncountHBLayout"

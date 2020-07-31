@@ -1,4 +1,4 @@
-# Autofill
+# 新冠肺炎期间在we重邮自动每日打卡app
 
 
 感谢@NPBeta提供的python源代码。部分代码借鉴了google fundamental

@@ -36,7 +36,7 @@ public class HttpPost {
     String PostData(){
         String responseMessage = null;
         try {
-            URL url = new URL("https://we.cqu.pt/api/mrdk/get_mrdk_flag.php");
+            URL url = new URL(uri);
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
             // 创建ssl
             SSLContext sc;

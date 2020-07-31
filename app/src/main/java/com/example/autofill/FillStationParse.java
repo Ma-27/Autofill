@@ -64,7 +64,6 @@ public class FillStationParse extends AsyncTask<String, Void, String> {
                 JSONObject jsonObjectData = new JSONObject(resultArray);
                 int count = 100;
                 count = jsonObjectData.getInt("count");
-                Log.d(TAG, "成功count" + count);
                 if (count != 100) {
                     try {
                         if (count == 0)
@@ -87,7 +86,6 @@ public class FillStationParse extends AsyncTask<String, Void, String> {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.d(TAG, "成功出错returnmessage："+returnmessage1);
         delegate1.onPostFinish(returnmessage1);
 
     }

@@ -43,13 +43,11 @@ public class MainActivity extends AppCompatActivity {
     EditText m_editPhoneNumber;
     EditText m_editCurrentLocation;
     EditText m_editDetailedLocation;
-    /*
     EditText m_editRoutine;
     EditText m_editTransportation;
     EditText m_editReturnTime;
     EditText m_editIsolationStartTime;
     EditText m_editCuttentWhereabouts;
-     */
 
     protected JSONObject jsonJuniorParam = new JSONObject();
 
@@ -76,13 +74,11 @@ public class MainActivity extends AppCompatActivity {
         m_editPhoneNumber = findViewById(R.id.editPhoneNumber);
         m_editCurrentLocation = findViewById(R.id.editCurrentLocation);
         m_editDetailedLocation = findViewById(R.id.editDetailedLocation);
-        /*
         m_editRoutine = findViewById(R.id.editRoutine);
         m_editTransportation = findViewById(R.id.editTransportation);
         m_editReturnTime = findViewById(R.id.editReturnTime);
         m_editIsolationStartTime = findViewById(R.id.editStartIsolationTime);
         m_editCuttentWhereabouts = findViewById(R.id.editCurrentWhereabout);
-         */
 
 
 
@@ -93,13 +89,11 @@ public class MainActivity extends AppCompatActivity {
         String Name = mPreferences.getString("Name", "");
         String PhoneNumber = mPreferences.getString("PhoneNumber", "");
         String DetailedLocation = mPreferences.getString("DetailedLocation", "");
-        /*
         String Routine  = mPreferences.getString("Routine","");
         String Transportation  = mPreferences.getString("Transportation","");
         String ReturnTime  = mPreferences.getString("ReturnTime","");
         String IsolationStartTime  = mPreferences.getString("IsolationStartTime","");
         String CuttentWhereabouts  = mPreferences.getString("CuttentWhereabouts","");
-         */
         boolean isAlarmup = mPreferences.getBoolean("AlarmOn",true);
         m_editSchoolNumber.setText(Schoolnumberstring);
         m_editName.setText(Name);
@@ -107,13 +101,11 @@ public class MainActivity extends AppCompatActivity {
         m_editPhoneNumber.setText(PhoneNumber);
         m_editCurrentLocation.setText(CurrentLocation);
         m_editDetailedLocation.setText(DetailedLocation);
-        /*
         m_editRoutine.setText(Routine);
         m_editTransportation.setText(Transportation);
         m_editReturnTime.setText(ReturnTime);
         m_editIsolationStartTime.setText(IsolationStartTime);
         m_editCuttentWhereabouts.setText(CuttentWhereabouts);
-         */
 
 
         //开启后台推送
@@ -339,7 +331,6 @@ public class MainActivity extends AppCompatActivity {
             }else {
                 jsonJuniorParam.put("beizhu",m_editAdditionalCondition.getText().toString());
             }
-            /*
             if(TextUtils.isEmpty(m_editRoutine.getText())){
                 jsonJuniorParam.put("xb","");
             }else {
@@ -365,7 +356,6 @@ public class MainActivity extends AppCompatActivity {
             }else {
                 jsonJuniorParam.put("wjjglmqqx",m_editCuttentWhereabouts.getText().toString());
             }
-             */
 
             jsonJuniorParam.put("sign","c4cb4738a0b923820scc509a6f75849b");
             jsonJuniorParam.put("xh",m_editSchoolNumber.getText().toString());
@@ -379,7 +369,6 @@ public class MainActivity extends AppCompatActivity {
         return jsonJuniorParam.toString();
     }
 
-    /*
     public void onJudge2ButtonClicked(View view) {
         try {
             boolean checked = ((RadioButton) view).isChecked();
@@ -414,7 +403,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-     */
 
     private void EncodeJsonJuniorParamNo(){
         try {
@@ -443,15 +431,13 @@ public class MainActivity extends AppCompatActivity {
         preferencesEditor.putString("PhoneNumber",m_editPhoneNumber.getText().toString());
         preferencesEditor.putString("DetailedLocation",m_editDetailedLocation.getText().toString());
         preferencesEditor.putString("JSONSeniorString",EncodeJSONSeniorParam());
-
-        /*
         preferencesEditor.putString("Routine",m_editRoutine.getText().toString());
         preferencesEditor.putString("Transportation",m_editTransportation.getText().toString());
         preferencesEditor.putString("ReturnTime",m_editReturnTime.getText().toString());
         preferencesEditor.putString("Transportation",m_editTransportation.getText().toString());
         preferencesEditor.putString("IsolationStartTime",m_editIsolationStartTime.getText().toString());
         preferencesEditor.putString("CuttentWhereabouts",m_editCuttentWhereabouts.getText().toString());
-*/
+
         preferencesEditor.apply();
     }
 

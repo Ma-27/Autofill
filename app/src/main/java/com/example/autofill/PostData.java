@@ -20,8 +20,8 @@ public class PostData extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... strings) {
         String s = "";
+
         s = POSTNetWorkUtils.post(strings[0]);
-        Log.d(TAG, "成功执行打卡返回信息"+s);
         return s;
     }
 

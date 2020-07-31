@@ -46,9 +46,9 @@ public class AlarmReceiver extends BroadcastReceiver
             PositionParse getPosition = new PositionParse();
             getPosition.execute();
 
-            CheckPostedData checkPostedData = new CheckPostedData();
-            checkPostedData.delegate1 = this;
-            checkPostedData.execute(mSchoolNumber);
+            FillStationParse fillStationParse = new FillStationParse();
+            fillStationParse.delegate1 = this;
+            fillStationParse.execute(mSchoolNumber);
             //这里需要判断checkposteddata做完了没有
 
             //网络状况判断

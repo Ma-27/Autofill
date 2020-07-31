@@ -15,7 +15,7 @@ import java.nio.charset.StandardCharsets;
 import static android.content.ContentValues.TAG;
 
 
-public class CheckPostedData extends AsyncTask<String, Void, String> {
+public class FillStationParse extends AsyncTask<String, Void, String> {
     public String returnmessage1 = "";
     private static final String LOG_TAG = "CheckPostedTimes";
     public ResponseCode1Interface delegate1 = null;
@@ -29,6 +29,7 @@ public class CheckPostedData extends AsyncTask<String, Void, String> {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected String doInBackground(String... strings) {
+        String jsonFinalString = "";
         JSONObject jsonParam = new JSONObject();
         try {
             jsonParam.put("xh",strings[0]);
@@ -43,13 +44,14 @@ public class CheckPostedData extends AsyncTask<String, Void, String> {
         //构建查询数据
         JSONObject jsonParam1 = new JSONObject();
         jsonParam1.put("key", stringbase64);
-
-        HttpPost checkPostedData = new
-                HttpPost("https://we.cqu.pt/api/mrdk/get_mrdk_flag.php",jsonParam1.toString());
+        jsonFinalString = jsonParam1.toString();
         } catch (JSONException e) {
              e.printStackTrace();
         }
-        return httpPost.post(strings[0]);
+        HttpPost checkPostedData = new
+                HttpPost("https://we.cqu.pt/api/mrdk/get_mrdk_flag.php",jsonFinalString);
+        Log.d(TAG, "doInBackground: "+jsonFinalString);
+        return checkPostedData.PostData();
     }
 
     @Override

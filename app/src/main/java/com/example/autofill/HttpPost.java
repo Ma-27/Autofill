@@ -16,6 +16,9 @@ import java.nio.charset.StandardCharsets;
 import java.security.cert.CertificateFactory;
 
 import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+
+import static android.content.ContentValues.TAG;
 
 public class HttpPost {
 
@@ -30,11 +33,16 @@ public class HttpPost {
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    static String PostData(String jsonParam1){
+    String PostData(){
         String responseMessage = null;
         try {
             URL url = new URL("https://we.cqu.pt/api/mrdk/get_mrdk_flag.php");
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+            // 创建ssl
+            SSLContext sc;
+            sc = SSLContext.getInstance("TLS");
+            sc.init(null, null, new java.security.SecureRandom());
+            conn.setSSLSocketFactory(sc.getSocketFactory());
             conn.setRequestMethod("POST");
             conn.setReadTimeout(20000);
             conn.setConnectTimeout(20000);
@@ -49,7 +57,7 @@ public class HttpPost {
 
             //将json utf8编码为字符串
             DataOutputStream os = new DataOutputStream(conn.getOutputStream());
-            os.writeBytes(jsonParam1);
+            os.writeBytes(jsonParam);
             os.flush();
             int responseCode = conn.getResponseCode();
             if (responseCode == 200) {

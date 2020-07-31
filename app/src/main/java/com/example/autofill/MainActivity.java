@@ -33,8 +33,8 @@ import static android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATI
 //直接编写约1818行代码,其中java类1024行,android manifest 33行， layout 761行
 public class MainActivity extends AppCompatActivity {
 
-    private static final String LOG_TAG =
-            MainActivity.class.getSimpleName();
+    private static final String TAG =
+            MainActivity.class.getSimpleName()+"成功";
 
     //界面
     EditText m_editAdditionalCondition;
@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int NOTIFICATION_ID = 0;
     private static final String PRIMARY_CHANNEL_ID =
             "primary_notification_channel";
+    private boolean alarmUp;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -93,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         String ReturnTime  = mPreferences.getString("ReturnTime","");
         String IsolationStartTime  = mPreferences.getString("IsolationStartTime","");
         String CuttentWhereabouts  = mPreferences.getString("CuttentWhereabouts","");
+        boolean isAlarmup = mPreferences.getBoolean("AlarmOn",true);
         m_editSchoolNumber.setText(Schoolnumberstring);
         m_editName.setText(Name);
         m_editAdditionalCondition.setText(AdditionalCondition);
@@ -119,9 +121,16 @@ public class MainActivity extends AppCompatActivity {
         final PendingIntent notifyPendingIntent = PendingIntent.getBroadcast
                 (this,NOTIFICATION_ID,notifyIntent,PendingIntent.FLAG_UPDATE_CURRENT);
         //看看之前是不是已经打开了这个app
-        boolean alarmUp = (PendingIntent.getBroadcast(this, NOTIFICATION_ID,
-                notifyIntent, PendingIntent.FLAG_NO_CREATE) != null);
+        Log.d(TAG, "is alarm up"+isAlarmup);
+        if(isAlarmup){
+            //要是根本没有数据，第一次启动
+            alarmUp = (PendingIntent.getBroadcast(this, NOTIFICATION_ID,
+                    notifyIntent, PendingIntent.FLAG_NO_CREATE) != null);
+        }else {
+            alarmUp = isAlarmup;
+        }
         ToggleButton alarmToggle = findViewById(R.id.button);//找到定义好的按钮
+        Log.d(TAG, "alarmup"+alarmUp);
         alarmToggle.setChecked(alarmUp);
         //按钮的触发处理函数
         alarmToggle.setOnCheckedChangeListener(
@@ -130,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton,
                                                  boolean isChecked) {
-                        Log.d(LOG_TAG, "成功"+isChecked);
+                        Log.d(TAG, "成功ischecked"+isChecked);
                         String toastMessage;
                         if(!isChecked){
                             SharedPreferences.Editor preferencesEditor = mPreferences.edit();
@@ -162,6 +171,11 @@ public class MainActivity extends AppCompatActivity {
                         //发送toast.
                         Toast.makeText(MainActivity.this, toastMessage,Toast.LENGTH_SHORT)
                                 .show();
+                        //保存启动设置
+                        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+                        preferencesEditor.putBoolean("AlarmOn",isChecked);
+                        preferencesEditor.apply();
+                        Log.d(TAG, "切换设置前的boolean"+isChecked);
                     }
                 });
         createNotificationChannel();

@@ -1,39 +1,28 @@
 package com.example.autofill;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.TextView;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.ref.WeakReference;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 import static android.content.ContentValues.TAG;
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
-import static com.example.autofill.MainActivity.sharedPrefFile;
 
-public class GetPosition extends AsyncTask<String, Void, String> {
+public class PositionParse extends AsyncTask<String, Void, String> {
 
     private JSONObject jsonPositionParam = new JSONObject();
     public static String position = "";
 
     @Override
     protected String doInBackground(String... strings) {
-        return GETNetWorkUtils.getLocation();
+        //调用网络get模块去获取经纬度
+        String result;
+       final String BOOK_BASE_URL =  "https://apis.map.qq.com/ws/location/v1/ip";
+       final String KEY_PARAM = "IVOBZ-QNW6P-SUKDY-LFQSE-LUFCJ-3CFUE";
+       final String SIG_PARAM = "afebe5ad5227ec75a1f3d8b97f888cda";
+        HttpGet httpGet = new HttpGet(BOOK_BASE_URL,KEY_PARAM,SIG_PARAM);
+        result = httpGet.getData();
+        return result;
     }
 
     @Override
@@ -77,7 +66,6 @@ public class GetPosition extends AsyncTask<String, Void, String> {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
     }
 }

@@ -335,7 +335,6 @@ public class MainActivity extends AppCompatActivity {
         preferencesEditor.putString("PhoneNumber",m_editPhoneNumber.getText().toString());
         preferencesEditor.putString("DetailedLocation",m_editDetailedLocation.getText().toString());
         preferencesEditor.putString("JSONSeniorString",EncodeJSONSeniorParam());
-
         preferencesEditor.apply();
     }
 

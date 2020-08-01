@@ -29,7 +29,7 @@ public class Notify {
         PendingIntent contentPendingIntent = PendingIntent.getActivity
                 (context, NOTIFICATION_ID, contentIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         //该FLAG_UPDATE_CURRENT标志告诉系统使用旧的Intent但替换extras数据。
-        // 因为没有任何额外的功能，所以Intent可以PendingIntent反复使用相同的功能。
+        // 因为没有任何额外的功能，所以Intent可以调用PendingIntent反复使用相同的功能。
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, PRIMARY_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_done_autofill)
                 .setContentTitle(title)

@@ -110,11 +110,11 @@
                     android:layout_marginLeft="24dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
-                    android:gravity="center_horizontal"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:gravity="center_horizontal"
                     android:hint="1xx-xxxx—xxxx"
-                    android:inputType="number"
+                    android:inputType="number|phone"
                     android:textSize="18sp"
                     tools:ignore="HardcodedText" />
 
@@ -145,10 +145,10 @@
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal"
                     android:ems="10"
+                    android:gravity="center_horizontal"
                     android:hint="xx省,xx市/自治州,xx区/县/市"
-                    android:inputType="text"
+                    android:inputType="text|textAutoComplete|textPostalAddress|textEmailSubject"
                     android:textSize="16sp"
                     tools:ignore="HardcodedText" />
 
@@ -230,6 +230,7 @@
 
                     <RadioButton
                         android:id="@+id/yes1"
+                        android:checked="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="onJudgeButtonClicked"
@@ -299,11 +300,307 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="onJudgeButtonClicked"
+                        android:checked="true"
                         android:text="@string/no_show" />
                 </RadioGroup>
 
             </LinearLayout>
 
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@android:drawable/divider_horizontal_bright"
+                android:orientation="horizontal"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/textReturnCQTips"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|center_horizontal|center_vertical"
+                android:text="已经返校的同学请填写暗线围成的区域内的内容"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:fontFamily="sans-serif-thin"
+                tools:ignore="HardcodedText" />
+
+            <LinearLayout
+                android:id="@+id/RoutineLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textRoutine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/return_cq_routine_show"
+                    android:textAllCaps="true"
+                    android:textColor="#4CAF50"
+                    android:textSize="20sp"
+                    android:textStyle="normal" />
+
+                <EditText
+                    android:id="@+id/editRoutine"
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:ems="10"
+                    android:hint="途径哪些地方"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/TransportationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textTransportation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/return_cq_transportation_show"
+                    android:textAllCaps="true"
+                    android:textColor="#4CAF50"
+                    android:textSize="20sp"
+                    android:textStyle="normal" />
+
+                <EditText
+                    android:id="@+id/editTransportation"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:ems="10"
+                    android:hint="@string/return_cq_transportation_hint"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ReturnTimeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textReturnTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/return_cq_time_show"
+                    android:textAllCaps="true"
+                    android:textColor="#4CAF50"
+                    android:textSize="20sp"
+                    android:textStyle="normal" />
+
+                <EditText
+                    android:id="@+id/editReturnTime"
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:ems="10"
+                    android:hint="@string/return_cq_time_hint"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/HasReportNeighborLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textHasReportNeighbor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/has_report_neighbor_show"
+                android:textColor="#4CAF50"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/note_text" />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editDetailedLocation">
+
+                <RadioButton
+                    android:id="@+id/newyes1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onJudge2ButtonClicked"
+                    android:text="@string/yes_show" />
+
+                <RadioButton
+                    android:id="@+id/newno1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onJudge2ButtonClicked"
+                    android:text="@string/no_show" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/HasHomeIsolationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textHasHomeIsolation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/has_home_isolation_show"
+                    android:textColor="#4CAF50"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/note_text" />
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/editDetailedLocation">
+
+                    <RadioButton
+                        android:id="@+id/newyes2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onJudge2ButtonClicked"
+                        android:text="@string/yes_show" />
+
+                    <RadioButton
+                        android:id="@+id/newno2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onJudge2ButtonClicked"
+                        android:text="@string/no_show" />
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/StartIsolationTimeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textStartIsolationTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="居家隔离起始时间"
+                    android:textAllCaps="true"
+                    android:textColor="#4CAF50"
+                    android:textSize="20sp"
+                    android:textStyle="normal"
+                    tools:ignore="HardcodedText" />
+
+                <EditText
+                    android:id="@+id/editStartIsolationTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:ems="10"
+                    android:hint="2020-0x-xx"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/CurrentWhereaboutLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textCurrentWhereabout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/current_whereabout_show"
+                    android:textAllCaps="true"
+                    android:textColor="#4CAF50"
+                    android:textSize="20sp"
+                    android:textStyle="normal"
+                    tools:ignore="HardcodedText" />
+
+                <EditText
+                    android:id="@+id/editCurrentWhereabout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:ems="10"
+                    android:hint="@string/current_whereabout_hint"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@android:drawable/divider_horizontal_bright"
+                android:orientation="horizontal"
+                android:layout_marginEnd="8dp" />
 
             <LinearLayout
                 android:id="@+id/EncountHBLayout"
@@ -338,14 +635,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="onJudge1ButtonClicked"
-                        android:text="@string/have_show" />
+                        android:text="@string/have_show"
+                        />
 
                     <RadioButton
                         android:id="@+id/not_have1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="onJudge1ButtonClicked"
-                        android:text="@string/not_have_show" />
+                        android:text="@string/not_have_show"
+                        android:checked="true"
+                        />
                 </RadioGroup>
 
             </LinearLayout>
@@ -390,7 +690,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="onJudge1ButtonClicked"
-                        android:text="@string/not_have_show" />
+                        android:text="@string/not_have_show"
+                        android:checked="true"/>
                 </RadioGroup>
 
 
@@ -436,7 +737,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="onJudge1ButtonClicked"
-                        android:text="@string/not_have_show" />
+                        android:text="@string/not_have_show"
+                        android:checked="true"/>
                 </RadioGroup>
 
 
@@ -476,7 +778,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="onJudgeButtonClicked"
-                        android:text="@string/yes_show" />
+                        android:text="@string/yes_show"
+                        android:checked="true"/>
 
                     <RadioButton
                         android:id="@+id/no3"
@@ -514,7 +817,8 @@
                     android:layout_marginLeft="24dp"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/editDetailedLocation">
+                    app:layout_constraintTop_toBottomOf="@id/editDetailedLocation"
+                    >
 
                     <RadioButton
                         android:id="@+id/have3"
@@ -528,7 +832,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="onJudge1ButtonClicked"
-                        android:text="@string/not_have_show" />
+                        android:text="@string/not_have_show"
+                        android:checked="true"/>
                 </RadioGroup>
 
             </LinearLayout>
@@ -573,7 +878,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="onJudgeButtonClicked"
-                        android:text="@string/no_show" />
+                        android:text="@string/no_show"
+                        android:checked="true"/>
                 </RadioGroup>
 
             </LinearLayout>
@@ -618,7 +924,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="onJudgeButtonClicked"
-                        android:text="@string/no_show" />
+                        android:text="@string/no_show"
+                        android:checked="true"/>
                 </RadioGroup>
 
             </LinearLayout>
@@ -663,7 +970,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="onJudge1ButtonClicked"
-                        android:text="@string/not_have_show" />
+                        android:text="@string/not_have_show"
+                        android:checked="true"/>
                 </RadioGroup>
 
             </LinearLayout>
@@ -720,4 +1028,5 @@
 
         </LinearLayout>
     </ScrollView>
+
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.example.autofill;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -32,8 +33,8 @@ import static android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATI
 //直接编写约1818行代码,其中java类1024行,android manifest 33行， layout 761行
 public class MainActivity extends AppCompatActivity {
 
-    private static final String LOG_TAG =
-            MainActivity.class.getSimpleName();
+    private static final String TAG =
+            MainActivity.class.getSimpleName()+"成功";
 
     //界面
     EditText m_editAdditionalCondition;
@@ -42,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
     EditText m_editPhoneNumber;
     EditText m_editCurrentLocation;
     EditText m_editDetailedLocation;
+    EditText m_editRoutine;
+    EditText m_editTransportation;
+    EditText m_editReturnTime;
+    EditText m_editIsolationStartTime;
+    EditText m_editCuttentWhereabouts;
 
     protected JSONObject jsonJuniorParam = new JSONObject();
 
@@ -54,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int NOTIFICATION_ID = 0;
     private static final String PRIMARY_CHANNEL_ID =
             "primary_notification_channel";
+    private boolean alarmUp;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -67,6 +74,11 @@ public class MainActivity extends AppCompatActivity {
         m_editPhoneNumber = findViewById(R.id.editPhoneNumber);
         m_editCurrentLocation = findViewById(R.id.editCurrentLocation);
         m_editDetailedLocation = findViewById(R.id.editDetailedLocation);
+        m_editRoutine = findViewById(R.id.editRoutine);
+        m_editTransportation = findViewById(R.id.editTransportation);
+        m_editReturnTime = findViewById(R.id.editReturnTime);
+        m_editIsolationStartTime = findViewById(R.id.editStartIsolationTime);
+        m_editCuttentWhereabouts = findViewById(R.id.editCurrentWhereabout);
 
 
 
@@ -77,12 +89,24 @@ public class MainActivity extends AppCompatActivity {
         String Name = mPreferences.getString("Name", "");
         String PhoneNumber = mPreferences.getString("PhoneNumber", "");
         String DetailedLocation = mPreferences.getString("DetailedLocation", "");
+        String Routine  = mPreferences.getString("Routine","");
+        String Transportation  = mPreferences.getString("Transportation","");
+        String ReturnTime  = mPreferences.getString("ReturnTime","");
+        String IsolationStartTime  = mPreferences.getString("IsolationStartTime","");
+        String CuttentWhereabouts  = mPreferences.getString("CuttentWhereabouts","");
+        boolean isAlarmup = mPreferences.getBoolean("AlarmOn",true);
         m_editSchoolNumber.setText(Schoolnumberstring);
         m_editName.setText(Name);
         m_editAdditionalCondition.setText(AdditionalCondition);
         m_editPhoneNumber.setText(PhoneNumber);
         m_editCurrentLocation.setText(CurrentLocation);
         m_editDetailedLocation.setText(DetailedLocation);
+        m_editRoutine.setText(Routine);
+        m_editTransportation.setText(Transportation);
+        m_editReturnTime.setText(ReturnTime);
+        m_editIsolationStartTime.setText(IsolationStartTime);
+        m_editCuttentWhereabouts.setText(CuttentWhereabouts);
+
 
         //开启后台推送
         if(!isIgnoringBatteryOptimizations());{
@@ -97,9 +121,16 @@ public class MainActivity extends AppCompatActivity {
         final PendingIntent notifyPendingIntent = PendingIntent.getBroadcast
                 (this,NOTIFICATION_ID,notifyIntent,PendingIntent.FLAG_UPDATE_CURRENT);
         //看看之前是不是已经打开了这个app
-        boolean alarmUp = (PendingIntent.getBroadcast(this, NOTIFICATION_ID,
-                notifyIntent, PendingIntent.FLAG_NO_CREATE) != null);
+        Log.d(TAG, "is alarm up"+isAlarmup);
+        if(isAlarmup){
+            //要是根本没有数据，第一次启动
+            alarmUp = (PendingIntent.getBroadcast(this, NOTIFICATION_ID,
+                    notifyIntent, PendingIntent.FLAG_NO_CREATE) != null);
+        }else {
+            alarmUp = isAlarmup;
+        }
         ToggleButton alarmToggle = findViewById(R.id.button);//找到定义好的按钮
+        Log.d(TAG, "alarmup"+alarmUp);
         alarmToggle.setChecked(alarmUp);
         //按钮的触发处理函数
         alarmToggle.setOnCheckedChangeListener(
@@ -108,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton,
                                                  boolean isChecked) {
-                        Log.d(LOG_TAG, "成功"+isChecked);
+                        Log.d(TAG, "成功ischecked"+isChecked);
                         String toastMessage;
                         if(!isChecked){
                             SharedPreferences.Editor preferencesEditor = mPreferences.edit();
@@ -140,6 +171,11 @@ public class MainActivity extends AppCompatActivity {
                         //发送toast.
                         Toast.makeText(MainActivity.this, toastMessage,Toast.LENGTH_SHORT)
                                 .show();
+                        //保存启动设置
+                        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+                        preferencesEditor.putBoolean("AlarmOn",isChecked);
+                        preferencesEditor.apply();
+                        Log.d(TAG, "切换设置前的boolean"+isChecked);
                     }
                 });
         createNotificationChannel();
@@ -295,6 +331,32 @@ public class MainActivity extends AppCompatActivity {
             }else {
                 jsonJuniorParam.put("beizhu",m_editAdditionalCondition.getText().toString());
             }
+            if(TextUtils.isEmpty(m_editRoutine.getText())){
+                jsonJuniorParam.put("xb","");
+            }else {
+                jsonJuniorParam.put("xb",m_editRoutine.getText().toString());
+            }
+            if(TextUtils.isEmpty(m_editTransportation.getText())){
+                jsonJuniorParam.put("fyjtgj", "无");//返渝交通工具
+            }else {
+                jsonJuniorParam.put("fyjtgj",m_editTransportation.getText().toString());
+            }
+            if(TextUtils.isEmpty(m_editReturnTime.getText())){
+                jsonJuniorParam.put("fyddsj", "无");//返渝时间
+            }else {
+                jsonJuniorParam.put("fyddsj",m_editReturnTime.getText().toString());
+            }
+            if(TextUtils.isEmpty(m_editIsolationStartTime.getText())){
+                jsonJuniorParam.put("jjglqssj", "无");//居家隔离起始时间
+            }else {
+                jsonJuniorParam.put("jjglqssj",m_editIsolationStartTime.getText().toString());
+            }
+            if(TextUtils.isEmpty(m_editCuttentWhereabouts.getText())){
+                jsonJuniorParam.put("wjjglmqqx", "无");//为居家隔离目前去向
+            }else {
+                jsonJuniorParam.put("wjjglmqqx",m_editCuttentWhereabouts.getText().toString());
+            }
+
             jsonJuniorParam.put("sign","c4cb4738a0b923820scc509a6f75849b");
             jsonJuniorParam.put("xh",m_editSchoolNumber.getText().toString());
             jsonJuniorParam.put("name",m_editName.getText().toString());
@@ -307,6 +369,40 @@ public class MainActivity extends AppCompatActivity {
         return jsonJuniorParam.toString();
     }
 
+    public void onJudge2ButtonClicked(View view) {
+        try {
+            boolean checked = ((RadioButton) view).isChecked();
+            switch (view.getId()) {
+                case R.id.newyes1:
+                    if (checked) {
+                        jsonJuniorParam.put("sfbgsq", "有");//是报告社区
+                    }//接触hb
+                    break;
+                case R.id.newno1:
+                    if (checked) {
+                        jsonJuniorParam.put("sfbgsq", "无");//否报告社区
+                    }//接触hb
+                    break;
+                case R.id.newyes2:
+                    if (checked) {
+                        jsonJuniorParam.put("sfjjgl", "有");//是居家隔离
+                    }//接触hb
+                    break;
+                case R.id.newno2:
+                    if (checked) {
+                        jsonJuniorParam.put("sfjjgl", "无");//不是居家隔离
+                    }//接触hb
+                    break;
+                default:{
+                    jsonJuniorParam.put("sfbgsq", "无");//否报告社区
+                    jsonJuniorParam.put("sfjjgl", "无");//不是居家隔离
+                }
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     private void EncodeJsonJuniorParamNo(){
         try {
@@ -335,6 +431,13 @@ public class MainActivity extends AppCompatActivity {
         preferencesEditor.putString("PhoneNumber",m_editPhoneNumber.getText().toString());
         preferencesEditor.putString("DetailedLocation",m_editDetailedLocation.getText().toString());
         preferencesEditor.putString("JSONSeniorString",EncodeJSONSeniorParam());
+        preferencesEditor.putString("Routine",m_editRoutine.getText().toString());
+        preferencesEditor.putString("Transportation",m_editTransportation.getText().toString());
+        preferencesEditor.putString("ReturnTime",m_editReturnTime.getText().toString());
+        preferencesEditor.putString("Transportation",m_editTransportation.getText().toString());
+        preferencesEditor.putString("IsolationStartTime",m_editIsolationStartTime.getText().toString());
+        preferencesEditor.putString("CuttentWhereabouts",m_editCuttentWhereabouts.getText().toString());
+
         preferencesEditor.apply();
     }
 
@@ -350,6 +453,7 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void requestIgnoreBatteryOptimizations() {
         try {
+            @SuppressLint("BatteryLife")
             Intent intent = new Intent(ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
             intent.setData(Uri.parse("package:" + getPackageName()));
             startActivity(intent);

@@ -30,7 +30,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import static android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS;
 
-//直接编写约1818行代码,其中java类1024行,android manifest 33行， layout 761行
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG =

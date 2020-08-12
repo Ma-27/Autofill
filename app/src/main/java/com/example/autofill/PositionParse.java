@@ -3,6 +3,8 @@ package com.example.autofill;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.autofill.network.HttpGet;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 

@@ -1,4 +1,4 @@
-package com.example.autofill;
+package com.example.autofill.network;
 
 import android.os.Build;
 import android.util.Base64;

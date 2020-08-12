@@ -7,13 +7,14 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.autofill.network.HttpPost;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 
-import static android.content.ContentValues.TAG;
 import static com.example.autofill.PositionParse.position;
 
 public class PostDataParse extends AsyncTask<String, Void, String> {

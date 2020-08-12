@@ -47,6 +47,7 @@ public class PostDataParse extends AsyncTask<String, Void, String> {
                 HttpPost("https://we.cqu.pt/api/mrdk/post_mrdk_info.php",jsonFinalString);
         Log.d(TAG, "doInBackground: "+jsonFinalString);
         return httpPostData.PostData();
+
     }
 
     @Override

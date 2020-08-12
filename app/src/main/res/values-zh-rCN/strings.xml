@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">自动打卡</string>
+    <string name="tab_text_1">按钮1</string>
+    <string name="tab_text_2">按钮2</string>
+    <string name="action_settings">设置</string>
+
+</resources>

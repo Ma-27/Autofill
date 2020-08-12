@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">自动打卡</string>
+    <string name="app_name">Autofill</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="action_settings">Setting</string>
+
 </resources>

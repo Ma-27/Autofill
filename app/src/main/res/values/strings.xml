@@ -1,34 +1,3 @@
 <resources>
     <string name="app_name">自动打卡</string>
-    <string name="school_number_show">学号:</string>
-    <string name="name_show">姓名:</string>
-    <string name="phone_number_show">联系电话:</string>
-    <string name="current_location_show">目前居住地:</string>
-    <string name="detailed_location_show">居住详细地址:</string>
-    <string name="leave_cq_show">假期是否离开重庆:</string>
-    <string name="return_cq_show">假期是否返回重庆:</string>
-    <string name="encount_hb_show">寒假期间有无接触湖北旅居人员:</string>
-    <string name="encount_positive_show">寒假期间有无接触确诊或疑似病例:</string>
-    <string name="local_positive_show">现居地有无确诊或疑似病例:</string>
-    <string name="temperature_normal_show">体温是否正常:</string>
-    <string name="has_symptom_show">有无咳嗽、乏力、鼻塞、流涕、咽痛、腹泻等症状:</string>
-    <string name="has_family_positive_show">本人及家庭成员是否为确诊病例:</string>
-    <string name="has_family_similarly_show">本人及家庭成员是否为疑似病例:</string>
-    <string name="return_cq_routine_show">返渝路线:</string>
-    <string name="return_cq_transportation_show">返渝乘坐的交通工具:</string>
-    <string name="return_cq_transportation_hint">班次车牌</string>
-    <string name="return_cq_time_show">返渝时间:</string>
-    <string name="return_cq_time_hint">2020–0x-xx</string>
-    <string name="has_report_neighbor_show">是否报告社区:</string>
-    <string name="has_home_isolation_show">是否居家隔离:</string>
-    <string name="current_whereabout_show">未居家隔离目前去向:</string>
-    <string name="current_whereabout_hint">已经返校的同学不填写</string>
-    <string name="illness_history_show">有无疾病史:</string>
-    <string name="addition_show">备注:</string>
-    <string name="yes_show">是</string>
-    <string name="no_show">否</string>
-    <string name="have_show">有</string>
-    <string name="not_have_show">无</string>
-    <string name="button_text_start">停用自动打卡</string>
-    <string name="bottom_text_off">启用自动打卡</string>
 </resources>

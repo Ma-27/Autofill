@@ -1,4 +1,4 @@
-package com.example.autofill.background;
+package com.example.autofill.storage;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
@@ -6,7 +6,8 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName =  "information_table")
-public class InformationTable {
+
+public class InformationTable{
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "state")
@@ -18,7 +19,7 @@ public class InformationTable {
     }
 
     @NonNull
-    public String getmStation() {
+    public String getStation() {
         return mState;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.autofill.background;
+package com.example.autofill.storage;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

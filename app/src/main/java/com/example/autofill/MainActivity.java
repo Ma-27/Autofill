@@ -1,7 +1,9 @@
 package com.example.autofill;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.autofill.setting.SettingsActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
@@ -40,5 +42,18 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // 处理action bar 的点击响应
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent intent = new Intent(this,
+                    SettingsActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

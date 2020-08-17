@@ -10,7 +10,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 public abstract class InformationRoomDatabase extends RoomDatabase {
 
-    //定义与数据库一起使用的DAO。为每个@Dao提供一个abstract的“getter”方法。
+    //TODO:定义与数据库一起使用的DAO。为每个@Dao提供一个abstract的“getter”方法。
     //从repository 和构建word数据的async task中访问这个方法
     public abstract InformationDao informationDao();
 
@@ -24,7 +24,7 @@ public abstract class InformationRoomDatabase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             InformationRoomDatabase.class,"word_database")
                             //添加回调，初始化时添加数据，这个项目中没有启用 migration功能
-                            .addCallback(sRoomDatabaseCallback)
+                            .addCallback(informationRoomDatabaseCallback)
                             .fallbackToDestructiveMigration()
                             .build();
                 }
@@ -33,7 +33,7 @@ public abstract class InformationRoomDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    public static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback(){
+    public static RoomDatabase.Callback informationRoomDatabaseCallback = new RoomDatabase.Callback(){
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
@@ -44,7 +44,7 @@ public abstract class InformationRoomDatabase extends RoomDatabase {
 
     private static class PopulateDbAsync extends AsyncTask<Void,Void,Void> {
 
-        private final InformationDao myInformationDao;
+        private final InformationDao stateInformationDao;
 
         //有待填充
         String[] information = {
@@ -66,18 +66,18 @@ public abstract class InformationRoomDatabase extends RoomDatabase {
         };
 
         public PopulateDbAsync(InformationRoomDatabase instance) {
-            myInformationDao = instance.informationDao();
+            stateInformationDao = instance.informationDao();
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
            //当启动时，填充初始化数据
-            //myInformationDao.deleteAll();
-            if(myInformationDao.getAnyWord().length < 1){
+            //stateInformationDao.deleteAll();
+            if(stateInformationDao.getAnyState().length < 1){
                 for (int i = 0; i <= information.length - 1; i++) {
                     InformationTable data = new InformationTable(information[i]);
                     //插入单个打卡数据
-                    myInformationDao.insert(data);
+                    stateInformationDao.insert(data);
                 }
             }
 

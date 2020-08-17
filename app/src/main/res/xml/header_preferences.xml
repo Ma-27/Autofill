@@ -1,0 +1,64 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <!-- 查看已保存的数据-->
+    <PreferenceCategory android:title="@string/title_setting_data_category">
+
+        <Preference
+            app:fragment="com.example.autofill.setting.SettingsActivity$ViewDataFragment"
+            app:icon="@drawable/ic_saved_data"
+            app:key="messages_header"
+            app:title="@string/title_saved_data"
+            />
+
+        <!--
+        <Preference
+            app:fragment="com.example.autofill.setting.SettingsActivity$MessagesFragment"
+            app:icon="@drawable/messages"
+            app:key="messages_header"
+            app:title="@string/messages_header"
+            />
+
+        <Preference
+            app:fragment="com.example.autofill.setting.SettingsActivity$SyncFragment"
+            app:icon="@drawable/sync"
+            app:key="sync_header"
+            app:title="@string/sync_header" />
+-->
+    </PreferenceCategory>
+
+<!--
+    <PreferenceCategory app:title="@string/messages_header">
+
+        <EditTextPreference
+            app:key="signature"
+            app:title="@string/signature_title"
+            />
+
+        <ListPreference
+            app:defaultValue="reply"
+            app:entries="@array/reply_entries"
+            app:entryValues="@array/reply_values"
+            app:key="reply"
+            app:title="@string/reply_title"
+            />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/sync_header">
+
+        <SwitchPreferenceCompat
+            app:key="sync"
+            app:title="@string/sync_title" />
+
+        <SwitchPreferenceCompat
+            app:dependency="sync"
+            app:key="attachment"
+            app:summaryOff="@string/attachment_summary_off"
+            app:summaryOn="@string/attachment_summary_on"
+            app:title="@string/attachment_title" />
+
+    </PreferenceCategory>
+-->
+</PreferenceScreen>

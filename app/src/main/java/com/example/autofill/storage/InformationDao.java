@@ -18,17 +18,17 @@ public interface InformationDao {
 
     //删除全部填写的打卡数据
     @Query("DELETE FROM information_table")
-    void deleteAll();
+    void deleteAllState();
 
     //获取全部打卡数据
     @Query("SELECT * from information_table")
-    LiveData<List<InformationTable>> getAllWords();
+    LiveData<List<InformationTable>> getAllState();
 
     //获取单个打卡数据
     @Query("SELECT * from information_table LIMIT 1")
-    InformationTable[] getAnyWord();
+    InformationTable[] getAnyState();
 
     //删除单个打卡数据
     @Delete
-    void deleteWord(InformationTable information);
+    void deleteSingleState(InformationTable information);
 }

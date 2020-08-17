@@ -1,8 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Autofill</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="action_settings">Setting</string>
+    <string name="app_name">自动打卡</string>
+    <string name="tab_text_1">按钮1</string>
+    <string name="tab_text_2">按钮2</string>
+    <string name="action_settings">设置</string>
+
     <string name="title_activity_settings">SettingsActivity</string>
 
     <!-- Preference Titles -->
@@ -21,5 +23,4 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="title_saved_data">保存的数据</string>
     <string name="title_setting_data_category">数据</string>
-
 </resources>

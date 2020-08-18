@@ -16,7 +16,7 @@ public interface InformationDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(InformationEntity state);
 
-    //删除全部填写的打卡数据
+    //删除全部的打卡数据
     @Query("DELETE FROM information_table")
     void deleteAllState();
 

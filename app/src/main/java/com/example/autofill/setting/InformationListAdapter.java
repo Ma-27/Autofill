@@ -2,6 +2,7 @@ package com.example.autofill.setting;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,28 +12,28 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.autofill.R;
-import com.example.autofill.storage.InformationTable;
+import com.example.autofill.storage.InformationEntity;
 
 import java.util.List;
 
-public class DataListAdapter extends RecyclerView.Adapter<DataListAdapter.DataViewHolder> {
+public class InformationListAdapter extends RecyclerView.Adapter<InformationListAdapter.DataViewHolder> {
 
-    private final LayoutInflater inflater;
-    private List<InformationTable> information;
+    private List<InformationEntity> information;
     private Context context;
+    private static final String TAG = "InformationListAdapter成功";
 
 
     //该类的构造方法
-    public DataListAdapter(Context context) {
+    public InformationListAdapter(Context context) {
         this.context = context;
-        this.inflater = LayoutInflater.from(context);
     }
 
     //holder 内部类
     class DataViewHolder extends RecyclerView.ViewHolder {
         View itemView;
-        private final TextView titleItemView;
-        private final TextView contentItemView;
+
+        private TextView titleItemView;
+        private TextView contentItemView;
 
         @SuppressLint("CutPasteId")
         private DataViewHolder(View itemView) {
@@ -48,21 +49,22 @@ public class DataListAdapter extends RecyclerView.Adapter<DataListAdapter.DataVi
     @NonNull
     @Override
     public DataViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        /*
-        return new DataListAdapter.DataViewHolder(
-                LayoutInflater.from(context)
-                        .inflate(R.layout.setting_recyclerview_item, parent, false));
-
-         */
-        return super.createViewHolder(parent, viewType);
+        View itemView = LayoutInflater.from(context)
+                .inflate(R.layout.setting_recyclerview_item,parent,false);
+       return new DataViewHolder(itemView);
     }
 
 
 
+    @SuppressLint({"LongLogTag", "SetTextI18n"})
     @Override
     public void onBindViewHolder(@NonNull DataViewHolder holder, int position) {
-        InformationTable current = information.get(position);
-        holder.contentItemView.setText(current.getStation());
+        InformationEntity currentEntity = information.get(position);
+
+        Log.d(TAG, "onBindViewHolder: "+currentEntity.getStation());
+
+        holder.contentItemView.setText(currentEntity.getStation());
+        holder.titleItemView.setText("afaffafa");
     }
 
     @Override
@@ -72,7 +74,7 @@ public class DataListAdapter extends RecyclerView.Adapter<DataListAdapter.DataVi
         else return 0;
     }
 
-    void setData(List<InformationTable> data){
+    void setData(List<InformationEntity> data){
         information = data;
         notifyDataSetChanged();
     }

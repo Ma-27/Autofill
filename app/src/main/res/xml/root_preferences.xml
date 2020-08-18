@@ -1,27 +1,25 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- 查看已保存的数据-->
     <PreferenceCategory android:title="@string/title_setting_data_category">
 
         <Preference
-            app:fragment="com.example.autofill.setting.SettingsActivity$ViewDataFragment"
             app:icon="@drawable/ic_saved_data"
-            app:key="messages_header"
+            android:key="@string/title_saved_data"
             app:title="@string/title_saved_data" >
-
+            <intent
+                android:action="android.intent.action.AUTOFILL_VIEW_SAVED_DATA"
+                />
         </Preference>
 
     </PreferenceCategory>
 
-
     <PreferenceCategory app:title="@string/messages_header">
-
         <EditTextPreference
             app:key="signature"
             app:title="@string/signature_title"
-            />
+            app:useSimpleSummaryProvider="true" />
 
         <ListPreference
             app:defaultValue="reply"
@@ -29,7 +27,7 @@
             app:entryValues="@array/reply_values"
             app:key="reply"
             app:title="@string/reply_title"
-            />
+            app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 

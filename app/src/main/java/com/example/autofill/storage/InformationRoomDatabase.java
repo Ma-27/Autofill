@@ -4,14 +4,22 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
+import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+@Database(entities = {InformationEntity.class}, version = 1, exportSchema = false)
+
+/**
+ * 将该类注释为Room数据库。这个是dao~sqlite~entity的集合
+ * 声明属于数据库的实体-在这种情况下，只有一个实体Word
+ * @param exportSchema 保留模式版本的历史记录。为此，您可以禁用它，因为您不迁移数据库。
+ */
 public abstract class InformationRoomDatabase extends RoomDatabase {
 
     //TODO:定义与数据库一起使用的DAO。为每个@Dao提供一个abstract的“getter”方法。
-    //从repository 和构建word数据的async task中访问这个方法
+    // 从repository 和构建word数据的async task中访问这个方法
     public abstract InformationDao informationDao();
 
     public static InformationRoomDatabase INSTANCE;
@@ -22,7 +30,7 @@ public abstract class InformationRoomDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     // TODO: 创建一个初始的数据库
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            InformationRoomDatabase.class,"word_database")
+                            InformationRoomDatabase.class,"data_database")
                             //添加回调，初始化时添加数据，这个项目中没有启用 migration功能
                             .addCallback(informationRoomDatabaseCallback)
                             .fallbackToDestructiveMigration()
@@ -34,6 +42,7 @@ public abstract class InformationRoomDatabase extends RoomDatabase {
     }
 
     public static RoomDatabase.Callback informationRoomDatabaseCallback = new RoomDatabase.Callback(){
+
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
             super.onOpen(db);
@@ -75,12 +84,11 @@ public abstract class InformationRoomDatabase extends RoomDatabase {
             //stateInformationDao.deleteAll();
             if(stateInformationDao.getAnyState().length < 1){
                 for (int i = 0; i <= information.length - 1; i++) {
-                    InformationTable data = new InformationTable(information[i]);
+                    InformationEntity data = new InformationEntity(information[i]);
                     //插入单个打卡数据
                     stateInformationDao.insert(data);
                 }
             }
-
             return null;
         }
     }

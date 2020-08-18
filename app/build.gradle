@@ -33,21 +33,23 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //noinspection GradleCompatible
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-    implementation 'androidx.preference:preference:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    testImplementation 'junit:junit:4.13'
-    //noinspection GradleCompatible
+    implementation 'androidx.navigation:navigation-fragment:2.3.0'
+    implementation 'androidx.navigation:navigation-ui:2.3.0'
+    implementation 'androidx.preference:preference:1.1.1'
+    testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    // 更新的依赖库，添加 sql lite
+    // room database 依赖
     implementation "android.arch.persistence.room:runtime:$rootProject.roomVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomVersion"
     androidTestImplementation "android.arch.persistence.room:testing:$rootProject.roomVersion"
 
+    // life cycle类
     implementation "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
+    //noinspection LifecycleAnnotationProcessorWithJava8
     annotationProcessor "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion"
 }

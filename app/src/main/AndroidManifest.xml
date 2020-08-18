@@ -16,13 +16,35 @@
         android:roundIcon="@mipmap/ic_laucher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
         <activity
             android:name=".setting.SettingsActivity"
             android:label="@string/title_activity_settings"
+            android:launchMode="singleTask"
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean">
 
         </activity>
+
+
+        <activity
+            android:name=".setting.ViewSavedDataActivity"
+            android:label="@string/title_saved_data"
+            android:launchMode="singleTask"
+            android:parentActivityName=".setting.SettingsActivity"
+            tools:targetApi="jelly_bean">
+            <intent-filter>
+
+                <!-- 接收带有查看动作的intent，接收任何隐式intent -->
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.AUTOFILL_VIEW_SAVED_DATA" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

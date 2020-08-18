@@ -6,20 +6,18 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName =  "information_table")
-
-public class InformationTable{
+public class InformationEntity {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "state")
+    String mState;
 
-    private String mState;
-
-    public InformationTable(String state){
-        mState = state;
+    public InformationEntity(@NonNull String state){
+        this.mState = state;
     }
 
     @NonNull
     public String getStation() {
-        return mState;
+        return this.mState;
     }
 }

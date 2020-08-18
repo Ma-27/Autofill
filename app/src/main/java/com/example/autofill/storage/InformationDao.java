@@ -14,7 +14,7 @@ import java.util.List;
 public interface InformationDao {
     //插入单个状况
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(InformationTable state);
+    void insert(InformationEntity state);
 
     //删除全部填写的打卡数据
     @Query("DELETE FROM information_table")
@@ -22,13 +22,13 @@ public interface InformationDao {
 
     //获取全部打卡数据
     @Query("SELECT * from information_table")
-    LiveData<List<InformationTable>> getAllState();
+    LiveData<List<InformationEntity>> getAllState();
 
     //获取单个打卡数据
     @Query("SELECT * from information_table LIMIT 1")
-    InformationTable[] getAnyState();
+    InformationEntity[] getAnyState();
 
     //删除单个打卡数据
     @Delete
-    void deleteSingleState(InformationTable information);
+    void deleteSingleState(InformationEntity information);
 }

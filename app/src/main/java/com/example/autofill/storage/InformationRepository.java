@@ -2,6 +2,7 @@ package com.example.autofill.storage;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -10,7 +11,8 @@ import java.util.List;
 public class InformationRepository {
 
     private InformationDao informationDao;
-    private LiveData<List<InformationTable>> AllState;
+    private LiveData<List<InformationEntity>> AllState;
+    private static final String TAG = "InformationRepository成功";
 
     //初始化这个类时调用
     public InformationRepository(Application application) {
@@ -20,13 +22,14 @@ public class InformationRepository {
     }
 
     //向view model 返回所有数据
-    public LiveData<List<InformationTable>> getAllStateInRepository() {
+    public LiveData<List<InformationEntity>> getAllStateInRepository() {
+        Log.d(TAG, "getAllStateInRepository: "+AllState);
         return AllState;
     }
 
 
     //又一个会被调用的getter 方法，插入新单词
-    public void insert (InformationTable state) {
+    public void insert (InformationEntity state) {
         new insertAsyncTask((InformationDao) new insertAsyncTask(informationDao)).execute(state);
     }
 
@@ -34,11 +37,11 @@ public class InformationRepository {
         new deleteAllStateAsyncTask((InformationDao) new insertAsyncTask(informationDao)).execute();
     }
 
-    public void deleteWord(InformationTable state)  {
+    public void deleteWord(InformationEntity state)  {
         new deleteSingleStateAsyncTask((InformationDao) new insertAsyncTask(informationDao)).execute(state);
     }
 
-    private static class insertAsyncTask extends AsyncTask<InformationTable,Void,Void> {
+    private static class insertAsyncTask extends AsyncTask<InformationEntity,Void,Void> {
 
         private  InformationDao StateDao;
 
@@ -47,14 +50,14 @@ public class InformationRepository {
         }
 
         @Override
-        protected Void doInBackground(InformationTable... informationTables) {
+        protected Void doInBackground(InformationEntity... informationEntities) {
             //插入单个单词（类名 ... 对象数组）
-            StateDao.insert(informationTables[0]);
+            StateDao.insert(informationEntities[0]);
             return null;
         }
     }
 
-    private static class deleteAllStateAsyncTask extends AsyncTask<InformationTable,Void,Void> {
+    private static class deleteAllStateAsyncTask extends AsyncTask<InformationEntity,Void,Void> {
 
         private  InformationDao StateDao;
 
@@ -63,13 +66,13 @@ public class InformationRepository {
         }
 
         @Override
-        protected Void doInBackground(InformationTable... informationTables) {
+        protected Void doInBackground(InformationEntity... informationEntities) {
             StateDao.deleteAllState();
             return null;
         }
     }
 
-    private static class deleteSingleStateAsyncTask extends AsyncTask<InformationTable,Void,Void> {
+    private static class deleteSingleStateAsyncTask extends AsyncTask<InformationEntity,Void,Void> {
 
         private  InformationDao StateDao;
 
@@ -78,9 +81,9 @@ public class InformationRepository {
         }
 
         @Override
-        protected Void doInBackground(InformationTable... informationTables) {
+        protected Void doInBackground(InformationEntity... informationEntities) {
             //插入单个单词（类名 ... 对象数组）
-            StateDao.deleteSingleState(informationTables[0]);
+            StateDao.deleteSingleState(informationEntities[0]);
             return null;
         }
     }

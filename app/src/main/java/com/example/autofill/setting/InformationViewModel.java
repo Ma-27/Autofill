@@ -7,13 +7,14 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.example.autofill.storage.InformationEntity;
 import com.example.autofill.storage.InformationRepository;
-import com.example.autofill.storage.InformationTable;
 
+//ViewModel充当存储库和UI之间的通信中心。
 public class InformationViewModel extends AndroidViewModel {
 
     private InformationRepository informationRepository;
-    private LiveData<List<InformationTable>> mAllData;
+    private LiveData<List<InformationEntity>> mAllData;
 
     public InformationViewModel(@NonNull Application application) {
         super(application);
@@ -24,16 +25,16 @@ public class InformationViewModel extends AndroidViewModel {
 
 
     //四个保留的getter 方法，类似repository类 “接口”
-    LiveData<List<InformationTable>> getAllData() {
+    LiveData<List<InformationEntity>> getAllData() {
         return mAllData;
     }
 
-    public void insert(InformationTable state) {
+    public void insert(InformationEntity state) {
         informationRepository.insert(state);
     }
 
     public void deleteAll() {informationRepository.deleteAll();}
 
-    public void deleteWord(InformationTable state) {informationRepository.deleteWord(state);}
+    public void deleteWord(InformationEntity state) {informationRepository.deleteWord(state);}
 
 }

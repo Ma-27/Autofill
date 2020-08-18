@@ -9,26 +9,13 @@
             app:fragment="com.example.autofill.setting.SettingsActivity$ViewDataFragment"
             app:icon="@drawable/ic_saved_data"
             app:key="messages_header"
-            app:title="@string/title_saved_data"
-            />
+            app:title="@string/title_saved_data" >
 
-        <!--
-        <Preference
-            app:fragment="com.example.autofill.setting.SettingsActivity$MessagesFragment"
-            app:icon="@drawable/messages"
-            app:key="messages_header"
-            app:title="@string/messages_header"
-            />
+        </Preference>
 
-        <Preference
-            app:fragment="com.example.autofill.setting.SettingsActivity$SyncFragment"
-            app:icon="@drawable/sync"
-            app:key="sync_header"
-            app:title="@string/sync_header" />
--->
     </PreferenceCategory>
 
-<!--
+
     <PreferenceCategory app:title="@string/messages_header">
 
         <EditTextPreference
@@ -60,5 +47,5 @@
             app:title="@string/attachment_title" />
 
     </PreferenceCategory>
--->
+
 </PreferenceScreen>

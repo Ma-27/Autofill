@@ -5,23 +5,25 @@
     <string name="tab_text_2">按钮2</string>
     <string name="action_settings">设置</string>
 
-    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_settings">设置</string>
 
     <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
+    <string name="messages_header">消息</string>
+    <string name="sync_header">同步</string>
 
     <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
+    <string name="signature_title">你的签名</string>
+    <string name="reply_title">默认回复</string>
 
     <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
+    <string name="sync_title">定期同步电子邮件</string>
     <string name="attachment_title">Download incoming attachments</string>
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    <string name="title_saved_data">保存的数据</string>
+    <string name="title_saved_data">查看已经保存的数据</string>
     <string name="title_setting_data_category">数据</string>
+    <string name="title_placeholder">默认标题</string>
+    <string name="content_placeholder">默认内容</string>
 
 </resources>

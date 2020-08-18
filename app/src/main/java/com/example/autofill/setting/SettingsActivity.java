@@ -1,20 +1,33 @@
 package com.example.autofill.setting;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.AttributeSet;
+import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.autofill.R;
+import com.example.autofill.storage.InformationTable;
+
+import java.util.List;
 
 public class SettingsActivity extends AppCompatActivity implements
         PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
     private static final String TITLE_TAG = "settingsActivityTitle";
+    private InformationViewModel informationViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +54,31 @@ public class SettingsActivity extends AppCompatActivity implements
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+
+
+        //设置查看已保存的数据的recycler view
+
+        /*
+           RecyclerView recyclerView = findViewById(R.id.recyclerview);
+            final DataListAdapter adapter = new DataListAdapter(this);
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+        informationViewModel = ViewModelProviders
+                .of(this)
+                .get(InformationViewModel.class);
+        informationViewModel.getAllData().observe(this, new Observer<List<InformationTable>>() {
+            @Override
+            public void onChanged(List<InformationTable> informationTables) {
+                adapter.setData(informationTables);
+            }
+        });
+
+         */
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        // Save current activity title so we can set it again after a configuration change
-        outState.putCharSequence(TITLE_TAG, getTitle());
-    }
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -77,29 +107,13 @@ public class SettingsActivity extends AppCompatActivity implements
     }
 
     public static class HeaderFragment extends PreferenceFragmentCompat {
-
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.header_preferences, rootKey);
         }
     }
 
-    public static class MessagesFragment extends PreferenceFragmentCompat {
-
-        @Override
-        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-            setPreferencesFromResource(R.xml.messages_preferences, rootKey);
-        }
-    }
-
-    public static class SyncFragment extends PreferenceFragmentCompat {
-
-        @Override
-        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-            setPreferencesFromResource(R.xml.sync_preferences, rootKey);
-        }
-    }
-
+    //千万不要删这个，这个用了的
     public static class ViewDataFragment extends PreferenceFragmentCompat {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {

@@ -3,7 +3,7 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="action_settings">Setting</string>
-    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_settings">Settings</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
@@ -19,7 +19,9 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    <string name="title_saved_data">保存的数据</string>
+    <string name="title_saved_data">View saved data</string>
     <string name="title_setting_data_category">数据</string>
+    <string name="title_placeholder">默认标题</string>
+    <string name="content_placeholder">默认内容</string>
 
 </resources>

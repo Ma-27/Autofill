@@ -5,7 +5,7 @@
     <string name="tab_text_2">按钮2</string>
     <string name="action_settings">设置</string>
 
-    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_settings">设置</string>
 
     <!-- Preference Titles,这一部分可能不用 -->
     <string name="messages_header">Messages</string>
@@ -23,4 +23,6 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="title_saved_data">保存的数据</string>
     <string name="title_setting_data_category">数据</string>
+    <string name="title_placeholder">默认标题</string>
+    <string name="content_placeholder">默认内容</string>
 </resources>

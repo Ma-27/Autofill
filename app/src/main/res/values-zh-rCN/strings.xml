@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">自动打卡</string>
-    <string name="tab_text_1">按钮1</string>
-    <string name="tab_text_2">按钮2</string>
+    <string name="tab_text_2">历史填报</string>
     <string name="action_settings">设置</string>
 
     <string name="title_activity_settings">设置</string>
@@ -25,5 +24,7 @@
     <string name="title_setting_data_category">数据</string>
     <string name="title_placeholder">默认标题</string>
     <string name="content_placeholder">默认内容</string>
+    <string name="tab_text_1">每日打卡</string>
+    <string name="lstb_text">由于接口适配问题，该功能暂时不开放。联系原作者催更</string>
 
 </resources>

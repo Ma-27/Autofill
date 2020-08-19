@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Autofill</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_1">Daily submit</string>
+    <string name="tab_text_2">View history</string>
     <string name="action_settings">Setting</string>
     <string name="title_activity_settings">Settings</string>
 
@@ -23,6 +23,8 @@
     <string name="title_setting_data_category">Data</string>
     <string name="title_placeholder">Default Title</string>
     <string name="content_placeholder">Default Content</string>
-    <string name="title_activity_settings2">SettingsActivity2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lstb_text">由于接口适配问题，该功能暂时不开放。联系原作者催更</string>
 
 </resources>

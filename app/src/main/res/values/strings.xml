@@ -20,9 +20,9 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="title_saved_data">View saved data</string>
-    <string name="title_setting_data_category">数据</string>
-    <string name="title_placeholder">默认标题</string>
-    <string name="content_placeholder">默认内容</string>
+    <string name="title_setting_data_category">Data</string>
+    <string name="title_placeholder">Default Title</string>
+    <string name="content_placeholder">Default Content</string>
     <string name="title_activity_settings2">SettingsActivity2</string>
 
 </resources>

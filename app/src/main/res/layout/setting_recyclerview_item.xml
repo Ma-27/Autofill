@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
+    android:layout_height="wrap_content"
+    android:layout_margin="8sp"
+    >
     <TextView
         android:id="@+id/item_title"
         style="@style/SettingTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="@string/title_placeholder"
-        android:padding="8sp"
+        android:padding="4sp"
+        android:textColor="@color/ic_laucher_background"
+        android:textSize="22sp"
+        android:textStyle="bold"
         android:theme="@style/ThemeOverlay.AppCompat.Light"
-        android:textColor="?android:textColorSecondary"
-        />
+        app:fontFamily="sans-serif-light"
+        tools:text="@string/title_placeholder" />
 
     <TextView
+        android:id="@+id/item_content"
+        style="@style/DetailText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/item_content"
-        android:padding="8dp"
-        style="@style/DetailText"
         android:layout_below="@id/item_title"
-        tools:text="@string/content_placeholder"/>
+        android:padding="4sp"
+        android:textAllCaps="false"
+        android:textAppearance="@style/ThemeOverlay.AppCompat.Light"
+        android:textStyle="italic"
+        app:fontFamily="sans-serif-condensed-light"
+        tools:text="@string/content_placeholder" />
 
 </RelativeLayout>
+
+

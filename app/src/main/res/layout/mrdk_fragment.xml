@@ -1,10 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:background="@color/colorScreenBackground"
     tools:context="com.example.autofill.ui.main.MrdkFragment">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mrdk_recyclerview"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="16sp"
+        android:layout_gravity="center_vertical"
+        tools:listitem="@layout/mrdk_recycler_item"
+        >
+    </androidx.recyclerview.widget.RecyclerView>
 
+    <Switch
+        android:id="@+id/switch_autofill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8sp"
+        android:gravity="center"
+        android:textOff="@string/switch_textoff"
+        android:textOn="@string/switch_texton"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
-</FrameLayout>
+</LinearLayout>

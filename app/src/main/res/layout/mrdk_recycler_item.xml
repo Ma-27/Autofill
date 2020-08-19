@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8sp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/CardView"
+        tools:ignore="PrivateResource">
+
+        <ImageView
+            android:id="@+id/sportsImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:text="@string/title_placeholder"
+            android:padding="8dp"
+            style="@style/MainTitle"
+            android:layout_alignBottom="@id/sportsImage"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/newsTitle"
+            android:text="sgaeg"
+            android:padding="8dp"
+            style="@style/MainDetailText"
+            android:layout_below="@id/sportsImage"
+            android:textColor="?android:textColorSecondary"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/subTitle"
+            android:text="earg"
+            android:padding="8dp"
+            style="@style/MainDetailText"
+            android:layout_below="@id/newsTitle"/>
+
+        <TextView
+            android:id="@+id/mrdkTextView"
+            style="@style/text_view_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="placeholder text" />
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

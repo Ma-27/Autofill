@@ -17,7 +17,8 @@ import com.example.autofill.storage.InformationEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InformationListAdapter extends RecyclerView.Adapter<InformationListAdapter.DataViewHolder> {
+public class InformationListAdapter
+        extends RecyclerView.Adapter<InformationListAdapter.InformationViewHolder> {
 
     private List<InformationEntity> information;
     private Context context;
@@ -51,17 +52,17 @@ public class InformationListAdapter extends RecyclerView.Adapter<InformationList
 
     @NonNull
     @Override
-    public DataViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public InformationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(context)
                 .inflate(R.layout.setting_recyclerview_item,parent,false);
-       return new DataViewHolder(itemView);
+       return new InformationViewHolder(itemView);
     }
 
 
 
     @SuppressLint({"LongLogTag", "SetTextI18n"})
     @Override
-    public void onBindViewHolder(@NonNull DataViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull InformationViewHolder holder, int position) {
         InformationEntity currentEntity = information.get(position);
         DataCacheHolder cacheHolder = dataCacheHolder.get(position);
 
@@ -87,9 +88,11 @@ public class InformationListAdapter extends RecyclerView.Adapter<InformationList
     @SuppressLint("LongLogTag")
     String parseStation(String unparsedStation){
         String[] splitted = unparsedStation.split("-");
+        /*
         for (int i = 0; i < splitted.length; i++) {
             Log.d(TAG, "分裂字符串"+splitted[i]+"循环节i："+i);
         }
+         */
         return splitted[1];
     }
 }

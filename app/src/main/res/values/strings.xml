@@ -28,5 +28,9 @@
     <string name="lstb_text">由于接口适配问题，该功能暂时不开放。联系原作者催更</string>
     <string name="switch_texton">开启</string>
     <string name="switch_textoff">关闭</string>
+    <string name="decoration_description">装饰图</string>
+    <string name="hint_default">默认暗示</string>
+    <string name="state_yes">是/有</string>
+    <string name="state_no">否/无</string>
 
 </resources>

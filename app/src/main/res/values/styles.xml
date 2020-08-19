@@ -21,12 +21,10 @@
         parent="TextAppearance.AppCompat.Headline"/>
 
     <style name="DetailText"
-        parent="TextAppearance.AppCompat.Subhead"/>
+        parent="TextAppearance.AppCompat.Body2"/>
 
     <style name="MainDetailText"
         parent="TextAppearance.AppCompat.Subhead"/>
-    <style name="MainTitle"
-        parent="TextAppearance.AppCompat.Headline"/>
     <style name="MainDetailTitle"
         parent="TextAppearance.AppCompat.Headline"/>
 

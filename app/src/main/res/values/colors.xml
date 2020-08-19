@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#388E3C</color>
     <color name="colorAccent">#1E88E5</color>
 
-    <color name="colorTextPrimary">@android:color/white</color>
+    <color name="colorTextPrimary">@android:color/secondary_text_dark_nodisable</color>
     <color name="colorScreenBackground">#fff3e0</color>
     <color name="colorTextHint">#E0E0E0</color>
 

@@ -59,6 +59,7 @@ public abstract class InformationRoomDatabase extends RoomDatabase {
 
         //初始化打卡数据
         String[] information = {
+                "-",
                 "xh-20xx~xxx~xxx",
                 "name-小明",
                 "lxdh-1xx~xxx~xxxx",//联系电话

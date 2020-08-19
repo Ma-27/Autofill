@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,50 +9,72 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/CardView"
-        tools:ignore="PrivateResource">
+        android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/sportsImage"
+            android:id="@+id/mrdk_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"/>
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/decoration_description" />
 
         <TextView
+            android:id="@+id/mrdk_title"
+            style="@style/MainDetailTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/title"
+            android:layout_below="@id/mrdk_image"
+            android:maxLines="2"
+            android:padding="4dp"
+            android:layout_marginLeft="12sp"
+            android:layout_marginRight="12sp"
             android:text="@string/title_placeholder"
-            android:padding="8dp"
-            style="@style/MainTitle"
-            android:layout_alignBottom="@id/sportsImage"
+            android:textColor="@color/colorTextPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            app:fontFamily="@font/actor"
             />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/newsTitle"
-            android:text="sgaeg"
-            android:padding="8dp"
-            style="@style/MainDetailText"
-            android:layout_below="@id/sportsImage"
-            android:textColor="?android:textColorSecondary"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/subTitle"
-            android:text="earg"
-            android:padding="8dp"
-            style="@style/MainDetailText"
-            android:layout_below="@id/newsTitle"/>
 
-        <TextView
-            android:id="@+id/mrdkTextView"
-            style="@style/text_view_style"
+        <EditText
+            android:id="@+id/edit_data"
+            style="@style/MainDetailText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="placeholder text" />
+            android:layout_below="@+id/mrdk_title"
+            android:gravity="center_horizontal"
+            android:hint="@string/hint_default"
+            android:layout_marginRight="12sp"
+            android:layout_marginLeft="12sp"
+            android:singleLine="false"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/select_radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_data"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radiobutton_yes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="24sp"
+                android:layout_marginRight="24sp"
+                android:layout_weight="1"
+                android:text="@string/state_yes" />
+
+            <RadioButton
+                android:id="@+id/radiobutton_no"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="24sp"
+                android:layout_marginRight="24sp"
+                android:layout_weight="1"
+                android:text="@string/state_no" />
+        </RadioGroup>
+
 
     </RelativeLayout>
 

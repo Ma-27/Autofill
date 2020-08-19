@@ -1,17 +1,21 @@
 package com.example.autofill.ui.main;
 
 import android.content.Context;
+import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.autofill.R;
-import com.example.autofill.setting.InformationListAdapter;
 import com.example.autofill.storage.InformationEntity;
 
 import java.util.ArrayList;
@@ -40,12 +44,18 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
 
         View itemView;
         private final TextView titleItemView;
+        private ImageView mrdkImage;
+        private EditText editInfo;
+        private RadioGroup selectGroup;
 
         public MrdkViewHolder(@NonNull View itemView) {
             super(itemView);
             Log.d(TAG, "MrdkViewHolder: ");
             this.itemView = itemView;
-            this.titleItemView = itemView.findViewById(R.id.mrdkTextView);
+            this.titleItemView = itemView.findViewById(R.id.mrdk_title);
+            this.mrdkImage = itemView.findViewById(R.id.mrdk_image);
+            this.selectGroup = itemView.findViewById(R.id.select_radiogroup);
+            this.editInfo = itemView.findViewById(R.id.edit_data);
         }
     }
 
@@ -62,8 +72,13 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
     public void onBindViewHolder(@NonNull MrdkViewHolder holder, int position) {
         Log.d(TAG, "onBindViewHolder: ");
         InformationEntity currentEntity = information.get(position);
+        MrdkCacheHolder cacheHolder = dataCacheHolder.get(position);
+
         Log.d(TAG, "onBindViewHolder: 数据"+currentEntity.getStation());
-        holder.titleItemView.setText(parseStation(currentEntity.getStation()));
+        holder.titleItemView.setText(cacheHolder.getTitle());
+        holder.editInfo.setText(parseStation(currentEntity.getStation()));
+        //加载图片
+        Glide.with(context).load(cacheHolder.getImage()).into(holder.mrdkImage);
     }
 
     @Override

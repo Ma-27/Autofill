@@ -24,9 +24,9 @@
         parent="TextAppearance.AppCompat.Body2"/>
 
     <style name="MainDetailText"
-        parent="TextAppearance.AppCompat.Subhead"/>
+        parent="TextAppearance.AppCompat.Body1"/>
     <style name="MainDetailTitle"
-        parent="TextAppearance.AppCompat.Headline"/>
+        parent="TextAppearance.AppCompat.Subhead"/>
 
     <!-- 主界面textview的style -->
     <style name="text_view_style">
@@ -34,11 +34,11 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textAppearance">
             @android:style/TextAppearance.Large</item>
-        <item name="android:background">@color/colorPrimaryLight</item>
-        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:layout_marginTop">4sp</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:padding">16dp</item>
-        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:padding">8sp</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
     </style>
 
 </resources>

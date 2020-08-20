@@ -26,8 +26,6 @@
     <Switch
         android:id="@+id/switch_autofill"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8sp"
         android:gravity="center"
         android:textOff="@string/switch_textoff"
         android:textOn="@string/switch_texton"

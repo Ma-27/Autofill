@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "com.mamh.autofill.experiment"
         minSdkVersion 15
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "3.5"
 
@@ -52,10 +52,9 @@ dependencies {
 
     // life cycle类
     implementation "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
-    //noinspection LifecycleAnnotationProcessorWithJava8
     annotationProcessor "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion"
 
     //card view
-    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation "androidx.cardview:cardview:1.0.0"
     implementation 'com.github.bumptech.glide:glide:3.7.0'
 }

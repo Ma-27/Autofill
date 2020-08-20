@@ -44,9 +44,11 @@
             </intent-filter>
         </activity>
 
+        <!--硬件加速，加载cardview-->
 
         <activity
             android:name=".MainActivity"
+            android:hardwareAccelerated="true"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">

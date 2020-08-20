@@ -59,6 +59,7 @@
     jsonJuniorParam.put("jbsfx","否");}
     */
 
+    <!-- 初始集数据-->
     <string-array name="data_junior">
         <item>photo</item>
         <item>1000-000-000</item>
@@ -78,22 +79,28 @@
         <item>填写其他需要说明的情况</item>//备注
     </string-array>
 
+    <integer-array name="visibliity">
+        <item>0</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>//假期是否离开重庆
+        <item>2</item>//暑假期间有无接触湖北旅居人员
+        <item>2</item>//暑假期间有无接触确诊或疑似病例
+        <item>2</item>//现居住地有无确诊或疑似病例
+        <item>2</item>//体温是否正常
+        <item>2</item>//有无咳嗽、乏力、鼻塞、流涕、咽痛、腹泻等症状
+        <item>2</item>//本人及家人是否为确诊病例
+        <item>2</item>//本人及家人是否为疑似病例
+        <item>2</item>//有无疾病史
+        <item>1</item>//备注
+    </integer-array>
+
+
     <array name="layout_images">
         <item>@drawable/mrdk_image</item>
-        <item>@drawable/mrdk_main</item>
-        <item>@drawable/mrdk_main</item>
-        <item>@drawable/mrdk_main</item>
-        <item>@drawable/mrdk_main</item>
-        <item>@drawable/mrdk_main</item>
-        <item>@drawable/mrdk_main</item>
-        <item>@drawable/mrdk_main</item>
-        <item>@drawable/mrdk_main</item>
-        <item>@drawable/mrdk_main</item>
-        <item>@drawable/mrdk_main</item>
-        <item>@drawable/mrdk_main</item>
-        <item>@drawable/mrdk_main</item>
-        <item>@drawable/mrdk_main</item>
-        <item>@drawable/mrdk_main</item>
-        <item>@drawable/mrdk_main</item>
+
     </array>
 </resources>

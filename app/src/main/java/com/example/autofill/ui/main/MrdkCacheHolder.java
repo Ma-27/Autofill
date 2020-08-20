@@ -4,22 +4,22 @@ import android.util.Log;
 
 public class MrdkCacheHolder {
     private String title;
-    private String info;
-    private String data;
+    private String content;
+    private int visibility;
     private final int imageResource;
     private static final String TAG = "MrdkCacheHolder成功";
     /**
      * 缓存数据的构造器
-     * @param title 设置中recycler view标题
-     * @param info 设置中recycler view 保存的数据，不是entity中的数据，经过处理
+     * @param title 界面中recycler view标题
+     * @param content json字符串中的 每个数据的名称
      */
     public MrdkCacheHolder(String title,
-                           String info,
-                           String data,
+                           String content,
+                           int visibility,
                            int imageResource){
         this.title = title;
-        this.info = info;
-        this.data = data;
+        this.content = content;
+        this.visibility = visibility;
         this.imageResource = imageResource;
         //Log.d(TAG, "MrdkCacheHolder: ");
     }
@@ -28,12 +28,13 @@ public class MrdkCacheHolder {
         return title;
     }
 
-    String getInfo(){
-        return info;
+    String getContent(){
+        return content;
     }
 
-    String getData(){
-        return data;
+    int getVisibility(){
+        //Log.d(TAG, "getVisibility:看看 "+visibility);
+        return visibility;
     }
 
     int getImage(){

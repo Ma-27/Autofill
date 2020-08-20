@@ -37,8 +37,12 @@ public class InformationRepository {
         new deleteAllStateAsyncTask((InformationDao) new insertAsyncTask(informationDao)).execute();
     }
 
-    public void deleteWord(InformationEntity state)  {
+    public void deleteData(InformationEntity state)  {
         new deleteSingleStateAsyncTask((InformationDao) new insertAsyncTask(informationDao)).execute(state);
+    }
+
+    public void updateSingle(InformationEntity state)  {
+        new updateSingleStateAsyncTask((InformationDao) new insertAsyncTask(informationDao)).execute(state);
     }
 
     private static class insertAsyncTask extends AsyncTask<InformationEntity,Void,Void> {
@@ -87,4 +91,23 @@ public class InformationRepository {
             return null;
         }
     }
+
+
+    private static class updateSingleStateAsyncTask extends AsyncTask<InformationEntity,Void,Void> {
+
+        private  InformationDao StateDao;
+
+        public updateSingleStateAsyncTask(InformationDao mWordDao) {
+            this.StateDao = mWordDao;
+        }
+
+        @Override
+        protected Void doInBackground(InformationEntity... informationEntities) {
+            //插入单个单词（类名 ... 对象数组）
+            StateDao.updateSingleState(informationEntities[0]);
+            return null;
+        }
+    }
+
+
 }

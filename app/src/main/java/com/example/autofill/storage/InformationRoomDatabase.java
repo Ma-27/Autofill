@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.autofill.R;
 
-@Database(entities = {InformationEntity.class}, version = 1, exportSchema = false)
+@Database(entities = {InformationEntity.class}, version = 2, exportSchema = false)
 
 /**
  * 将该类注释为Room数据库。这个是dao~sqlite~entity的集合

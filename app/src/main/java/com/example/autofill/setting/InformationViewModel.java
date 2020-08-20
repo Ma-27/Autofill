@@ -35,6 +35,6 @@ public class InformationViewModel extends AndroidViewModel {
 
     public void deleteAll() {informationRepository.deleteAll();}
 
-    public void deleteWord(InformationEntity state) {informationRepository.deleteWord(state);}
+    public void deleteWord(InformationEntity state) {informationRepository.deleteData(state);}
 
 }

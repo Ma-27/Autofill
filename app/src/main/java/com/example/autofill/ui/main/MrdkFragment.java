@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,12 +60,13 @@ public class MrdkFragment extends Fragment {
         //显示在layout上的title
         String[] titleList = getResources().getStringArray(R.array.data_junior_title);
         //json 字符串 数据的名字
-        String[] contentList = getResources().getStringArray(R.array.data_junior_name);
-
+        String[] dataNameList = getResources().getStringArray(R.array.data_junior_name);
+        //获取每个对象的可见性
         int[] visibility = getResources().getIntArray(R.array.visibliity);
-
+        //获取图片
         TypedArray imageArray = getResources().obtainTypedArray(R.array.layout_images);
-
+        //获取edit text的暗示
+        String[] contentHintList = getResources().getStringArray(R.array.data_hint);
         for(int i=0;i<titleList.length;i++){
             /**
              * 创建数据，放入entity中
@@ -77,13 +80,46 @@ public class MrdkFragment extends Fragment {
             mrdkCacheHolder.add(
                     new MrdkCacheHolder(
                             titleList[i],
-                            contentList[i],
+                            dataNameList[i],
                             visibility[i],
-                            imageArray.getResourceId(i,0)
+                            imageArray.getResourceId(i,0),
+                            contentHintList[i]
                     ));
         }
         //创建数据后，清理图片资源
         imageArray.recycle();
         adapter.notifyDataSetChanged();
+    }
+
+    static class EditTextChangedListener implements TextWatcher {
+
+        private MrdkListAdapter.MrdkViewHolder viewHolder;
+        private int position;
+        private List<InformationEntity> information;
+
+        public EditTextChangedListener(MrdkListAdapter.MrdkViewHolder holder,
+                                       int position,
+                                       List<InformationEntity> information){
+            this.viewHolder = holder;
+            this.position = position;
+            this.information = information;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            InformationEntity entity = information.get(position);
+
+            Log.d(TAG, "afterTextChanged: 测试"+s.toString());
+        }
     }
 }

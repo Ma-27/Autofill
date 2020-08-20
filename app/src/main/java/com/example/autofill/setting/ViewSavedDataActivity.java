@@ -73,5 +73,7 @@ public class ViewSavedDataActivity extends AppCompatActivity {
             ));
             adapter.notifyDataSetChanged();
         }
+
+
     }
 }

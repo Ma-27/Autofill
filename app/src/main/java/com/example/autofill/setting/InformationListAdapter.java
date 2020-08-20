@@ -69,6 +69,7 @@ public class InformationListAdapter
         holder.contentItemView.setText(parseStation(currentEntity.getStation()));
        // Log.d(TAG, "恢复 "+currentEntity.getStation());
         //holder.contentItemView.setText(cacheHolder.getData());
+
         holder.titleItemView.setText(cacheHolder.getTitle()+":");
     }
 

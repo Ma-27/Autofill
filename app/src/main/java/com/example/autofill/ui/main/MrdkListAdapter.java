@@ -1,6 +1,8 @@
 package com.example.autofill.ui.main;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.autofill.R;
+import com.example.autofill.storage.InformationDao;
 import com.example.autofill.storage.InformationEntity;
 
 import java.util.ArrayList;
@@ -59,7 +62,6 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
             this.mrdkImage = itemView.findViewById(R.id.mrdk_image);
             this.selectGroup = itemView.findViewById(R.id.select_radiogroup);
             this.editInfo = itemView.findViewById(R.id.edit_data);
-
         }
     }
 
@@ -75,9 +77,12 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MrdkViewHolder holder, int position) {
+
         InformationEntity currentEntity = information.get(position);
         MrdkCacheHolder cacheHolder = dataCacheHolder.get(position);
-        Log.d(TAG, "onBindViewHolder:测试 "+cacheHolder.getVisibility());
+        //InformationDao currentDo = (InformationDao) information.get(position);
+
+        //Log.d(TAG, "onBindViewHolder:测试 "+cacheHolder.getVisibility());
 
         //设置可见性
         switch (cacheHolder.getVisibility()){
@@ -109,9 +114,6 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
                 holder.selectGroup.setVisibility(View.VISIBLE);
         }
         //Log.d(TAG, "onBindViewHolder: 数据"+currentEntity.getStation());
-
-        holder.editInfo.setText(parseStation(currentEntity.getStation()));
-
         //加载标题
         if(holder.titleItemView.getVisibility()==View.VISIBLE){
             holder.titleItemView.setText(cacheHolder.getTitle()+":");
@@ -120,6 +122,14 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
         //加载图片
         if (holder.mrdkImage.getVisibility()==View.VISIBLE){
             Glide.with(context).load(cacheHolder.getImage()).into(holder.mrdkImage);
+        }
+
+        if (holder.editInfo.getVisibility() == View.VISIBLE) {
+            holder.editInfo.setHint(cacheHolder.getContentHint());
+            holder.editInfo.setText(parseStation(currentEntity.getStation()));
+            holder.editInfo.addTextChangedListener(
+                    new MrdkFragment.EditTextChangedListener(holder,position,information));
+            //Log.d(TAG, "onBindViewHolder: 测试"+s);
         }
 
     }
@@ -142,6 +152,8 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
          */
         return splitted[1];
     }
+
+
 
     void setData(List<InformationEntity> data){
         information = data;

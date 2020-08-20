@@ -31,12 +31,21 @@ public class MrdkViewModel extends AndroidViewModel {
         return mAllData;
     }
 
-    public void insert(InformationEntity state) {
+    public void insertSingle(InformationEntity state) {
         informationRepository.insert(state);
     }
 
-    public void deleteAll() {informationRepository.deleteAll();}
+    public void deleteAll() {
+        informationRepository.deleteAll();
+    }
 
-    public void deleteWord(InformationEntity state) {informationRepository.deleteWord(state);}
+    public void deleteSingle(InformationEntity state) {
+        informationRepository.deleteData(state);
+    }
+
+
+    public void updateSingle(InformationEntity state){
+        informationRepository.updateSingle(state);
+    }
 
 }

@@ -1,12 +1,11 @@
 package com.example.autofill.ui.main;
 
-import android.util.Log;
-
 public class MrdkCacheHolder {
     private String title;
-    private String content;
+    private String dataName;
     private int visibility;
-    private final int imageResource;
+    private int imageResource;
+    private String contentHint;
     private static final String TAG = "MrdkCacheHolder成功";
     /**
      * 缓存数据的构造器
@@ -14,13 +13,16 @@ public class MrdkCacheHolder {
      * @param content json字符串中的 每个数据的名称
      */
     public MrdkCacheHolder(String title,
-                           String content,
+                           String dataName,
                            int visibility,
-                           int imageResource){
+                           int imageResource,
+                           String contentHint
+    ){
         this.title = title;
-        this.content = content;
+        this.dataName = dataName;
         this.visibility = visibility;
         this.imageResource = imageResource;
+        this.contentHint = contentHint;
         //Log.d(TAG, "MrdkCacheHolder: ");
     }
 
@@ -28,8 +30,8 @@ public class MrdkCacheHolder {
         return title;
     }
 
-    String getContent(){
-        return content;
+    String getDataName(){
+        return dataName;
     }
 
     int getVisibility(){
@@ -39,5 +41,9 @@ public class MrdkCacheHolder {
 
     int getImage(){
         return imageResource;
+    }
+
+    String getContentHint(){
+        return contentHint;
     }
 }

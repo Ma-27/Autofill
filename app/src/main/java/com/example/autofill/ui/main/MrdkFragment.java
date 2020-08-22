@@ -42,7 +42,6 @@ public class MrdkFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //Log.d(TAG, "onCreateView: ");
-        initializeData();
 
         mrdkViewModel = ViewModelProviders.of(this).get(MrdkViewModel.class);
         // TODO: 使用ViewModel
@@ -53,6 +52,7 @@ public class MrdkFragment extends Fragment {
                 //Log.d(TAG, "onChanged: ");
             }
         });
+
         initializeData();
         return view;
     }

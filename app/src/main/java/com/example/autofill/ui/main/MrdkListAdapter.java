@@ -81,7 +81,7 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
     @Override
     public void onBindViewHolder(@NonNull final MrdkViewHolder holder, final int position) {
 
-        InformationEntity currentEntity = information.get(position);
+        final InformationEntity currentEntity = information.get(position);
 
         MrdkCacheHolder cacheHolder = dataCacheHolder.get(position);
 
@@ -137,7 +137,9 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
                         String s = "";
                         s =   holder.editInfo.getText().toString();
                         Intent intent = new Intent(context,UpdataActivity.class);
+                        intent.putExtra("id",currentEntity.getId());
                         intent.putExtra("changedData",s);
+                        intent.putExtra("unparsedStation",currentEntity.getStation());
                         context.startActivity(intent);
                         //Log.d(TAG, "onKey:"+s);
                     }

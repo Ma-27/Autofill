@@ -9,10 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.autofill.R;
 import com.example.autofill.storage.InformationEntity;
+import com.example.autofill.ui.setting.DataCacheHolder;
+import com.example.autofill.ui.setting.InformationListAdapter;
+import com.example.autofill.ui.setting.InformationViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

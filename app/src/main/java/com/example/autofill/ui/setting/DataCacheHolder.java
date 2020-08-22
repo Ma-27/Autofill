@@ -1,6 +1,6 @@
-package com.example.autofill.setting;
+package com.example.autofill.ui.setting;
 
-class DataCacheHolder {
+public class DataCacheHolder {
 
     private String title;
     private String info;

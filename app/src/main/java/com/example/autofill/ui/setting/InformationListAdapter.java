@@ -81,7 +81,7 @@ public class InformationListAdapter
         else return 0;
     }
 
-    void setData(List<InformationEntity> data){
+    public void setData(List<InformationEntity> data){
         information = data;
         notifyDataSetChanged();
     }

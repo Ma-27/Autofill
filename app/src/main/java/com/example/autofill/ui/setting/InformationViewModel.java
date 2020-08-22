@@ -1,4 +1,4 @@
-package com.example.autofill.setting;
+package com.example.autofill.ui.setting;
 import	java.util.List;
 
 import android.app.Application;
@@ -25,7 +25,7 @@ public class InformationViewModel extends AndroidViewModel {
 
 
     //四个保留的getter 方法，类似repository类 “接口”
-    LiveData<List<InformationEntity>> getAllData() {
+    public LiveData<List<InformationEntity>> getAllData() {
         return mAllData;
     }
 

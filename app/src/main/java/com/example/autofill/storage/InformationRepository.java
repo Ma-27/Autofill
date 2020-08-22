@@ -30,19 +30,19 @@ public class InformationRepository {
 
     //又一个会被调用的getter 方法，插入新单词
     public void insert (InformationEntity state) {
-        new insertAsyncTask((InformationDao) new insertAsyncTask(informationDao)).execute(state);
+        new insertAsyncTask(informationDao).execute(state);
     }
 
     public void deleteAll()  {
-        new deleteAllStateAsyncTask((InformationDao) new insertAsyncTask(informationDao)).execute();
+        new deleteAllStateAsyncTask(informationDao).execute();
     }
 
     public void deleteData(InformationEntity state)  {
-        new deleteSingleStateAsyncTask((InformationDao) new insertAsyncTask(informationDao)).execute(state);
+        new deleteSingleStateAsyncTask(informationDao).execute(state);
     }
 
     public void updateSingle(InformationEntity state)  {
-        new updateSingleStateAsyncTask((InformationDao) new insertAsyncTask(informationDao)).execute(state);
+        new updateSingleStateAsyncTask(informationDao).execute(state);
     }
 
     private static class insertAsyncTask extends AsyncTask<InformationEntity,Void,Void> {
@@ -98,7 +98,7 @@ public class InformationRepository {
         private  InformationDao StateDao;
 
         public updateSingleStateAsyncTask(InformationDao mWordDao) {
-            this.StateDao = mWordDao;
+            StateDao = mWordDao;
         }
 
         @Override

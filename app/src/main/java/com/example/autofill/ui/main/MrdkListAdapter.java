@@ -1,9 +1,12 @@
 package com.example.autofill.ui.main;
 import android.annotation.SuppressLint;
+import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,11 +79,11 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull MrdkViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MrdkViewHolder holder, final int position) {
 
         InformationEntity currentEntity = information.get(position);
+
         MrdkCacheHolder cacheHolder = dataCacheHolder.get(position);
-        //InformationDao currentDo = (InformationDao) information.get(position);
 
         //Log.d(TAG, "onBindViewHolder:测试 "+cacheHolder.getVisibility());
 
@@ -127,9 +130,21 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
         if (holder.editInfo.getVisibility() == View.VISIBLE) {
             holder.editInfo.setHint(cacheHolder.getContentHint());
             holder.editInfo.setText(parseStation(currentEntity.getStation()));
-            holder.editInfo.addTextChangedListener(
-                    new MrdkFragment.EditTextChangedListener(holder,position,information));
-            //Log.d(TAG, "onBindViewHolder: 测试"+s);
+            holder.editInfo.setOnKeyListener(new View.OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                        String s = "";
+                        s =   holder.editInfo.getText().toString();
+                        Intent intent = new Intent(context,UpdataActivity.class);
+                        intent.putExtra("changedData",s);
+                        context.startActivity(intent);
+                        //Log.d(TAG, "onKey:"+s);
+                    }
+                    return false;
+                }
+            });
+
         }
 
     }
@@ -154,9 +169,9 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
     }
 
 
-
     void setData(List<InformationEntity> data){
         information = data;
         notifyDataSetChanged();
     }
+
 }

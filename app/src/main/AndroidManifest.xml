@@ -16,18 +16,13 @@
         android:roundIcon="@mipmap/ic_laucher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
+        <activity android:name=".ui.main.UpdataActivity"></activity>
         <activity
             android:name=".setting.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:launchMode="singleTask"
             android:parentActivityName=".MainActivity"
-            tools:targetApi="jelly_bean">
-
-        </activity>
-
-
+            tools:targetApi="jelly_bean"></activity>
         <activity
             android:name=".setting.ViewSavedDataActivity"
             android:label="@string/title_saved_data"
@@ -42,10 +37,7 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
-
-        <!--硬件加速，加载cardview-->
-
+        </activity> <!-- 硬件加速，加载cardview -->
         <activity
             android:name=".MainActivity"
             android:hardwareAccelerated="true"

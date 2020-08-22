@@ -26,7 +26,7 @@ import java.util.List;
 
 public class MrdkFragment extends Fragment {
 
-    private MrdkViewModel mrdkViewModel;
+    MrdkViewModel mrdkViewModel;
     private MrdkListAdapter adapter;
     private ArrayList<MrdkCacheHolder> mrdkCacheHolder;
     private static final String TAG = "MrdkFragment成功";
@@ -43,8 +43,9 @@ public class MrdkFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //Log.d(TAG, "onCreateView: ");
         initializeData();
+
         mrdkViewModel = ViewModelProviders.of(this).get(MrdkViewModel.class);
-        // TODO: Use the ViewModel
+        // TODO: 使用ViewModel
         mrdkViewModel.getAllData().observe(getActivity(), new Observer<List<InformationEntity>>() {
             @Override
             public void onChanged(List<InformationEntity> informationEntities) {
@@ -91,35 +92,12 @@ public class MrdkFragment extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
-    static class EditTextChangedListener implements TextWatcher {
 
-        private MrdkListAdapter.MrdkViewHolder viewHolder;
-        private int position;
-        private List<InformationEntity> information;
-
-        public EditTextChangedListener(MrdkListAdapter.MrdkViewHolder holder,
-                                       int position,
-                                       List<InformationEntity> information){
-            this.viewHolder = holder;
-            this.position = position;
-            this.information = information;
+        public void updateData(String data) {
+            if (mrdkViewModel!= null) {
+                mrdkViewModel.updateSingle(new InformationEntity(data, 1));
+            }
         }
 
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            InformationEntity entity = information.get(position);
-
-            Log.d(TAG, "afterTextChanged: 测试"+s.toString());
-        }
-    }
 }

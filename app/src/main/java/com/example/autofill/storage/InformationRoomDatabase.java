@@ -66,6 +66,7 @@ public abstract class InformationRoomDatabase extends RoomDatabase {
                 "szdq-重庆市，重庆市，南岸区",
                 "xxdz-重庆邮电大学",
                 "hjsfly-待选择",//假期是否离开重庆
+                "hjsffy-待选择",//假期是否返回重庆
                 "ywjchblj-待选择",//暑假期间有无接触湖北旅居人员
                 "ywjcqzbl-待选择",//暑假期间有无接触确诊或疑似病例
                 "xjzdywqzbl-待选择",//现居住地有无确诊或疑似病例

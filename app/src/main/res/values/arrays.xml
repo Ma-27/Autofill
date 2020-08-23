@@ -19,6 +19,7 @@
         <item>目前居住地</item>
         <item>居住详细地址</item>
         <item>假期是否离开重庆</item>
+        <item>假期是否返回重庆</item>
         <item>假期有无接触湖北旅居的人员</item>
         <item>假期有无接触过确诊或疑似病例</item>
         <item>现居住地有无确诊或疑似病例</item>
@@ -39,6 +40,7 @@
         <item>szdq</item>
         <item>xxdz</item>
         <item>hjsfly</item>
+        <item>hjsffy</item>
         <item>ywjchblj</item>
         <item>ywjcqzbl</item>
         <item>xjzdywqzbl</item>
@@ -68,6 +70,7 @@
         <item>xx省，xx市，xx区</item>
         <item>xx小区xx单元xxx户</item>
         <item>待选择</item>//假期是否离开重庆
+        <item>待选择</item>//假期是否返回重庆
         <item>待选择</item>//暑假期间有无接触湖北旅居人员
         <item>待选择</item>//暑假期间有无接触确诊或疑似病例
         <item>待选择</item>//现居住地有无确诊或疑似病例
@@ -87,6 +90,7 @@
         <item>1</item>
         <item>1</item>
         <item>2</item>//假期是否离开重庆
+        <item>2</item>//假期是否返回重庆
         <item>2</item>//暑假期间有无接触湖北旅居人员
         <item>2</item>//暑假期间有无接触确诊或疑似病例
         <item>2</item>//现居住地有无确诊或疑似病例
@@ -112,6 +116,7 @@
         <item>xx省，xx市，xx区</item>
         <item>精确到小区/单元/宿舍门牌号</item>
         <item>待选择</item>//假期是否离开重庆
+        <item>待选择</item>//假期是否返回重庆
         <item>待选择</item>//暑假期间有无接触湖北旅居人员
         <item>无</item>//暑假期间有无接触确诊或疑似病例
         <item>无</item>//现居住地有无确诊或疑似病例

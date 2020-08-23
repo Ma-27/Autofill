@@ -68,6 +68,10 @@ public class MrdkFragment extends Fragment {
         TypedArray imageArray = getResources().obtainTypedArray(R.array.layout_images);
         //获取edit text的暗示
         String[] contentHintList = getResources().getStringArray(R.array.data_hint);
+
+        String[] yesData = getResources().getStringArray(R.array.data_yes);
+
+        String[] noData = getResources().getStringArray(R.array.data_no);
         for(int i=0;i<titleList.length;i++){
             /**
              * 创建数据，放入entity中
@@ -84,7 +88,9 @@ public class MrdkFragment extends Fragment {
                             dataNameList[i],
                             visibility[i],
                             imageArray.getResourceId(i,0),
-                            contentHintList[i]
+                            contentHintList[i],
+                            yesData[i],
+                            noData[i]
                     ));
         }
         //创建数据后，清理图片资源

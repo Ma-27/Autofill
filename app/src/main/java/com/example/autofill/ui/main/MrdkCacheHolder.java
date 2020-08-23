@@ -6,6 +6,8 @@ public class MrdkCacheHolder {
     private int visibility;
     private int imageResource;
     private String contentHint;
+    private String dataYes;
+    private String dataNo;
     private static final String TAG = "MrdkCacheHolder成功";
     /**
      * 缓存数据的构造器
@@ -16,13 +18,18 @@ public class MrdkCacheHolder {
                            String dataName,
                            int visibility,
                            int imageResource,
-                           String contentHint
+                           String contentHint,
+                           String dataYes,
+                           String dataNo
     ){
         this.title = title;
         this.dataName = dataName;
         this.visibility = visibility;
         this.imageResource = imageResource;
         this.contentHint = contentHint;
+        this.dataYes = dataYes;
+        this.dataNo = dataNo;
+
         //Log.d(TAG, "MrdkCacheHolder: ");
     }
 
@@ -45,5 +52,13 @@ public class MrdkCacheHolder {
 
     String getContentHint(){
         return contentHint;
+    }
+
+    String getDataYes(){
+        return dataYes;
+    }
+
+    String getDataNo(){
+        return dataNo;
     }
 }

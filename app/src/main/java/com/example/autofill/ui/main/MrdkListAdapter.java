@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -56,6 +57,8 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
         private ImageView mrdkImage;
         private EditText editInfo;
         private RadioGroup selectGroup;
+        private RadioButton buttonYes;
+        private RadioButton buttonNo;
 
         public MrdkViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -65,6 +68,8 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
             this.mrdkImage = itemView.findViewById(R.id.mrdk_image);
             this.selectGroup = itemView.findViewById(R.id.select_radiogroup);
             this.editInfo = itemView.findViewById(R.id.edit_data);
+            this.buttonYes = itemView.findViewById(R.id.radiobutton_yes);
+            this.buttonNo = itemView.findViewById(R.id.radiobutton_no);
         }
     }
 
@@ -83,7 +88,7 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
 
         final InformationEntity currentEntity = information.get(position);
 
-        MrdkCacheHolder cacheHolder = dataCacheHolder.get(position);
+        final MrdkCacheHolder cacheHolder = dataCacheHolder.get(position);
 
         //Log.d(TAG, "onBindViewHolder:测试 "+cacheHolder.getVisibility());
 
@@ -116,6 +121,8 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
                 holder.editInfo.setVisibility(View.VISIBLE);
                 holder.selectGroup.setVisibility(View.VISIBLE);
         }
+
+
         //Log.d(TAG, "onBindViewHolder: 数据"+currentEntity.getStation());
         //加载标题
         if(holder.titleItemView.getVisibility()==View.VISIBLE){
@@ -128,6 +135,7 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
         }
 
         if (holder.editInfo.getVisibility() == View.VISIBLE) {
+            Log.d(TAG, "onBindViewHolder: edit info的可见性");
             holder.editInfo.setHint(cacheHolder.getContentHint());
             holder.editInfo.setText(parseStation(currentEntity.getStation()));
             holder.editInfo.setOnKeyListener(new View.OnKeyListener() {
@@ -147,6 +155,37 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
                 }
             });
 
+
+            if(holder.selectGroup.getVisibility() == View.VISIBLE){
+                Log.d(TAG, "onBindViewHolder: select group的可见性");
+                holder.buttonYes.setText(cacheHolder.getDataYes());
+                holder.buttonNo.setText(cacheHolder.getDataNo());
+
+                holder.selectGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        switch (checkedId){
+                            case R.id.radiobutton_yes:
+                                Intent intentYes = new Intent(context,UpdataActivity.class);
+                                intentYes.putExtra("id",currentEntity.getId());
+                                intentYes.putExtra("changedData",cacheHolder.getDataYes());
+                                intentYes.putExtra("unparsedStation",currentEntity.getStation());
+                                context.startActivity(intentYes);
+                                Log.d(TAG, "onCheckedChanged: 真的");
+                                break;
+                            case R.id.radiobutton_no:
+                                Intent intentNo = new Intent(context,UpdataActivity.class);
+                                intentNo.putExtra("id",currentEntity.getId());
+                                intentNo.putExtra("changedData",cacheHolder.getDataNo());
+                                intentNo.putExtra("unparsedStation",currentEntity.getStation());
+                                context.startActivity(intentNo);
+                                break;
+                            default:
+                                Log.d(TAG, "onCheckedChanged: radio group成了default");
+                        }
+                    }
+                });
+            }
         }
 
     }

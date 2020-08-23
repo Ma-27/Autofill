@@ -1,8 +1,7 @@
-package com.example.autofill.setting;
+package com.example.autofill.ui.setting;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,19 +32,18 @@ public class InformationListAdapter
     }
 
     //holder 内部类
-    class DataViewHolder extends RecyclerView.ViewHolder {
+
+    class InformationViewHolder extends RecyclerView.ViewHolder {
         View itemView;
+        private final TextView titleItemView;
+        private final TextView contentItemView;
 
-        private TextView titleItemView;
-        private TextView contentItemView;
-
-        @SuppressLint("CutPasteId")
-        private DataViewHolder(View itemView) {
+        private InformationViewHolder(View itemView) {
             super(itemView);
-            this.itemView = itemView;
 
+            this.itemView = itemView;
             titleItemView = itemView.findViewById(R.id.item_title);
-            contentItemView = itemView.findViewById(R.id.item_title);
+            contentItemView = itemView.findViewById(R.id.item_content);
         }
     }
 
@@ -59,8 +57,6 @@ public class InformationListAdapter
     }
 
 
-
-    @SuppressLint({"LongLogTag", "SetTextI18n"})
     @Override
     public void onBindViewHolder(@NonNull InformationViewHolder holder, int position) {
         InformationEntity currentEntity = information.get(position);
@@ -75,7 +71,6 @@ public class InformationListAdapter
 
     @Override
     public int getItemCount() {
-
         if (information != null)
             return information.size();
         else return 0;

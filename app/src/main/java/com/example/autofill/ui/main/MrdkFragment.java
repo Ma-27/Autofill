@@ -3,6 +3,9 @@ package com.example.autofill.ui.main;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.annotation.SuppressLint;
+import android.app.IntentService;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 
@@ -11,14 +14,17 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+import android.widget.Toast;
+
+import com.example.autofill.MainActivity;
 import com.example.autofill.R;
+import com.example.autofill.background.TimingService;
 import com.example.autofill.storage.InformationEntity;
 
 import java.util.ArrayList;
@@ -30,9 +36,11 @@ public class MrdkFragment extends Fragment {
     private MrdkListAdapter adapter;
     private ArrayList<MrdkCacheHolder> mrdkCacheHolder;
     private static final String TAG = "MrdkFragment成功";
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
+    private Switch autofillSwitch;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.mrdk_fragment, container, false);
 
@@ -54,6 +62,24 @@ public class MrdkFragment extends Fragment {
         });
 
         initializeData();
+
+        /**
+         * 初始化switch并添加响应回调,这个fragment将常驻后台
+         *
+         */
+        autofillSwitch = view.findViewById(R.id.switch_autofill);
+        autofillSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Log.d(TAG, "onCheckedChanged: 成功点击按钮");
+                if(isChecked){
+                    ((MainActivity)getActivity()).openBackgroundLoader();
+                }else {
+                    ((MainActivity)getActivity()).closeBackgroundLoader();
+                }
+            }
+        });
+
         return view;
     }
 
@@ -93,17 +119,17 @@ public class MrdkFragment extends Fragment {
                             noData[i]
                     ));
         }
+
         //创建数据后，清理图片资源
         imageArray.recycle();
         adapter.notifyDataSetChanged();
     }
 
 
-        public void updateData(String data) {
+    public void updateData(String data) {
             if (mrdkViewModel!= null) {
                 mrdkViewModel.updateSingle(new InformationEntity(data, 1));
             }
         }
-
 
 }

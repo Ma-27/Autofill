@@ -26,7 +26,7 @@
     <string name="content_placeholder">默认内容</string>
     <string name="tab_text_1">每日打卡</string>
     <string name="lstb_text">由于接口适配问题，该功能暂时不开放。联系原作者催更</string>
-    <string name="switch_texton">开启</string>
-    <string name="switch_textoff">关闭</string>
+    <string name="switch_texton">自动打卡已开启！</string>
+    <string name="switch_textoff">自动打卡已关闭！</string>
 
 </resources>

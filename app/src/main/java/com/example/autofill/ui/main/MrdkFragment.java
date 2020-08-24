@@ -50,7 +50,7 @@ public class MrdkFragment extends Fragment {
 
         informationViewModel = ViewModelProviders.of(this).get(InformationViewModel.class);
         // TODO: 使用ViewModel
-        informationViewModel.getAllData().observe(getActivity(), new Observer<List<InformationEntity>>() {
+        informationViewModel.getAllData().observe(getActivity(),new Observer<List<InformationEntity>>() {
             @Override
             public void onChanged(List<InformationEntity> informationEntities) {
                 adapter.setData(informationEntities);

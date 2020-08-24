@@ -23,7 +23,6 @@ public class InformationRepository {
 
     //向view model 返回所有数据
     public LiveData<List<InformationEntity>> getAllStateInRepository() {
-        //Log.d(TAG, "getAllStateInRepository: "+AllState);
         return AllState;
     }
 

@@ -16,33 +16,31 @@
         android:roundIcon="@mipmap/ic_laucher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <receiver
+            android:name=".background.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
+
         <service
             android:name=".background.TimingService"
             android:enabled="true"
-            android:exported="false">
-
-        </service>
+            android:exported="false" />
 
         <activity
             android:name=".ui.main.UpdataActivity"
-            android:launchMode="singleTask">
-
-        </activity>
+            android:launchMode="singleTask" />
         <activity
             android:name=".setting.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:launchMode="singleTask"
             android:parentActivityName=".MainActivity"
-            tools:targetApi="jelly_bean">
-
-        </activity>
+            tools:targetApi="jelly_bean" />
         <activity
             android:name=".setting.ViewSavedDataActivity"
             android:label="@string/title_saved_data"
             android:launchMode="singleTask"
             android:parentActivityName=".setting.SettingsActivity"
-            tools:targetApi="jelly_bean"
-            >
+            tools:targetApi="jelly_bean">
             <intent-filter>
 
                 <!-- 接收带有查看动作的intent，接收任何隐式intent -->

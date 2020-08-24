@@ -14,7 +14,7 @@ import com.example.autofill.R;
 import com.example.autofill.storage.InformationEntity;
 import com.example.autofill.ui.setting.DataCacheHolder;
 import com.example.autofill.ui.setting.InformationListAdapter;
-import com.example.autofill.ui.setting.InformationViewModel;
+import com.example.autofill.storage.InformationViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,6 @@ public class ViewSavedDataActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_saved_data);
-        Intent intent = getIntent();
         dataCacheHolder = new ArrayList<>();
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);

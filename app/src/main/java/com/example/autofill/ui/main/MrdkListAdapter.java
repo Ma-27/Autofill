@@ -136,7 +136,7 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
         }
 
         if (holder.editInfo.getVisibility() == View.VISIBLE) {
-            Log.d(TAG, "onBindViewHolder: edit info的可见性");
+            //Log.d(TAG, "onBindViewHolder: edit info的可见性");
             holder.editInfo.setHint(cacheHolder.getContentHint());
             holder.editInfo.setText(parseStation(currentEntity.getStation()));
             holder.editInfo.setOnKeyListener(new View.OnKeyListener() {
@@ -158,7 +158,7 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
         }
 
         if(holder.selectGroup.getVisibility() == View.VISIBLE){
-            Log.d(TAG, "onBindViewHolder: select group的可见性");
+           // Log.d(TAG, "onBindViewHolder: select group的可见性");
             holder.buttonYes.setText(cacheHolder.getDataYes());
             holder.buttonNo.setText(cacheHolder.getDataNo());
 

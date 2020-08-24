@@ -1,4 +1,4 @@
-package com.example.autofill.ui.main;
+package com.example.autofill.storage;
 
 import android.app.Application;
 import android.content.Context;
@@ -16,19 +16,19 @@ import java.util.List;
  * 复制自information view model并加以改编
  */
 
-public class MrdkViewModel extends AndroidViewModel {
+public class InformationViewModel extends AndroidViewModel {
 
     private InformationRepository informationRepository;
     private LiveData<List<InformationEntity>> mAllData;
 
-    public MrdkViewModel(@NonNull Application application) {
+    public InformationViewModel(@NonNull Application application) {
         super(application);
         informationRepository = new InformationRepository(application);
         mAllData = informationRepository.getAllStateInRepository();
     }
 
     //四个保留的getter 方法，类似repository类 “接口”
-    LiveData<List<InformationEntity>> getAllData() {
+    public LiveData<List<InformationEntity>> getAllData() {
         return mAllData;
     }
 

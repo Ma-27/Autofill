@@ -4,8 +4,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.annotation.SuppressLint;
-import android.app.IntentService;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 
@@ -14,25 +12,24 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.example.autofill.MainActivity;
 import com.example.autofill.R;
-import com.example.autofill.background.TimingService;
 import com.example.autofill.storage.InformationEntity;
+import com.example.autofill.storage.InformationViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MrdkFragment extends Fragment {
 
-    MrdkViewModel mrdkViewModel;
+    InformationViewModel informationViewModel;
     private MrdkListAdapter adapter;
     private ArrayList<MrdkCacheHolder> mrdkCacheHolder;
     private static final String TAG = "MrdkFragment成功";
@@ -51,9 +48,9 @@ public class MrdkFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //Log.d(TAG, "onCreateView: ");
 
-        mrdkViewModel = ViewModelProviders.of(this).get(MrdkViewModel.class);
+        informationViewModel = ViewModelProviders.of(this).get(InformationViewModel.class);
         // TODO: 使用ViewModel
-        mrdkViewModel.getAllData().observe(getActivity(), new Observer<List<InformationEntity>>() {
+        informationViewModel.getAllData().observe(getActivity(), new Observer<List<InformationEntity>>() {
             @Override
             public void onChanged(List<InformationEntity> informationEntities) {
                 adapter.setData(informationEntities);
@@ -71,7 +68,6 @@ public class MrdkFragment extends Fragment {
         autofillSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Log.d(TAG, "onCheckedChanged: 成功点击按钮");
                 if(isChecked){
                     ((MainActivity)getActivity()).openBackgroundLoader();
                 }else {
@@ -127,8 +123,8 @@ public class MrdkFragment extends Fragment {
 
 
     public void updateData(String data) {
-            if (mrdkViewModel!= null) {
-                mrdkViewModel.updateSingle(new InformationEntity(data, 1));
+            if (informationViewModel != null) {
+                informationViewModel.updateSingle(new InformationEntity(data, 1));
             }
         }
 

@@ -1,16 +1,16 @@
 package com.example.autofill.ui.main;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.example.autofill.storage.InformationEntity;
+import com.example.autofill.storage.InformationViewModel;
 
 public class UpdataActivity extends AppCompatActivity{
 
-    MrdkViewModel mrdkViewModel;
+    InformationViewModel informationViewModel;
     int id = 0;
     private String unparsedStation;
 
@@ -41,9 +41,8 @@ public class UpdataActivity extends AppCompatActivity{
             Toast.makeText
                     (UpdataActivity.this, "好像没有更新数据", Toast.LENGTH_SHORT).show();
         } else {
-            mrdkViewModel = new MrdkViewModel(getApplication());
-            Log.e(TAG, "测试每次乱跳后的id: " + id);
-            mrdkViewModel.updateSingle(new InformationEntity(encodeStation(data), id));
+            informationViewModel = new InformationViewModel(getApplication());
+            informationViewModel.updateSingle(new InformationEntity(encodeStation(data), id));
         }
 
         finish();

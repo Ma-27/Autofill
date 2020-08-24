@@ -24,8 +24,7 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity
-        implements LoaderManager.LoaderCallbacks<String>{
+public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     private static final String TAG = "MainActivity成功";
@@ -87,29 +86,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void openBackgroundLoader(){
-        Toast.makeText(this,R.string.switch_texton, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, TimingService.class);
         startService(intent);
     }
 
     public void closeBackgroundLoader(){
-        Toast.makeText(this,R.string.switch_textoff, Toast.LENGTH_SHORT).show();
-
-    }
-
-    @NonNull
-    @Override
-    public Loader<String> onCreateLoader(int id, @Nullable Bundle args) {
-        return null;
-    }
-
-    @Override
-    public void onLoadFinished(@NonNull Loader<String> loader, String data) {
-
-    }
-
-    @Override
-    public void onLoaderReset(@NonNull Loader<String> loader) {
-
+        Intent intent = new Intent(this, TimingService.class);
+        stopService(intent);
     }
 }

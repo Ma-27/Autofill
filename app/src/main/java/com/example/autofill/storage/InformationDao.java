@@ -23,7 +23,7 @@ public interface InformationDao {
 
     //获取全部打卡数据,不获取live data
     @Query("SELECT * from information_table")
-    InformationEntity[] getAllStateInList();
+     List<InformationEntity> getAllStateInList();
 
     //获取单个打卡数据
     @Query("SELECT * from information_table LIMIT 1")

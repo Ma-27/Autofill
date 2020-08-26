@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,7 +55,7 @@ public class MrdkFragment extends Fragment {
             @Override
             public void onChanged(List<InformationEntity> informationEntities) {
                 adapter.setData(informationEntities);
-                //Log.d(TAG, "onChanged: ");
+               // Log.d(TAG, "onChanged: live data上面看看"+informationEntities);
             }
         });
 

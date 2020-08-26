@@ -12,6 +12,11 @@ import androidx.room.Room;
 import com.example.autofill.storage.InformationEntity;
 import com.example.autofill.storage.InformationRoomDatabase;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
+
 public class AlarmReceiver extends BroadcastReceiver implements Response{
 
     private static final String TAG = "AlarmReceiver成功";
@@ -25,10 +30,7 @@ public class AlarmReceiver extends BroadcastReceiver implements Response{
 
         //获取数据
         if(INSTANCE==null) {
-            INSTANCE = Room.databaseBuilder(context,
-                    InformationRoomDatabase.class,
-                    "fetch_post_database")
-                    .build();
+            INSTANCE = InformationRoomDatabase.getDatabase(context);
         }
 
         //获取数据
@@ -56,10 +58,38 @@ public class AlarmReceiver extends BroadcastReceiver implements Response{
 
     //这个是恢复数据后做的
     @Override
-    public void onPostFinish(InformationEntity[] informationEntities) {
-        Log.d(TAG, "onPostFinish:执行到循环前");
-        for(int i = 0;i<informationEntities.length;i++){
-            Log.d(TAG, "onPostFinish: "+informationEntities[i]);
+    public void onPostFinish(List<InformationEntity> informationEntities) throws JSONException {
+        JSONObject jsonJuniorParam = new JSONObject();
+        for(int i = 0;i<informationEntities.size();i++){
+            InformationEntity current = informationEntities.get(i);
+            //开始转换json字符串
+            jsonJuniorParam.put(
+                    parseName(current.getStation()),
+                    parseStation(current.getStation())
+            );
+
         }
+        Log.d(TAG, "onPostFinish: 最终结果"+  jsonJuniorParam.toString()  );
+    }
+
+
+    /**
+     * 这个用来分裂字符串，将room database里的数据真正转换成你填写的数据
+     * @param unparsedStation 未分解的数据
+     * @return 分解完的数据
+     */
+    String parseStation(String unparsedStation) {
+        String[] splitted = unparsedStation.split("-");
+        return splitted[1];
+    }
+
+    /**
+     * 这个用来分裂字符串，获取json object的名字
+     * @param unparsedStation
+     * @return
+     */
+    String parseName(String unparsedStation) {
+        String[] splitted = unparsedStation.split("-");
+        return splitted[0];
     }
 }

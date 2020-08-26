@@ -215,6 +215,7 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
     void setData(List<InformationEntity> data){
         information = data;
         notifyDataSetChanged();
+        //Log.d(TAG, "setData: 看看setdata"+data);
     }
 
 }

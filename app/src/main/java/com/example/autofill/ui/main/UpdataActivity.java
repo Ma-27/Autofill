@@ -30,9 +30,9 @@ public class UpdataActivity extends AppCompatActivity{
         }
 
 
-        Log.e(TAG, "活动加载on create一次，是否乱跳？");
+        //Log.e(TAG, "活动加载on create一次，是否乱跳？");
 
-        Log.d(TAG, "onCreate:"+data);
+        //Log.d(TAG, "onCreate:"+data);
         //不要用equal！！！否则崩掉
         if (data == "") {
             Toast.makeText

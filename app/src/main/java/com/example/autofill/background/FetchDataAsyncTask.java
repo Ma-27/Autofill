@@ -5,7 +5,11 @@ import android.os.AsyncTask;
 import com.example.autofill.storage.InformationEntity;
 import com.example.autofill.storage.InformationRoomDatabase;
 
-public class FetchDataAsyncTask extends AsyncTask<Void, Void, InformationEntity[]>{
+import org.json.JSONException;
+
+import java.util.List;
+
+public class FetchDataAsyncTask extends AsyncTask<Void, Void,List<InformationEntity> >{
 
     public Response delegate0 = null;
     InformationRoomDatabase db;
@@ -16,14 +20,18 @@ public class FetchDataAsyncTask extends AsyncTask<Void, Void, InformationEntity[
 
 
     @Override
-    protected InformationEntity[] doInBackground(Void... voids) {
+    protected List<InformationEntity> doInBackground(Void... voids) {
         return db.informationDao().getAllStateInList();
     }
 
     @Override
-    protected void onPostExecute(InformationEntity[] informationEntities) {
+    protected void onPostExecute(List<InformationEntity> informationEntities) {
         super.onPostExecute(informationEntities);
-        delegate0.onPostFinish(informationEntities);
+        try {
+            delegate0.onPostFinish(informationEntities);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
 

@@ -37,7 +37,7 @@ public class Notify {
                 .setContentTitle(title)
                 .setContentText(text)
                 .setContentIntent(contentPendingIntent)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL);
         mNotificationManager.notify(NOTIFICATION_ID, builder.build());

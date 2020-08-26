@@ -91,7 +91,6 @@ public class InformationRepository {
         }
     }
 
-
     private static class updateSingleStateAsyncTask extends AsyncTask<InformationEntity,Void,Void> {
 
         private  InformationDao StateDao;

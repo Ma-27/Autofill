@@ -21,6 +21,10 @@ public interface InformationDao {
     @Query("SELECT * from information_table")
     LiveData<List<InformationEntity>> getAllState();
 
+    //获取全部打卡数据,不获取live data
+    @Query("SELECT * from information_table")
+    InformationEntity[] getAllStateInList();
+
     //获取单个打卡数据
     @Query("SELECT * from information_table LIMIT 1")
     InformationEntity[] getAnyState();

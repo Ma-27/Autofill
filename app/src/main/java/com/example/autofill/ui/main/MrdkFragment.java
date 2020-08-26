@@ -70,6 +70,7 @@ public class MrdkFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     ((MainActivity)getActivity()).openBackgroundLoader();
+
                 }else {
                     ((MainActivity)getActivity()).closeBackgroundLoader();
                 }

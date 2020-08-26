@@ -1,9 +1,12 @@
 package com.example.autofill;
 
 import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,6 +39,12 @@ public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences preferences;
     Boolean isOn = false;
+    //通知
+    private NotificationManager mNotificationManager;
+    private static final int NOTIFICATION_ID = 0;
+    private static final String PRIMARY_CHANNEL_ID =
+            "primary_notification_channel";
+
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     private static final String TAG = "MainActivity成功";
 
@@ -83,7 +92,12 @@ public class MainActivity extends AppCompatActivity {
         //获取shared preferences
         preferences = getSharedPreferences("switchStation",MODE_PRIVATE);
         isOn = preferences.getBoolean("isOn", false);
-        Log.d(TAG, "onCreate: y有没有preferences?"+isOn);
+
+        //设置通知channel
+        mNotificationManager = (NotificationManager)
+                getSystemService(NOTIFICATION_SERVICE);
+        //初始化notification channel
+        createNotificationChannel();
     }
 
     @Override
@@ -106,6 +120,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * 初始化notification channel
+     */
+    public void createNotificationChannel() {
+        //在设置里面可以更改notification channel
+        mNotificationManager =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >=
+                android.os.Build.VERSION_CODES.O) {
+            NotificationChannel notificationChannel = new NotificationChannel
+                    (PRIMARY_CHANNEL_ID,
+                            "自动打卡后的通知",
+                            NotificationManager.IMPORTANCE_HIGH);
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.BLUE);//zheliyousuobutong
+            notificationChannel.enableVibration(false);
+            notificationChannel.setDescription
+                    ("程序自动每日打卡后的提示");
+            mNotificationManager.createNotificationChannel(notificationChannel);
+        }
+    }
+
+    /**
      * 打开或关闭background 的service
      */
     public void openBackgroundLoader(){
@@ -124,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
      */
    public boolean getSwitchStation(){
         if(preferences!=null) {
-            Log.d(TAG, "getSwitchStation: 从preference中恢复数据"+isOn);
+            //Log.d(TAG, "getSwitchStation: 从preference中恢复数据"+isOn);
         }
         return isOn;
    }
@@ -134,7 +170,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //忽略电池优化请求 方面代码
+    /**忽略电池优化请求 方面代码
+     *
+     * @return
+     */
     @RequiresApi(api = Build.VERSION_CODES.M)
     private boolean isIgnoringBatteryOptimizations() {
         boolean isIgnoring = false;
@@ -144,6 +183,8 @@ public class MainActivity extends AppCompatActivity {
         }
         return isIgnoring;
     }
+
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void requestIgnoreBatteryOptimizations() {
         try {
@@ -156,12 +197,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
     @Override
     protected void onPause() {
         super.onPause();
         SharedPreferences.Editor preferencesEditor = preferences.edit();
         preferencesEditor.putBoolean("isOn", isOn);
-        Log.d(TAG, "onPause: 保存了什么？"+isOn);
         preferencesEditor.apply();
     }
 }

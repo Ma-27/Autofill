@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.example.autofill.MainActivity;
 import com.example.autofill.R;
@@ -76,11 +77,14 @@ public class MrdkFragment extends Fragment {
                 if(isChecked){
                     ((MainActivity)getActivity()).openBackgroundLoader();
                     ((MainActivity)getActivity()).saveSwitchStation(isChecked);
-                    Log.d(TAG, "onCheckedChanged: 设置ischecked"+isChecked);
+                    Toast.makeText(getContext(), R.string.switch_texton, Toast.LENGTH_SHORT).show();
+                    //Log.d(TAG, "onCheckedChanged: 设置ischecked"+isChecked);
+
                 }else {
                     ((MainActivity)getActivity()).closeBackgroundLoader();
                     ((MainActivity)getActivity()).saveSwitchStation(isChecked);
-                    Log.d(TAG, "onCheckedChanged: 设置ischecked"+isChecked);
+                    Toast.makeText(getContext(), R.string.switch_textoff, Toast.LENGTH_SHORT).show();
+                    //Log.d(TAG, "onCheckedChanged: 设置ischecked"+isChecked);
                 }
             }
         });

@@ -41,10 +41,6 @@ public class TimingService extends Service {
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
-
-
-
         //intent 初始化
         Intent checkAndPostIntent = new Intent(this, AlarmReceiver.class);
 
@@ -69,7 +65,6 @@ public class TimingService extends Service {
                             checkAndPostPendingIntent
                     );
         }
-        Toast.makeText(getApplicationContext(), R.string.switch_texton, Toast.LENGTH_SHORT).show();
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -79,7 +74,6 @@ public class TimingService extends Service {
         if (alarmManager != null) {
             alarmManager.cancel(checkAndPostPendingIntent);
         }
-        Toast.makeText(this, R.string.switch_textoff, Toast.LENGTH_SHORT).show();
     }
 
 

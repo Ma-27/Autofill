@@ -4,6 +4,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.annotation.SuppressLint;
+import android.app.PendingIntent;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 
@@ -33,6 +35,8 @@ public class MrdkFragment extends Fragment {
     InformationViewModel informationViewModel;
     private MrdkListAdapter adapter;
     private ArrayList<MrdkCacheHolder> mrdkCacheHolder;
+    private Boolean alarmUp;
+
     private static final String TAG = "MrdkFragment成功";
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch autofillSwitch;
@@ -71,13 +75,33 @@ public class MrdkFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     ((MainActivity)getActivity()).openBackgroundLoader();
-
+                    ((MainActivity)getActivity()).saveSwitchStation(isChecked);
+                    Log.d(TAG, "onCheckedChanged: 设置ischecked"+isChecked);
                 }else {
                     ((MainActivity)getActivity()).closeBackgroundLoader();
+                    ((MainActivity)getActivity()).saveSwitchStation(isChecked);
+                    Log.d(TAG, "onCheckedChanged: 设置ischecked"+isChecked);
                 }
             }
         });
 
+        /**
+         * 恢复开关状态
+         */
+        boolean isAlarmup = ((MainActivity)getActivity()).getSwitchStation();
+        Log.d(TAG, "onCreateView: 第一次启动："+isAlarmup);
+        /*
+        if(isAlarmup){
+            //要是根本没有数据，第一次启动
+            alarmUp = false;
+        }else {
+            alarmUp = isAlarmup;
+        }
+
+         */
+        autofillSwitch.setChecked(isAlarmup);
+
+        //最后返回主界面
         return view;
     }
 

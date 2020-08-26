@@ -63,11 +63,13 @@ public class AlarmReceiver extends BroadcastReceiver implements Response{
         for(int i = 0;i<informationEntities.size();i++){
             InformationEntity current = informationEntities.get(i);
             //开始转换json字符串
-            jsonJuniorParam.put(
-                    parseName(current.getStation()),
-                    parseStation(current.getStation())
-            );
-
+            if(parseName(current.getStation())!="图片占位"
+                    ||parseName(current.getStation())!="有无咳嗽、乏力、鼻塞、流涕、咽痛、腹泻等症状"){
+                jsonJuniorParam.put(
+                        parseName(current.getStation()),
+                        parseStation(current.getStation())
+                );
+            }
         }
         Log.d(TAG, "onPostFinish: 最终结果"+  jsonJuniorParam.toString()  );
     }

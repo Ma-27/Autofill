@@ -172,7 +172,7 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
                             intentYes.putExtra("changedData",cacheHolder.getDataYes());
                             intentYes.putExtra("unparsedStation",currentEntity.getStation());
                             context.startActivity(intentYes);
-                            Log.d(TAG, "onCheckedChanged: 真的");
+
                             break;
                         case R.id.radiobutton_no:
                             Intent intentNo = new Intent(context,UpdataActivity.class);

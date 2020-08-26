@@ -3,6 +3,7 @@ package com.example.autofill;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,6 +34,8 @@ import static android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATI
 
 public class MainActivity extends AppCompatActivity {
 
+    private SharedPreferences preferences;
+    Boolean isOn = false;
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     private static final String TAG = "MainActivity成功";
 
@@ -76,6 +79,11 @@ public class MainActivity extends AppCompatActivity {
         if(!isIgnoringBatteryOptimizations());{
             requestIgnoreBatteryOptimizations();
         }
+
+        //获取shared preferences
+        preferences = getSharedPreferences("switchStation",MODE_PRIVATE);
+        isOn = preferences.getBoolean("isOn", false);
+        Log.d(TAG, "onCreate: y有没有preferences?"+isOn);
     }
 
     @Override
@@ -97,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * 打开或关闭background 的service
+     */
     public void openBackgroundLoader(){
         Intent intent = new Intent(this, TimingService.class);
         startService(intent);
@@ -106,6 +117,22 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TimingService.class);
         stopService(intent);
     }
+
+    /**
+     * 有关于保存按钮状态的,get在加载按钮时加载，save 在按钮切换时保存
+     * @return
+     */
+   public boolean getSwitchStation(){
+        if(preferences!=null) {
+            Log.d(TAG, "getSwitchStation: 从preference中恢复数据"+isOn);
+        }
+        return isOn;
+   }
+
+    public void saveSwitchStation(Boolean station){
+        isOn = station;
+    }
+
 
     //忽略电池优化请求 方面代码
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -127,5 +154,14 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences.Editor preferencesEditor = preferences.edit();
+        preferencesEditor.putBoolean("isOn", isOn);
+        Log.d(TAG, "onPause: 保存了什么？"+isOn);
+        preferencesEditor.apply();
     }
 }

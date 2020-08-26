@@ -14,7 +14,7 @@
         </Preference>
 
     </PreferenceCategory>
-    
+
     <!--
     <PreferenceCategory app:title="@string/messages_header">
         <EditTextPreference
@@ -47,4 +47,5 @@
 
     </PreferenceCategory>
 -->
+
 </PreferenceScreen>

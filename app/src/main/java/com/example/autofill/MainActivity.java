@@ -12,12 +12,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
-import com.example.autofill.background.FetchDataAsyncTask;
-import com.example.autofill.background.FillStationParse;
 import com.example.autofill.background.TimingService;
 import com.example.autofill.setting.SettingsActivity;
-import com.example.autofill.storage.InformationEntity;
-import com.example.autofill.storage.InformationRoomDatabase;
 import com.example.autofill.ui.main.PagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
@@ -39,23 +35,20 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import java.util.List;
-
 import static android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS;
-import static com.example.autofill.ui.main.MrdkListAdapter.xh;
 
-public class MainActivity extends AppCompatActivity implements GetData{
+public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences preferences;
     Boolean isOn = false;
-    private static InformationRoomDatabase INSTANCE;
+    AlertDialog.Builder viewMyAlertBuilder;
+    AlertDialog.Builder viewOthersAlertBuilder;
+
     //通知
     private NotificationManager mNotificationManager;
     private static final int NOTIFICATION_ID = 0;
     private static final String PRIMARY_CHANNEL_ID =
             "primary_notification_channel";
-    AlertDialog.Builder viewMyAlertBuilder;
-    AlertDialog.Builder viewOthersAlertBuilder;
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     private static final String TAG = "MainActivity成功";
@@ -121,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements GetData{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // 处理action bar 的点击响应
+        // 处理action bar 的点击响应
         switch (item.getItemId()){
             case R.id.action_settings:
                 Intent intent = new Intent(this,
@@ -136,23 +130,7 @@ public class MainActivity extends AppCompatActivity implements GetData{
                 viewMyAlertBuilder.setPositiveButton("查询", new
                         DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                //获取学号并查询
-                                if(xh!=""){
-                                    FillStationParse fillStationParse = new FillStationParse();
-                                    fillStationParse.delegateX1 = MainActivity.this;
-                                    fillStationParse.execute(xh);
-                                }
-                                /*
-                                if (INSTANCE == null) {
-                                    INSTANCE = InformationRoomDatabase.getDatabase(MainActivity.this);
 
-                                    FetchDataAsyncTask fetchDataAsyncTask = new FetchDataAsyncTask(INSTANCE);
-                                    fetchDataAsyncTask.delegateX = MainActivity.this;
-                                    fetchDataAsyncTask.execute();
-                                }
-
-
-                                 */
                             }
                         });
                 viewMyAlertBuilder.setNegativeButton("取消", new
@@ -166,10 +144,27 @@ public class MainActivity extends AppCompatActivity implements GetData{
             case R.id.action_view_other_times:
                 viewOthersAlertBuilder = new
                         AlertDialog.Builder(MainActivity.this);
+                viewOthersAlertBuilder.setTitle(R.string.name_action_view_other_times);
+                viewOthersAlertBuilder.setMessage(R.string.title_acion_view_other_times);
+                viewOthersAlertBuilder.setView(R.layout.edit_xh_layout);
+                viewOthersAlertBuilder.setPositiveButton("查询", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                viewOthersAlertBuilder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                viewOthersAlertBuilder.show();
                 break;
             default:
 
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -260,43 +255,4 @@ public class MainActivity extends AppCompatActivity implements GetData{
         preferencesEditor.putBoolean("isOn", isOn);
         preferencesEditor.apply();
     }
-
-    /**
-     * 先行放置，待来日再弄从数据库中恢复
-     * @param
-     */
-
-
-    //提取数据，这次提取学号
-    @Override
-    public void onExtractData(List<InformationEntity> informationEntities) {
-     /*
-        String mSchoolNumber = "";
-        InformationEntity current = informationEntities.get(2);
-        mSchoolNumber = current.getStation();
-
-        FillStationParse fillStationParse = new FillStationParse();
-        fillStationParse.delegateX1 = MainActivity.this;
-        fillStationParse.execute(parseStation(mSchoolNumber));
-        */
-    }
-
-
-
-    @Override
-    public void onCheckTimesFinish(String times) {
-        if(viewMyAlertBuilder!=null){
-            viewMyAlertBuilder.setTitle(R.string.name_view_times);
-            viewMyAlertBuilder.setMessage("今天打卡"+times+"次");
-            viewMyAlertBuilder.show();
-        }
-    }
-
-    /*
-    String parseStation(String unparsedStation) {
-        String[] splitted = unparsedStation.split("-");
-        return splitted[1];
-    }
-
-     */
 }

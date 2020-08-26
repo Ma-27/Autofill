@@ -6,19 +6,20 @@
     tools:context="com.example.autofill.MainActivity">
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="10"
+        android:orderInCategory="30"
         android:title="@string/action_settings"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_view_times"
-        android:orderInCategory="40"
+        android:orderInCategory="100"
         android:title="@string/name_view_times"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_view_other_times"
-        android:orderInCategory="30"
+        android:orderInCategory="50"
         android:title="@string/name_action_view_other_times"
         app:showAsAction="never" />
+
 </menu>

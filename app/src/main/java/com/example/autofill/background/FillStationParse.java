@@ -7,6 +7,7 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.autofill.GetData;
 import com.example.autofill.network.HttpPost;
 
 import org.json.JSONException;
@@ -18,6 +19,7 @@ public class FillStationParse extends AsyncTask<String, Void, String> {
     public String returnmessage1 = "";
     private static final String TAG = "FillStationParse成功";
     public Response delegate1 = null;
+    public GetData delegateX1 = null;
 
     private int gettime() {
         long timeStamp = System.currentTimeMillis();
@@ -86,6 +88,6 @@ public class FillStationParse extends AsyncTask<String, Void, String> {
             e.printStackTrace();
         }
         delegate1.onPostFinish(returnmessage1);
-
+        delegateX1.onCheckTimesFinish(returnmessage1);
     }
 }

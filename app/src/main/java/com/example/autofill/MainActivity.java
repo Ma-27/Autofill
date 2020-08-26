@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -11,14 +12,19 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.example.autofill.background.FetchDataAsyncTask;
+import com.example.autofill.background.FillStationParse;
 import com.example.autofill.background.TimingService;
 import com.example.autofill.setting.SettingsActivity;
+import com.example.autofill.storage.InformationEntity;
+import com.example.autofill.storage.InformationRoomDatabase;
 import com.example.autofill.ui.main.PagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
@@ -33,17 +39,23 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import static android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+import static android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS;
+import static com.example.autofill.ui.main.MrdkListAdapter.xh;
+
+public class MainActivity extends AppCompatActivity implements GetData{
 
     private SharedPreferences preferences;
     Boolean isOn = false;
+    private static InformationRoomDatabase INSTANCE;
     //通知
     private NotificationManager mNotificationManager;
     private static final int NOTIFICATION_ID = 0;
     private static final String PRIMARY_CHANNEL_ID =
             "primary_notification_channel";
+    AlertDialog.Builder viewMyAlertBuilder;
+    AlertDialog.Builder viewOthersAlertBuilder;
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     private static final String TAG = "MainActivity成功";
@@ -109,12 +121,54 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // 处理action bar 的点击响应
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            Intent intent = new Intent(this,
-                    SettingsActivity.class);
-            startActivity(intent);
-            return true;
+        switch (item.getItemId()){
+            case R.id.action_settings:
+                Intent intent = new Intent(this,
+                        SettingsActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.action_view_times:
+                viewMyAlertBuilder = new
+                        AlertDialog.Builder(MainActivity.this);
+                // Set the dialog title and message.
+                viewMyAlertBuilder.setTitle(R.string.name_view_times);
+                viewMyAlertBuilder.setMessage(R.string.alert_my_title);
+                viewMyAlertBuilder.setPositiveButton("查询", new
+                        DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                //获取学号并查询
+                                if(xh!=""){
+                                    FillStationParse fillStationParse = new FillStationParse();
+                                    fillStationParse.delegateX1 = MainActivity.this;
+                                    fillStationParse.execute(xh);
+                                }
+                                /*
+                                if (INSTANCE == null) {
+                                    INSTANCE = InformationRoomDatabase.getDatabase(MainActivity.this);
+
+                                    FetchDataAsyncTask fetchDataAsyncTask = new FetchDataAsyncTask(INSTANCE);
+                                    fetchDataAsyncTask.delegateX = MainActivity.this;
+                                    fetchDataAsyncTask.execute();
+                                }
+
+
+                                 */
+                            }
+                        });
+                viewMyAlertBuilder.setNegativeButton("取消", new
+                        DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                //啥都不干
+                            }
+                        });
+                viewMyAlertBuilder.show();
+                break;
+            case R.id.action_view_other_times:
+                viewOthersAlertBuilder = new
+                        AlertDialog.Builder(MainActivity.this);
+                break;
+            default:
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -206,4 +260,43 @@ public class MainActivity extends AppCompatActivity {
         preferencesEditor.putBoolean("isOn", isOn);
         preferencesEditor.apply();
     }
+
+    /**
+     * 先行放置，待来日再弄从数据库中恢复
+     * @param
+     */
+
+
+    //提取数据，这次提取学号
+    @Override
+    public void onExtractData(List<InformationEntity> informationEntities) {
+     /*
+        String mSchoolNumber = "";
+        InformationEntity current = informationEntities.get(2);
+        mSchoolNumber = current.getStation();
+
+        FillStationParse fillStationParse = new FillStationParse();
+        fillStationParse.delegateX1 = MainActivity.this;
+        fillStationParse.execute(parseStation(mSchoolNumber));
+        */
+    }
+
+
+
+    @Override
+    public void onCheckTimesFinish(String times) {
+        if(viewMyAlertBuilder!=null){
+            viewMyAlertBuilder.setTitle(R.string.name_view_times);
+            viewMyAlertBuilder.setMessage("今天打卡"+times+"次");
+            viewMyAlertBuilder.show();
+        }
+    }
+
+    /*
+    String parseStation(String unparsedStation) {
+        String[] splitted = unparsedStation.split("-");
+        return splitted[1];
+    }
+
+     */
 }

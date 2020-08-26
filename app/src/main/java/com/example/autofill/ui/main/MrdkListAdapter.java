@@ -37,6 +37,7 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
     private Context context;
     private static final String TAG = "MrdkListAdapter成功";
     private ArrayList<MrdkCacheHolder> dataCacheHolder;
+    public static String xh = "";
 
     private static final int PHOTO = 0;
     private static final int RADIO = 2;
@@ -93,6 +94,11 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
 
         //Log.d(TAG, "onBindViewHolder:测试 "+cacheHolder.getVisibility());
 
+        //缓存学号供查询
+        if(position==1){
+            xh = parseStation(currentEntity.getStation());
+        }
+
         //设置可见性
         switch (cacheHolder.getVisibility()){
             case PHOTO:
@@ -135,6 +141,9 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
             Glide.with(context).load(cacheHolder.getImage()).into(holder.mrdkImage);
         }
 
+        /**
+         * 设置监听
+         */
         if (holder.editInfo.getVisibility() == View.VISIBLE) {
             //Log.d(TAG, "onBindViewHolder: edit info的可见性");
             holder.editInfo.setHint(cacheHolder.getContentHint());
@@ -145,12 +154,15 @@ public class MrdkListAdapter extends RecyclerView.Adapter<MrdkListAdapter.MrdkVi
                     if (keyCode == KeyEvent.KEYCODE_ENTER) {
                         String s = "";
                         s =   holder.editInfo.getText().toString();
-                        Intent intent = new Intent(context,UpdataActivity.class);
-                        intent.putExtra("id",currentEntity.getId());
-                        intent.putExtra("changedData",s);
-                        intent.putExtra("unparsedStation",currentEntity.getStation());
-                        context.startActivity(intent);
-                        //Log.d(TAG, "onKey:"+s);
+                        //检查s是否为空，防止崩溃
+                        if(s!=""&&s!=null) {
+                            Intent intent = new Intent(context, UpdataActivity.class);
+                            intent.putExtra("id", currentEntity.getId());
+                            intent.putExtra("changedData", s);
+                            intent.putExtra("unparsedStation", currentEntity.getStation());
+                            context.startActivity(intent);
+                            //Log.d(TAG, "onKey:"+s);
+                        }
                     }
                     return false;
                 }

@@ -14,7 +14,8 @@
         </Preference>
 
     </PreferenceCategory>
-
+    
+    <!--
     <PreferenceCategory app:title="@string/messages_header">
         <EditTextPreference
             app:key="signature"
@@ -45,5 +46,5 @@
             app:title="@string/attachment_title" />
 
     </PreferenceCategory>
-
+-->
 </PreferenceScreen>

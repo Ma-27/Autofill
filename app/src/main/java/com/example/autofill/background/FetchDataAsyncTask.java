@@ -2,7 +2,6 @@ package com.example.autofill.background;
 
 import android.os.AsyncTask;
 
-import com.example.autofill.GetData;
 import com.example.autofill.storage.InformationEntity;
 import com.example.autofill.storage.InformationRoomDatabase;
 
@@ -13,7 +12,6 @@ import java.util.List;
 public class FetchDataAsyncTask extends AsyncTask<Void, Void,List<InformationEntity> >{
 
     public Response delegate0 = null;
-    public GetData delegateX = null;
     InformationRoomDatabase db;
 
     public FetchDataAsyncTask(InformationRoomDatabase instance) {
@@ -31,7 +29,6 @@ public class FetchDataAsyncTask extends AsyncTask<Void, Void,List<InformationEnt
         super.onPostExecute(informationEntities);
         try {
             delegate0.onPostFinish(informationEntities);
-            delegateX.onExtractData(informationEntities);
         } catch (JSONException e) {
             e.printStackTrace();
         }

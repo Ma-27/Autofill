@@ -114,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // 处理action bar 的点击响应
-        // 处理action bar 的点击响应
         switch (item.getItemId()){
             case R.id.action_settings:
                 Intent intent = new Intent(this,

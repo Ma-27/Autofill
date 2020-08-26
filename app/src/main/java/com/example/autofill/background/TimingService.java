@@ -52,9 +52,9 @@ public class TimingService extends Service {
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
         //间隔启动
-        long repeatInterval = 1;
+        long repeatInterval = //1;
                 // 一分钟
-                //AlarmManager.INTERVAL_HALF_DAY;
+                AlarmManager.INTERVAL_HALF_DAY;
 
         long triggerTime = SystemClock.elapsedRealtime()+repeatInterval;
 

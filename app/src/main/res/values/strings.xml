@@ -32,13 +32,10 @@
     <string name="hint_default">默认暗示</string>
     <string name="state_yes">是/有</string>
     <string name="state_no">否/无</string>
-    <string name="name_view_times">查看自己是否打卡</string>
     <string name="name_action_view_other_times">查询打卡情况</string>
-    <string name="alert_my_title">在这里可以查看你今天的打卡次数</string>
 
     <string name="name_view_times">查询自己是否打卡</string>
     <string name="alert_my_title">在这里可以查询你今天的打卡次数</string>
-    <string name="name_action_view_other_times">查询其他同学打卡次数</string>
     <string name="title_acion_view_other_times">输入其他同学的学号：</string>
     <string name="xh_string">学号</string>
 </resources>

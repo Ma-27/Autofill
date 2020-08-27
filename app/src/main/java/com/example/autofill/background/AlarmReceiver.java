@@ -144,11 +144,11 @@ public class AlarmReceiver extends BroadcastReceiver implements Response {
         PositionParse getPosition = new PositionParse();
         getPosition.execute();
 
-        Log.d(TAG, "schoolnumber：有没有？"+mSchoolNumber);
+        //这里需要判断今天是否已经打过卡，没有就不重复打卡
         FillStationParse fillStationParse = new FillStationParse();
         fillStationParse.delegate1 = this;
         fillStationParse.execute(mSchoolNumber);
-        Log.d(TAG, "onPostFinish: 打开了查询打卡状况");
+        //Log.d(TAG, "onPostFinish: 打开了查询打卡状况");
     }
 
 

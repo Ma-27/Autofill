@@ -61,7 +61,7 @@ public class AlarmReceiver extends BroadcastReceiver implements Response {
      */
     @Override
     public void onPostFinish(String responseCode) {
-        Log.d(TAG, responseCode);
+        //Log.d(TAG, "打开了推送通知"+responseCode);
         switch (responseCode){
             case "REFUSE":
                 //服务器拒绝
@@ -111,7 +111,7 @@ public class AlarmReceiver extends BroadcastReceiver implements Response {
                         parseStation(current.getStation())
                 );
 
-                if(i == 0){
+                if(i == 1){
                     mSchoolNumber =  parseStation(current.getStation());
                 }
 
@@ -136,7 +136,7 @@ public class AlarmReceiver extends BroadcastReceiver implements Response {
             Notify notify3 = new Notify(context,"今日打卡失败","未能得到有效数据，数据恢复出现问题");
             notify3.deliverNotification();
         }
-        //Log.d(TAG, "onPostFinish: 最终结果" + mData);
+        //Log.d(TAG, "onPostFinish: 最终json字符串" + mData);
 
         /**
          * 指令打卡模块，获取地理位置，检查打卡情况
@@ -144,9 +144,11 @@ public class AlarmReceiver extends BroadcastReceiver implements Response {
         PositionParse getPosition = new PositionParse();
         getPosition.execute();
 
+        Log.d(TAG, "schoolnumber：有没有？"+mSchoolNumber);
         FillStationParse fillStationParse = new FillStationParse();
         fillStationParse.delegate1 = this;
         fillStationParse.execute(mSchoolNumber);
+        Log.d(TAG, "onPostFinish: 打开了查询打卡状况");
     }
 
 

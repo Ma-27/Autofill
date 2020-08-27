@@ -51,9 +51,8 @@ public class TimingService extends Service {
         //alarm 设置
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-        //间隔启动
+        //间隔启动，一分钟或者半天
         long repeatInterval = //1;
-                // 一分钟
                 AlarmManager.INTERVAL_HALF_DAY;
 
         long triggerTime = SystemClock.elapsedRealtime()+repeatInterval;
@@ -65,6 +64,7 @@ public class TimingService extends Service {
                             checkAndPostPendingIntent
                     );
         }
+        Log.d(TAG, "onStartCommand: 成功启动后台");
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -75,11 +75,5 @@ public class TimingService extends Service {
             alarmManager.cancel(checkAndPostPendingIntent);
         }
     }
-
-
-
-
-
-
 
 }

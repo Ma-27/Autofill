@@ -245,8 +245,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-
+    /**
+     * 保存数据
+     */
     @Override
     protected void onPause() {
         super.onPause();

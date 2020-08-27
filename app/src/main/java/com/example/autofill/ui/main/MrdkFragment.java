@@ -93,16 +93,7 @@ public class MrdkFragment extends Fragment {
          * 恢复开关状态
          */
         boolean isAlarmup = ((MainActivity)getActivity()).getSwitchStation();
-        Log.d(TAG, "onCreateView: 第一次启动："+isAlarmup);
-        /*
-        if(isAlarmup){
-            //要是根本没有数据，第一次启动
-            alarmUp = false;
-        }else {
-            alarmUp = isAlarmup;
-        }
-
-         */
+        //Log.d(TAG, "onCreateView: 第一次启动："+isAlarmup);
         autofillSwitch.setChecked(isAlarmup);
 
         //最后返回主界面

@@ -28,6 +28,7 @@ public class FillStationParse extends AsyncTask<String, Void, String> {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected String doInBackground(String... strings) {
+        //Log.d(TAG, "doInBackground: 返回的打卡次数信息："+strings);
         String jsonFinalString = "";
         JSONObject jsonParam = new JSONObject();
         try {
@@ -49,7 +50,7 @@ public class FillStationParse extends AsyncTask<String, Void, String> {
         }
         HttpPost checkPostedData = new
                 HttpPost("https://we.cqu.pt/api/mrdk/get_mrdk_flag.php",jsonFinalString);
-        //Log.d(TAG, "doInBackground: "+jsonFinalString);
+        Log.d(TAG, "doInBackground: "+jsonFinalString);
         return checkPostedData.PostData();
     }
 
@@ -70,7 +71,7 @@ public class FillStationParse extends AsyncTask<String, Void, String> {
                         else if(count == 1){
                             returnmessage1 = "TODAYHASFILL";
                         }else {
-                            returnmessage1 = "UNKNOWN_ERROR";
+                            returnmessage1 = "TODAYHASFILL";
                         }
                     } catch (Exception e) {
                         returnmessage1 = "UNKNOWN_ERROR";
@@ -85,6 +86,7 @@ public class FillStationParse extends AsyncTask<String, Void, String> {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        //Log.d(TAG, "onPostExecute: 执行完检查打卡次数");
         delegate1.onPostFinish(returnmessage1);
     }
 }

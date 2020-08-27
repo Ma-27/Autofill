@@ -132,7 +132,6 @@ public class AlarmReceiver extends BroadcastReceiver implements Response {
         mData = jsonJuniorParam.toString();
         //检查数据库是否出现错误
         if(mData.length() == 0){
-
             Notify notify3 = new Notify(context,"今日打卡失败","未能得到有效数据，数据恢复出现问题");
             notify3.deliverNotification();
         }
@@ -144,7 +143,7 @@ public class AlarmReceiver extends BroadcastReceiver implements Response {
         PositionParse getPosition = new PositionParse();
         getPosition.execute();
 
-        //这里需要判断今天是否已经打过卡，没有就不重复打卡
+        //这里需要判断今天是否已经打过卡，有就不重复打卡
         FillStationParse fillStationParse = new FillStationParse();
         fillStationParse.delegate1 = this;
         fillStationParse.execute(mSchoolNumber);

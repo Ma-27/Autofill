@@ -19,6 +19,7 @@ import androidx.annotation.RequiresApi;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.autofill.R;
+import com.example.autofill.background.dirtyRestart.Restarter;
 import com.example.autofill.storage.InformationViewModel;
 
 import static android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS;
@@ -52,8 +53,8 @@ public class TimingService extends Service {
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
         //间隔启动，一分钟或者半天
-        long repeatInterval = //1;
-                AlarmManager.INTERVAL_HALF_DAY;
+        long repeatInterval = 1;
+                //AlarmManager.INTERVAL_HALF_DAY;
 
         long triggerTime = SystemClock.elapsedRealtime()+repeatInterval;
 
@@ -64,16 +65,29 @@ public class TimingService extends Service {
                             checkAndPostPendingIntent
                     );
         }
-        Log.d(TAG, "onStartCommand: 成功启动后台");
+        Log.d(TAG, "onStartCommand: 成功启动");
         return super.onStartCommand(intent, flags, startId);
     }
 
+    /**
+     * 这是在后台想要杀掉这个service时强制重启（频繁自启动）
+     * 这不是我想要的样子
+     * 但是迫于国内生态环境，应用不能长留后台，也只能出此下策保证app不会被杀
+     * 那只能以不干净的吃相和性能的牺牲来实现目标了
+     * 未来会更新firebase fcm推送，方便有google框架的同学不使用这种方式
+     * 然而这种屠龙少年成为恶龙的故事，总不免令人感到失望。
+     */
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (alarmManager != null) {
-            alarmManager.cancel(checkAndPostPendingIntent);
-        }
+    public void onTaskRemoved(Intent rootIntent) {
+        Log.d(TAG, "onTaskRemoved: ");
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction("restartservice");
+        broadcastIntent.setClass(this, Restarter.class);
+        this.sendBroadcast(broadcastIntent);
+
+        //干完了再移除
+        super.onTaskRemoved(rootIntent);
     }
+
 
 }

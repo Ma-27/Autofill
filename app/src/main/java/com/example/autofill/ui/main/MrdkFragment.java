@@ -77,13 +77,11 @@ public class MrdkFragment extends Fragment {
                 if(isChecked){
                     ((MainActivity)getActivity()).openBackgroundLoader();
                     ((MainActivity)getActivity()).saveSwitchStation(isChecked);
-                    Toast.makeText(getContext(), R.string.switch_texton, Toast.LENGTH_SHORT).show();
                     //Log.d(TAG, "onCheckedChanged: 设置ischecked"+isChecked);
 
                 }else {
                     ((MainActivity)getActivity()).closeBackgroundLoader();
                     ((MainActivity)getActivity()).saveSwitchStation(isChecked);
-                    Toast.makeText(getContext(), R.string.switch_textoff, Toast.LENGTH_SHORT).show();
                     //Log.d(TAG, "onCheckedChanged: 设置ischecked"+isChecked);
                 }
             }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">自动打卡</string>
+    <string name="app_name_experiment">自动打卡测试版</string>
     <string name="tab_text_2">历史填报</string>
     <string name="action_settings">设置</string>
 

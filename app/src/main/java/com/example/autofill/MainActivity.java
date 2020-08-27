@@ -1,6 +1,7 @@
 package com.example.autofill;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -34,6 +35,8 @@ import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import java.util.List;
 
 import static android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS;
 
@@ -193,13 +196,21 @@ public class MainActivity extends AppCompatActivity {
      * 打开或关闭background 的service
      */
     public void openBackgroundLoader(){
-        Intent intent = new Intent(this, TimingService.class);
-        startService(intent);
+        //循环读取各个服务，看看我们自定义的服务在里面吗
+       if(!isMyServiceRunning(TimingService.class)) {
+           Log.d(TAG, "openBackgroundLoader: 没有实例，重新启动了一个");
+           Intent intent = new Intent(this, TimingService.class);
+           startService(intent);
+           Toast.makeText(this, R.string.switch_texton, Toast.LENGTH_SHORT).show();
+       }else {
+           Log.d(TAG, "openBackgroundLoader: 有实例，什么都不做");
+       }
     }
 
     public void closeBackgroundLoader(){
         Intent intent = new Intent(this, TimingService.class);
         stopService(intent);
+        Toast.makeText(this, R.string.switch_textoff, Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -219,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**忽略电池优化请求 方面代码
-     *
+     *暂时不用了，因为有了service 保活唤醒
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -232,9 +243,8 @@ public class MainActivity extends AppCompatActivity {
         return isIgnoring;
     }
 
-
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public void requestIgnoreBatteryOptimizations() {
+    private void requestIgnoreBatteryOptimizations() {
         try {
             @SuppressLint("BatteryLife")
             Intent intent = new Intent(ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
@@ -246,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 保存数据
+     * 保存开关状态数据
      */
     @Override
     protected void onPause() {
@@ -254,5 +264,20 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor preferencesEditor = preferences.edit();
         preferencesEditor.putBoolean("isOn", isOn);
         preferencesEditor.apply();
+    }
+
+    /**
+     * 查看某个service 是否在后台运行
+     * @param serviceClass service所在的类
+     * @return 返回是否有service实例
+     */
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

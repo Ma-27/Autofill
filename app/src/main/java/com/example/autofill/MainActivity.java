@@ -13,18 +13,15 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.example.autofill.background.FillStationParse;
 import com.example.autofill.background.TimingService;
 import com.example.autofill.setting.SettingsActivity;
 import com.example.autofill.ui.main.PagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,15 +29,13 @@ import android.os.PowerManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.CompoundButton;
-import android.widget.Switch;
+import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.List;
-
 import static android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS;
+import static com.example.autofill.ui.main.MrdkListAdapter.xh;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     private SharedPreferences preferences;
     Boolean isOn = false;
@@ -92,10 +87,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /*
         //开启后台推送
         if(!isIgnoringBatteryOptimizations());{
             requestIgnoreBatteryOptimizations();
         }
+
+         */
 
         //获取shared preferences
         preferences = getSharedPreferences("switchStation",MODE_PRIVATE);
@@ -123,6 +121,9 @@ public class MainActivity extends AppCompatActivity {
                         SettingsActivity.class);
                 startActivity(intent);
                 break;
+            /**
+             * 查询自己的打卡情况
+             */
             case R.id.action_view_times:
                 viewMyAlertBuilder = new
                         AlertDialog.Builder(MainActivity.this);
@@ -132,7 +133,11 @@ public class MainActivity extends AppCompatActivity {
                 viewMyAlertBuilder.setPositiveButton("查询", new
                         DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-
+                                if(xh!=null&& !xh.equals("")) {
+                                    FillStationParse fillStationParse =
+                                            new FillStationParse(1,MainActivity.this);
+                                    fillStationParse.execute(xh);
+                                }
                             }
                         });
                 viewMyAlertBuilder.setNegativeButton("取消", new
@@ -143,22 +148,36 @@ public class MainActivity extends AppCompatActivity {
                         });
                 viewMyAlertBuilder.show();
                 break;
+            /**
+             * 查询别人的打卡情况，插入了自定义view，要求别人输入学号
+             */
             case R.id.action_view_other_times:
                 viewOthersAlertBuilder = new
                         AlertDialog.Builder(MainActivity.this);
                 viewOthersAlertBuilder.setTitle(R.string.name_action_view_other_times);
                 viewOthersAlertBuilder.setMessage(R.string.title_acion_view_other_times);
                 viewOthersAlertBuilder.setView(R.layout.edit_xh_layout);
-                viewOthersAlertBuilder.setPositiveButton("查询", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
+                viewOthersAlertBuilder.setPositiveButton("查询", new
+                        DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                EditText editXH = (EditText) ((AlertDialog) dialog)
+                                        .findViewById(R.id.edit_xh);
+                                String xhForChecking = editXH.getText().toString();
+                                //检查是否为空，防止app崩溃
+                                if(!xhForChecking.equals("")){
+                                    FillStationParse fillStationParse =
+                                            new FillStationParse(2,MainActivity.this);
+                                    fillStationParse.execute(xhForChecking);
+                                }else {
+                                    Toast.makeText(MainActivity.this,
+                                            "你输入的学号无效，请重新输入",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                 viewOthersAlertBuilder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                     }
                 });
                 viewOthersAlertBuilder.show();

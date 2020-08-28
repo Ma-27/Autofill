@@ -5,11 +5,11 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.mamh.autofill.experiment"
+        applicationId "com.mamh.autofill"
         minSdkVersion 15
         targetSdkVersion 30
         versionCode 1
-        versionName "4.0"
+        versionName "4.1"
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }

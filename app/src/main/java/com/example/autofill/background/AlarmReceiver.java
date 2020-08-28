@@ -7,8 +7,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
-import androidx.room.Room;
-
 import com.example.autofill.storage.InformationEntity;
 import com.example.autofill.storage.InformationRoomDatabase;
 
@@ -144,7 +142,7 @@ public class AlarmReceiver extends BroadcastReceiver implements Response {
         getPosition.execute();
 
         //这里需要判断今天是否已经打过卡，有就不重复打卡
-        FillStationParse fillStationParse = new FillStationParse();
+        FillStationParse fillStationParse = new FillStationParse(0);
         fillStationParse.delegate1 = this;
         fillStationParse.execute(mSchoolNumber);
         //Log.d(TAG, "onPostFinish: 打开了查询打卡状况");

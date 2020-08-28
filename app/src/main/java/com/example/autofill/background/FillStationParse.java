@@ -1,9 +1,12 @@
 package com.example.autofill.background;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
@@ -18,6 +21,27 @@ public class FillStationParse extends AsyncTask<String, Void, String> {
     public String returnmessage1 = "";
     private static final String TAG = "FillStationParse成功";
     public Response delegate1 = null;
+    private int stationCode = 0;
+    @SuppressLint("StaticFieldLeak")
+    private Context context;
+
+    /**
+     *
+     * @param stationCode 用来解析时哪种任务，0是普通提交，1是查询提交次数，这个传入1
+     * @param context 用来make toast
+     */
+    public FillStationParse(int stationCode, Context context){
+        this.stationCode = stationCode;
+        this.context = context;
+    }
+
+    /**
+     *
+     * @param statusCode 这个传入0
+     */
+    public FillStationParse(int statusCode) {
+        this.stationCode = statusCode;
+    }
 
     private int gettime() {
         long timeStamp = System.currentTimeMillis();
@@ -57,8 +81,9 @@ public class FillStationParse extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+        int times = 12345;
         try {
-            if(s!=null) {
+            if (s != null) {
                 JSONObject jsonObject = new JSONObject(s);
                 String resultArray = jsonObject.getString("data");
                 JSONObject jsonObjectData = new JSONObject(resultArray);
@@ -68,11 +93,12 @@ public class FillStationParse extends AsyncTask<String, Void, String> {
                     try {
                         if (count == 0)
                             returnmessage1 = "TODAYNOFILL";
-                        else if(count == 1){
+                        else if (count == 1) {
                             returnmessage1 = "TODAYHASFILL";
-                        }else {
+                        } else {
                             returnmessage1 = "TODAYHASFILL";
                         }
+                        times = count;
                     } catch (Exception e) {
                         returnmessage1 = "UNKNOWN_ERROR";
                         e.printStackTrace();
@@ -80,13 +106,23 @@ public class FillStationParse extends AsyncTask<String, Void, String> {
                 } else {
                     returnmessage1 = "NULL_ERROR";
                 }
-            }else {
+            } else {
                 Log.d(TAG, "成功失败，检查打卡信息时返回的s为空");
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        //Log.d(TAG, "onPostExecute: 执行完检查打卡次数");
-        delegate1.onPostFinish(returnmessage1);
+
+        if (stationCode == 0) {
+            delegate1.onPostFinish(returnmessage1);
+            stationCode = 0;
+        } else if(stationCode == 1){
+            Toast.makeText(context, "今日打卡"+times+"次", Toast.LENGTH_LONG).show();
+        }else if(stationCode == 2){
+            Toast.makeText(context, "这位同学打卡了"+times+"次", Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(context,"出错了，请重试",Toast.LENGTH_LONG).show();
+        }
     }
 }

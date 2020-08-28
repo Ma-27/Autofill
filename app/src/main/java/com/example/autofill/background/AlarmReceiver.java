@@ -7,6 +7,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
+import com.example.autofill.network.prepareRequest.FillStationParse;
+import com.example.autofill.network.prepareRequest.PositionParse;
+import com.example.autofill.network.prepareRequest.PostDataParse;
+import com.example.autofill.network.prepareRequest.Response;
 import com.example.autofill.storage.InformationEntity;
 import com.example.autofill.storage.InformationRoomDatabase;
 

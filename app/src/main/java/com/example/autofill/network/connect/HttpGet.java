@@ -1,4 +1,4 @@
-package com.example.autofill.network;
+package com.example.autofill.network.connect;
 
 import android.net.Uri;
 

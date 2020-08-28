@@ -1,4 +1,4 @@
-package com.example.autofill.background;
+package com.example.autofill.background.dirtyRestart;
 
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
@@ -19,12 +19,13 @@ import androidx.annotation.RequiresApi;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.autofill.R;
+import com.example.autofill.background.AlarmReceiver;
 import com.example.autofill.background.dirtyRestart.Restarter;
 import com.example.autofill.storage.InformationViewModel;
 
 import static android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS;
 
-public class TimingService extends Service {
+public class TimingServiceDitry extends Service {
 
     private AlarmManager alarmManager;
     private PendingIntent checkAndPostPendingIntent;
@@ -32,7 +33,7 @@ public class TimingService extends Service {
     private static final String TAG = "TimingService成功";
 
 
-    public TimingService() { }
+    public TimingServiceDitry() { }
 
     @Override
     public IBinder onBind(Intent intent) {

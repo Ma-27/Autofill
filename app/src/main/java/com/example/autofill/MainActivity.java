@@ -13,8 +13,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
-import com.example.autofill.background.FillStationParse;
-import com.example.autofill.background.TimingService;
+import com.example.autofill.network.prepareRequest.FillStationParse;
+import com.example.autofill.background.dirtyRestart.TimingServiceDitry;
 import com.example.autofill.setting.SettingsActivity;
 import com.example.autofill.ui.main.PagerAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -216,9 +216,9 @@ public class MainActivity extends AppCompatActivity{
      */
     public void openBackgroundLoader(){
         //循环读取各个服务，看看我们自定义的服务在里面吗
-       if(!isMyServiceRunning(TimingService.class)) {
+       if(!isMyServiceRunning(TimingServiceDitry.class)) {
            Log.d(TAG, "openBackgroundLoader: 没有实例，重新启动了一个");
-           Intent intent = new Intent(this, TimingService.class);
+           Intent intent = new Intent(this, TimingServiceDitry.class);
            startService(intent);
            Toast.makeText(this, R.string.switch_texton, Toast.LENGTH_SHORT).show();
        }else {
@@ -227,7 +227,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void closeBackgroundLoader(){
-        Intent intent = new Intent(this, TimingService.class);
+        Intent intent = new Intent(this, TimingServiceDitry.class);
         stopService(intent);
         Toast.makeText(this, R.string.switch_textoff, Toast.LENGTH_SHORT).show();
     }

@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.example.autofill.background.TimingService;
-
 /**
  * 这不是我想要的样子
  * 但是迫于国内生态环境，应用不能长留后台，也只能出此下策保证app不会被杀
@@ -21,7 +19,7 @@ public class Restarter extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d(TAG, "onReceive: 重新启动timing service");
-        Intent serviceIntent = new Intent(context, TimingService.class);
+        Intent serviceIntent = new Intent(context, TimingServiceDitry.class);
         context.startService(serviceIntent);
     }
 }

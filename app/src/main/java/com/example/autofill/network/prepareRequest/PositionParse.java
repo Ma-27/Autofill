@@ -1,10 +1,8 @@
-package com.example.autofill.background;
+package com.example.autofill.network.prepareRequest;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
-import com.example.autofill.network.HttpGet;
-
+import com.example.autofill.network.connect.HttpGet;
 import org.json.JSONException;
 import org.json.JSONObject;
 

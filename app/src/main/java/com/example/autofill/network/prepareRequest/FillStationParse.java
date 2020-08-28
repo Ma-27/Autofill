@@ -1,4 +1,4 @@
-package com.example.autofill.background;
+package com.example.autofill.network.prepareRequest;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
-import com.example.autofill.network.HttpPost;
+import com.example.autofill.network.connect.HttpPost;
 
 import org.json.JSONException;
 import org.json.JSONObject;

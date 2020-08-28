@@ -1,4 +1,4 @@
-package com.example.autofill.background;
+package com.example.autofill.network.prepareRequest;
 
 import android.os.AsyncTask;
 import android.os.Build;
@@ -7,19 +7,19 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
-import com.example.autofill.network.HttpPost;
+import com.example.autofill.network.connect.HttpPost;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
-import static com.example.autofill.background.PositionParse.position;
+import static com.example.autofill.network.prepareRequest.PositionParse.position;
 
 public class PostDataParse extends AsyncTask<String, Void, String> {
 
     private static final String TAG = "PostDataParse成功";
-    Response delegate = null;
+    public Response delegate = null;
     private String returnmessage = "";
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)

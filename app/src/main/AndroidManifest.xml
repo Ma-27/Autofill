@@ -27,7 +27,7 @@
         </receiver>
 
         <service
-            android:name=".background.TimingService"
+            android:name=".background.dirtyRestart.TimingServiceDitry"
             android:enabled="true"
             android:exported="false"
             android:process=":remote"

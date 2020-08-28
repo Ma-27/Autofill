@@ -34,4 +34,6 @@
     <string name="name_view_times">查询自己是否打卡</string>
     <string name="name_action_view_other_times">查询其他同学打卡次数</string>
     <string name="title_acion_view_other_times">输入其他同学的学号：</string>
+    <string name="category_background">后台</string>
+    <string name="title_background_setting">使用GMS统一推送服务</string>
 </resources>

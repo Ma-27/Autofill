@@ -39,4 +39,7 @@
     <string name="alert_my_title">在这里可以查询你今天的打卡次数</string>
     <string name="title_acion_view_other_times">输入其他同学的学号：</string>
     <string name="xh_string">学号</string>
+    <string name="category_background">后台</string>
+    <string name="title_background_setting">使用GMS统一推送服务</string>
+    <string name="texton_background_setting">应用无需常驻后台，应用未启动时数据推送由系统完成</string>
 </resources>

@@ -15,6 +15,7 @@
 
     </PreferenceCategory>
 
+
     <!--
     <PreferenceCategory app:title="@string/messages_header">
         <EditTextPreference
@@ -46,6 +47,18 @@
             app:title="@string/attachment_title" />
 
     </PreferenceCategory>
--->
+
+    -->
+
+    <PreferenceCategory app:title="@string/category_background">
+
+        <SwitchPreferenceCompat
+            app:key="send_service"
+            app:title="@string/title_background_setting"
+            app:summary="@string/texton_background_setting"
+            app:defaultValue="false"
+            />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

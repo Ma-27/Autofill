@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "617107776675",
+    "firebase_url": "https://autofill-3bd58.firebaseio.com",
+    "project_id": "autofill-3bd58",
+    "storage_bucket": "autofill-3bd58.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617107776675:android:b184ca8dbc150a3d174b16",
+        "android_client_info": {
+          "package_name": "com.mamh.autofill"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "617107776675-910dluj3rvjim30b1npjlhppn9ui6tqh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7WvHagaPvCiF8thUY4osTNzd8EwiP8As"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "617107776675-910dluj3rvjim30b1npjlhppn9ui6tqh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

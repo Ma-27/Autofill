@@ -3,6 +3,7 @@ package com.example.autofill.background;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
@@ -25,7 +26,8 @@ public class AlarmReceiver extends BroadcastReceiver implements Response {
     private static InformationRoomDatabase INSTANCE;
     public String mData = "";
     public Context context;
-
+    private static final String ACTION_UPDATE_NOTIFICATION =
+            "com.example.autofill.background.AlarmReceiver.ACTION_UPDATE_NOTIFICATION";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -55,6 +57,16 @@ public class AlarmReceiver extends BroadcastReceiver implements Response {
             Notify notify2 = new Notify(context,"今日打卡失败","网络连接不良，请重试");
             notify2.deliverNotification();
         }
+
+        /**
+         * 点击通知图标完成打卡功能暂且一放
+         */
+
+        /*
+        NotificationReceiver mReceiver = new NotificationReceiver();
+        context.registerReceiver(mReceiver,new IntentFilter(ACTION_UPDATE_NOTIFICATION));
+
+         */
     }
 
     /**
@@ -174,5 +186,6 @@ public class AlarmReceiver extends BroadcastReceiver implements Response {
         String[] splitted = unparsedStation.split("-");
         return splitted[0];
     }
+
 
 }

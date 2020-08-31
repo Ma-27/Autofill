@@ -53,6 +53,7 @@
     <PreferenceCategory app:title="@string/category_background">
 
         <SwitchPreferenceCompat
+            app:icon="@drawable/ic_gms"
             app:key="send_service"
             app:title="@string/title_background_setting"
             app:summary="@string/texton_background_setting"

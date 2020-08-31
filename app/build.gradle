@@ -1,6 +1,10 @@
 apply plugin: 'com.android.application'
 //加入gms
 apply plugin: 'com.google.gms.google-services'
+// 加入 Crashlytics Gradle 插件
+apply plugin: 'com.google.firebase.crashlytics'
+// 添加Performance Monitoring plugin
+apply plugin: 'com.google.firebase.firebase-perf'
 
 
 android {
@@ -15,6 +19,9 @@ android {
         versionName "4.2"
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
+        //允许生成多个dex文件
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -66,6 +73,14 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'com.github.bumptech.glide:glide:3.7.0'
 
-    //firebase gms依赖
+    // 推荐: 加入Firebase SDK，便于firebase分析.
     implementation 'com.google.firebase:firebase-analytics:17.5.0'
+    // 加入Firebase Crashlytics SDK.
+    implementation 'com.google.firebase:firebase-crashlytics:17.2.1'
+
+    // 添加Performance Monitoring library
+    implementation 'com.google.firebase:firebase-perf:19.0.8'
+
+    //允许多个dex文件，不超过65536个的限制
+    implementation 'com.android.support:multidex:1.0.3'
 }

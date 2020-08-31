@@ -35,6 +35,7 @@ public class SettingsActivity extends AppCompatActivity {
         Boolean switchPref = sharedPref.getBoolean
                 (SettingsActivity.KEY_PREF_FCM_SWITCH, false);
        //处理默认值
+
     }
 
 

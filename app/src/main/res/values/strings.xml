@@ -50,4 +50,5 @@
     <string name="times">次</string>
     <string name="error_toast">出错了，请重试</string>
 
+    <string name="msg_token_fmt" translatable="false">获得到的InstanceID为: %s</string>
 </resources>

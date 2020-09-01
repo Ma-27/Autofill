@@ -15,6 +15,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     public static final String
             KEY_PREF_FCM_SWITCH = "use_fcm_switch";
+    private static final String TAG = "SettingsActivity成功";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

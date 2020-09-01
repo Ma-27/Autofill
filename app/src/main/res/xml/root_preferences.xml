@@ -50,7 +50,13 @@
 
     -->
 
-    <PreferenceCategory app:title="@string/category_background">
+    <PreferenceCategory
+        app:title="@string/category_background">
+
+        <Preference
+            app:key="retrieve_registration_switch"
+            app:title="检索当前注册令牌"
+            />
 
         <SwitchPreferenceCompat
             app:icon="@drawable/ic_gms"

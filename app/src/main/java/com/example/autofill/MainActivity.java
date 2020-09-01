@@ -48,6 +48,11 @@ public class MainActivity extends AppCompatActivity{
     private static final String PRIMARY_CHANNEL_ID =
             "primary_notification_channel";
 
+    /**常数判断是否关掉通知功能
+     * 用@param Removetask，1的时候就是开启状态常驻后台；0的时候是关闭状态。取消常驻后台
+     */
+    public static int Removetask = 0;
+
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     private static final String TAG = "MainActivity成功";
 
@@ -106,12 +111,22 @@ public class MainActivity extends AppCompatActivity{
         createNotificationChannel();
     }
 
+    /**
+     * 显示三个点
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
+    /**
+     * 选中三个点后处理选中事件
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // 处理action bar 的点击响应
@@ -130,7 +145,7 @@ public class MainActivity extends AppCompatActivity{
                 // Set the dialog title and message.
                 viewMyAlertBuilder.setTitle(R.string.name_view_times);
                 viewMyAlertBuilder.setMessage(R.string.alert_my_title);
-                viewMyAlertBuilder.setPositiveButton("查询", new
+                viewMyAlertBuilder.setPositiveButton(R.string.menu_search, new
                         DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 if(xh!=null&& !xh.equals("")) {
@@ -140,7 +155,7 @@ public class MainActivity extends AppCompatActivity{
                                 }
                             }
                         });
-                viewMyAlertBuilder.setNegativeButton("取消", new
+                viewMyAlertBuilder.setNegativeButton(R.string.menu_cancel, new
                         DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 //啥都不干
@@ -157,7 +172,7 @@ public class MainActivity extends AppCompatActivity{
                 viewOthersAlertBuilder.setTitle(R.string.name_action_view_other_times);
                 viewOthersAlertBuilder.setMessage(R.string.title_acion_view_other_times);
                 viewOthersAlertBuilder.setView(R.layout.edit_xh_layout);
-                viewOthersAlertBuilder.setPositiveButton("查询", new
+                viewOthersAlertBuilder.setPositiveButton(R.string.menu_search, new
                         DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 EditText editXH = (EditText) ((AlertDialog) dialog)
@@ -170,12 +185,12 @@ public class MainActivity extends AppCompatActivity{
                                     fillStationParse.execute(xhForChecking);
                                 }else {
                                     Toast.makeText(MainActivity.this,
-                                            "你输入的学号无效，请重新输入",
+                                            R.string.toast_xh_noeffect,
                                             Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
-                viewOthersAlertBuilder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                viewOthersAlertBuilder.setNegativeButton(R.string.menu_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                     }
@@ -212,7 +227,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     /**
-     * 打开或关闭background 的service
+     * 打开background 的service，修改remove task
      */
     public void openBackgroundLoader(){
         //循环读取各个服务，看看我们自定义的服务在里面吗
@@ -221,20 +236,27 @@ public class MainActivity extends AppCompatActivity{
            Intent intent = new Intent(this, TimingServiceDitry.class);
            startService(intent);
            Toast.makeText(this, R.string.switch_texton, Toast.LENGTH_SHORT).show();
+           //防止task 被后台杀掉
+           Removetask = 1;
        }else {
            Log.d(TAG, "openBackgroundLoader: 有实例，什么都不做");
        }
     }
 
+    /**
+     * 关闭background 的service，修改remove task状态码为0,防止其再启动
+     */
     public void closeBackgroundLoader(){
         Intent intent = new Intent(this, TimingServiceDitry.class);
         stopService(intent);
+        //使restarter可以被移除
+        Removetask = 0;
         Toast.makeText(this, R.string.switch_textoff, Toast.LENGTH_SHORT).show();
     }
 
     /**
      * 有关于保存按钮状态的,get在加载按钮时加载，save 在按钮切换时保存
-     * @return
+     * @return 按钮状态，是打开还是关闭
      */
    public boolean getSwitchStation(){
         if(preferences!=null) {
@@ -250,7 +272,7 @@ public class MainActivity extends AppCompatActivity{
 
     /**忽略电池优化请求 方面代码
      *暂时不用了，因为有了service 保活唤醒
-     * @return
+     * @return 是否打开了电池优化，没有就要求打开
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
     private boolean isIgnoringBatteryOptimizations() {

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="data_junior_title">
+        <item>""</item>
+        <item>学号</item>
+        <item>姓名</item>
+        <item>联系电话</item>
+        <item>目前居住地</item>
+        <item>居住详细地址</item>
+        <item>假期是否离开重庆</item>
+        <item>假期是否返回重庆</item>
+        <item>假期有无接触湖北旅居的人员</item>
+        <item>假期有无接触过确诊或疑似病例</item>
+        <item>现居住地有无确诊或疑似病例</item>
+        <item>体温是否正常</item>
+        <item>有无咳嗽、乏力、鼻塞、流涕、咽痛、腹泻等症状</item>
+        <item>本人及家庭成员是否为确诊病例</item>
+        <item>本人及家人是否为疑似病例</item>
+        <item>有无疾病史</item>
+        <item>备注</item>
+    </string-array>
+
+
+    <!-- 初始集数据-->
+    <string-array name="data_junior">
+        <item>photo</item>
+        <item>1000-000-000</item>
+        <item>小明</item>
+        <item>1xx-xxx-xxxx</item>
+        <item>xx省，xx市，xx区</item>
+        <item>xx小区xx单元xxx户</item>
+        <item>待选择</item>//假期是否离开重庆
+        <item>待选择</item>//假期是否返回重庆
+        <item>待选择</item>//暑假期间有无接触湖北旅居人员
+        <item>待选择</item>//暑假期间有无接触确诊或疑似病例
+        <item>待选择</item>//现居住地有无确诊或疑似病例
+        <item>待选择</item>//体温是否正常
+        <item>待选择</item>//有无咳嗽、乏力、鼻塞、流涕、咽痛、腹泻等症状
+        <item>待选择</item>//本人及家人是否为确诊病例
+        <item>待选择</item>//本人及家人是否为疑似病例
+        <item>待选择</item>//有无疾病史
+        <item>填写其他需要说明的情况</item>//备注
+    </string-array>
+
+    <string-array name="data_hint">
+        <item>photo</item>
+        <item>1000-000-000</item>
+        <item>小明</item>
+        <item>1xx-xxx-xxxx</item>
+        <item>xx省，xx市，xx区</item>
+        <item>精确到小区/单元/宿舍门牌号</item>
+        <item>待选择</item>//假期是否离开重庆
+        <item>待选择</item>//假期是否返回重庆
+        <item>待选择</item>//暑假期间有无接触湖北旅居人员
+        <item>无</item>//暑假期间有无接触确诊或疑似病例
+        <item>无</item>//现居住地有无确诊或疑似病例
+        <item>是</item>//体温是否正常
+        <item>无</item>//有无咳嗽、乏力、鼻塞、流涕、咽痛、腹泻等症状
+        <item>否</item>//本人及家人是否为确诊病例
+        <item>无</item>//本人及家人是否为疑似病例
+        <item>无</item>//有无疾病史
+        <item>没有就不用填写了</item>//备注
+    </string-array>
+
+</resources>

@@ -24,6 +24,7 @@ import com.example.autofill.background.dirtyRestart.Restarter;
 import com.example.autofill.storage.InformationViewModel;
 
 import static android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS;
+import static com.example.autofill.MainActivity.Removetask;
 
 public class TimingServiceDitry extends Service {
 
@@ -80,12 +81,16 @@ public class TimingServiceDitry extends Service {
      */
     @Override
     public void onTaskRemoved(Intent rootIntent) {
-        Log.d(TAG, "onTaskRemoved: ");
-        Intent broadcastIntent = new Intent();
-        broadcastIntent.setAction("restartservice");
-        broadcastIntent.setClass(this, Restarter.class);
-        this.sendBroadcast(broadcastIntent);
-
+        //当为1的时候开启常驻后台
+        if(Removetask==1){
+            Log.d(TAG, "onTaskRemoved: ");
+            Intent broadcastIntent = new Intent();
+            broadcastIntent.setAction("restartservice");
+            broadcastIntent.setClass(this, Restarter.class);
+            this.sendBroadcast(broadcastIntent);
+        }else {
+            //啥也不干了，不去重新启动
+        }
         //干完了再移除
         super.onTaskRemoved(rootIntent);
     }

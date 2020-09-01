@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.autofill.R;
 import com.example.autofill.network.connect.HttpPost;
 
 import org.json.JSONException;
@@ -117,12 +118,16 @@ public class FillStationParse extends AsyncTask<String, Void, String> {
             delegate1.onPostFinish(returnmessage1);
             stationCode = 0;
         } else if(stationCode == 1){
-            Toast.makeText(context, "今日打卡"+times+"次", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getString(R.string.toast_todayfill)
+                    +" "+times+" "+context.getString(R.string.times), Toast.LENGTH_LONG).show();
         }else if(stationCode == 2){
-            Toast.makeText(context, "这位同学打卡了"+times+"次", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getString(R.string.toast_todayfill)
+                    +" "+times+" "+context.getString(R.string.times), Toast.LENGTH_LONG).show();
+        }else if(times==12345){
+            Toast.makeText(context, R.string.error_toast,Toast.LENGTH_LONG).show();
         }
         else {
-            Toast.makeText(context,"出错了，请重试",Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.error_toast,Toast.LENGTH_LONG).show();
         }
     }
 }

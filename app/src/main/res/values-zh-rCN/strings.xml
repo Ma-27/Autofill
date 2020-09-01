@@ -36,4 +36,18 @@
     <string name="title_acion_view_other_times">输入其他同学的学号：</string>
     <string name="category_background">后台</string>
     <string name="title_background_setting">使用GMS统一推送服务</string>
+    <string name="decoration_description">装饰描述</string>
+    <string name="hint_default">默认暗示</string>
+    <string name="texton_background_setting">应用无需常驻后台，应用未启动时数据推送由系统完成</string>
+
+    <string name="state_yes">是</string>
+    <string name="state_no">否</string>
+    <string name="toast_xh_noeffect">你输入的学号无效，请重新输入</string>
+    <string name="menu_cancel">取消</string>
+    <string name="menu_search">查询</string>
+
+    <string name="toast_todayfill">今日打卡</string>
+    <string name="times">次</string>
+    <string name="error_toast">出错了，请重试</string>
+
 </resources>

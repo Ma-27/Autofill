@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="data_junior_title">
+        <item>""</item>
+        <item>學號</item>
+        <item>姓名</item>
+        <item>聯繫電話</item>
+        <item>目前居住地</item>
+        <item>居住詳細地址</item>
+        <item>假期是否離開重慶</item>
+        <item>假期是否返回重慶</item>
+        <item>假期有無接觸湖北旅居人員</item>
+        <item>假期有無接觸確診或疑似病例</item>
+        <item>現居地有無確診或疑似病例</item>
+        <item>體溫是否正常</item>
+        <item>有無咳嗽、乏力、鼻塞、流涕、咽痛、腹瀉等症狀</item>
+        <item>本人及家庭成員是否為確診病例</item>
+        <item>本人及家庭成員是否為疑似病例</item>
+        <item>有無疾病史</item>
+        <item>備註</item>
+    </string-array>
+
+
+    <!-- 初始集数据-->
+    <string-array name="data_junior">
+        <item>photo</item>
+        <item>1000-000-000</item>
+        <item>小明</item>
+        <item>1xx-xxx-xxxx</item>
+        <item>xx省，xx市，xx区</item>
+        <item>xx小区xx单元xxx户</item>
+        <item>待選擇</item>//假期是否离开重庆
+        <item>待選擇</item>//假期是否返回重庆
+        <item>待選擇</item>//暑假期间有无接触湖北旅居人员
+        <item>待選擇</item>//暑假期间有无接触确诊或疑似病例
+        <item>待選擇</item>//现居住地有无确诊或疑似病例
+        <item>待選擇</item>//体温是否正常
+        <item>待選擇</item>//有无咳嗽、乏力、鼻塞、流涕、咽痛、腹泻等症状
+        <item>待選擇</item>//本人及家人是否为确诊病例
+        <item>待選擇</item>//本人及家人是否为疑似病例
+        <item>待選擇</item>//有无疾病史
+        <item>填写其他需要说明的情况</item>//备注
+    </string-array>
+
+    <string-array name="data_hint">
+        <item>photo</item>
+        <item>1000-000-000</item>
+        <item>小明</item>
+        <item>1xx-xxx-xxxx</item>
+        <item>xx省，xx市，xx区</item>
+        <item>精確到小區/單元/宿舍門牌號</item>
+        <item>待選擇</item>//假期是否离开重庆
+        <item>待選擇</item>//假期是否返回重庆
+        <item>待選擇</item>//暑假期间有无接触湖北旅居人员
+        <item>无</item>//暑假期间有无接触确诊或疑似病例
+        <item>无</item>//现居住地有无确诊或疑似病例
+        <item>是</item>//体温是否正常
+        <item>无</item>//有无咳嗽、乏力、鼻塞、流涕、咽痛、腹泻等症状
+        <item>否</item>//本人及家人是否为确诊病例
+        <item>无</item>//本人及家人是否为疑似病例
+        <item>无</item>//有无疾病史
+        <item>沒有就不用填寫了</item>//备注
+    </string-array>
+
+</resources>

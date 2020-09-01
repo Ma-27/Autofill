@@ -1,35 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">自动打卡</string>
-    <string name="tab_text_1">按钮1</string>
-    <string name="tab_text_2">按钮2</string>
-    <string name="action_settings">设置</string>
+    <string name="app_name">自動打卡</string>
+    <string name="app_name_experiment">自動打卡測試版</string>
+    <string name="tab_text_2">歷史填報</string>
+    <string name="action_settings">設置</string>
 
-    <string name="title_activity_settings">设置</string>
+    <string name="title_activity_settings">設置</string>
 
-    <!-- Preference Titles,这一部分可能不用 -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">消息</string>
+    <string name="sync_header">同步</string>
 
     <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
-
+    <string name="signature_title">你的簽名</string>
+    <string name="reply_title">默認回復</string>
     <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
+    <string name="sync_title">定期同步電子郵件</string>
     <string name="attachment_title">Download incoming attachments</string>
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    <string name="title_saved_data">保存的数据</string>
-    <string name="title_setting_data_category">数据</string>
-    <string name="title_placeholder">默认标题</string>
-    <string name="content_placeholder">默认内容</string>
-    <string name="lstb_text">由于接口适配问题，该功能暂时不开放。联系原作者催更</string>
-    <string name="switch_texton">开启</string>
-    <string name="switch_textoff">关闭</string>
-    <string name="name_action_view_other_times">查询其他同学查成绩打卡次数</string>
-    <string name="title_acion_view_other_times">输入其他同学的学号：</string>
-    <string name="category_background">后台</string>
-    <string name="title_background_setting">使用GMS统一推送服务</string>
+    <string name="title_saved_data">查看已經保存的數據</string>
+    <string name="title_setting_data_category">數據</string>
+    <string name="title_placeholder">默認標題</string>
+    <string name="content_placeholder">默認內容</string>
+    <string name="tab_text_1">每日打卡</string>
+    <string name="lstb_text">由於接口適配問題，該功能暫時不開放。聯繫原作者催更</string>
+    <string name="switch_texton">自動打卡已開啟！</string>
+    <string name="switch_textoff">自動打卡已關閉！</string>
+    <string name="alert_my_title">在這裡可以查詢今天的打卡次數</string>
+
+    <string name="name_view_times">查詢自己是否打卡</string>
+    <string name="name_action_view_other_times">查詢其他同學的打卡次數</string>
+    <string name="title_acion_view_other_times">輸入其他同學的學號：</string>
+    <string name="category_background">後台</string>
+    <string name="title_background_setting">使用GMS統一推送服務</string>
+    <string name="decoration_description">裝飾描述</string>
+    <string name="hint_default">默認暗示</string>
+    <string name="texton_background_setting">應用無需常駐後台，應用未啟動時數據推送由系統完成</string>
+
+    <string name="state_yes">是</string>
+    <string name="state_no">否</string>
+    <string name="toast_xh_noeffect">你輸入的學號無效，請重新輸入</string>
+    <string name="menu_cancel">取消</string>
+    <string name="menu_search">查詢</string>
+
+    <string name="toast_todayfill">今日打卡</string>
+    <string name="times">次</string>
+    <string name="error_toast">出錯了，請重試</string>
 </resources>

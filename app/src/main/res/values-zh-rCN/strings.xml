@@ -49,5 +49,7 @@
     <string name="toast_todayfill">今日打卡</string>
     <string name="times">次</string>
     <string name="error_toast">出错了，请重试</string>
+    <string name="string_empty_data">清空所有数据</string>
+    <string name="summary_empty_data">注意：此举将会删除你已经填写所有数据并恢复数据到默认状态</string>
 
 </resources>

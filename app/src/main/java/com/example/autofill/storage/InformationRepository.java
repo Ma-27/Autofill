@@ -44,7 +44,7 @@ public class InformationRepository {
         new updateSingleStateAsyncTask(informationDao).execute(state);
     }
 
-    private static class insertAsyncTask extends AsyncTask<InformationEntity,Void,Void> {
+    public static class insertAsyncTask extends AsyncTask<InformationEntity,Void,Void> {
 
         private  InformationDao StateDao;
 
@@ -60,7 +60,7 @@ public class InformationRepository {
         }
     }
 
-    private static class deleteAllStateAsyncTask extends AsyncTask<InformationEntity,Void,Void> {
+    public static class deleteAllStateAsyncTask extends AsyncTask<InformationEntity,Void,Void> {
 
         private  InformationDao StateDao;
 
@@ -75,7 +75,7 @@ public class InformationRepository {
         }
     }
 
-    private static class deleteSingleStateAsyncTask extends AsyncTask<InformationEntity,Void,Void> {
+    public static class deleteSingleStateAsyncTask extends AsyncTask<InformationEntity,Void,Void> {
 
         private  InformationDao StateDao;
 
@@ -91,7 +91,7 @@ public class InformationRepository {
         }
     }
 
-    private static class updateSingleStateAsyncTask extends AsyncTask<InformationEntity,Void,Void> {
+    public static class updateSingleStateAsyncTask extends AsyncTask<InformationEntity,Void,Void> {
 
         private  InformationDao StateDao;
 

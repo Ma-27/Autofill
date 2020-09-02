@@ -33,6 +33,7 @@ import java.util.List;
 
 public class MrdkFragment extends Fragment {
 
+    private RecyclerView recyclerView;
     InformationViewModel informationViewModel;
     private MrdkListAdapter adapter;
     private ArrayList<MrdkCacheHolder> mrdkCacheHolder;
@@ -46,28 +47,12 @@ public class MrdkFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.mrdk_fragment, container, false);
+        recyclerView = view.findViewById(R.id.mrdk_recyclerview);
 
-        mrdkCacheHolder = new ArrayList<>();
-        RecyclerView recyclerView = view.findViewById(R.id.mrdk_recyclerview);
-        adapter = new MrdkListAdapter(getActivity(),mrdkCacheHolder);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        //Log.d(TAG, "onCreateView: ");
 
-        informationViewModel = ViewModelProviders.of(this).get(InformationViewModel.class);
-        // TODO: 使用ViewModel
-        informationViewModel.getAllData().observe(getActivity(),new Observer<List<InformationEntity>>() {
-            @Override
-            public void onChanged(List<InformationEntity> informationEntities) {
-                adapter.setData(informationEntities);
-               // Log.d(TAG, "onChanged: live data上面看看"+informationEntities);
-            }
-        });
-
-        initializeData();
 
         /**
-         * 初始化switch并添加响应回调,这个fragment将常驻后台
+         * 初始化switch并添加响应回调,启动一个service常驻后台
          *
          */
         autofillSwitch = view.findViewById(R.id.switch_autofill);
@@ -140,11 +125,40 @@ public class MrdkFragment extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * 在这里填充数据，删除数据后进行恢复
+     */
+    @Override
+    public void onStart() {
+        super.onStart();
 
+        Log.d(TAG, "onStart: start了成功");
+        mrdkCacheHolder = new ArrayList<>();
+
+
+        adapter = new MrdkListAdapter(getActivity(),mrdkCacheHolder);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+        informationViewModel = ViewModelProviders.of(this).get(InformationViewModel.class);
+        // TODO: 使用ViewModel获得database
+        informationViewModel.getAllData().observe(getActivity(),new Observer<List<InformationEntity>>() {
+            @Override
+            public void onChanged(List<InformationEntity> informationEntities) {
+                adapter.setData(informationEntities);
+            }
+        });
+        initializeData();
+    }
+
+    /**
+     * 暂时无用，放着先不用
+     * @param data 从数据库恢复的原始data
+     */
     public void updateData(String data) {
             if (informationViewModel != null) {
                 informationViewModel.updateSingle(new InformationEntity(data, 1));
             }
         }
-
 }

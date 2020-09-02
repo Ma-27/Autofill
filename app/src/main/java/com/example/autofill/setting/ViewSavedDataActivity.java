@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,18 +26,25 @@ public class ViewSavedDataActivity extends AppCompatActivity {
     private InformationViewModel informationViewModel;
     InformationListAdapter adapter;
     private ArrayList<DataCacheHolder> dataCacheHolder;
+    //设置横屏模式的列数
+    int gridColumnCount = 0;
     private static final String TAG = "ViewSavedDataActivity成功";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_saved_data);
+
+        //获取横屏模式中的列数
+        gridColumnCount =
+                getResources().getInteger(R.integer.grid_column_count);
+
         dataCacheHolder = new ArrayList<>();
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         adapter = new InformationListAdapter(this,dataCacheHolder);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new GridLayoutManager(this,gridColumnCount));
         recyclerView.addItemDecoration(
                 new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
 

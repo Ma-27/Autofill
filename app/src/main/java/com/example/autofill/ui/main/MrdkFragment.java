@@ -12,6 +12,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -42,6 +43,7 @@ public class MrdkFragment extends Fragment {
     private static final String TAG = "MrdkFragment成功";
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch autofillSwitch;
+    int gridColumnCount = 0;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container,
@@ -49,7 +51,9 @@ public class MrdkFragment extends Fragment {
         View view = inflater.inflate(R.layout.mrdk_fragment, container, false);
         recyclerView = view.findViewById(R.id.mrdk_recyclerview);
 
-
+        //获取 应当显示的列数
+        gridColumnCount =
+                getResources().getInteger(R.integer.grid_column_count);
 
         /**
          * 初始化switch并添加响应回调,启动一个service常驻后台
@@ -138,7 +142,7 @@ public class MrdkFragment extends Fragment {
 
         adapter = new MrdkListAdapter(getActivity(),mrdkCacheHolder);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),gridColumnCount));
 
 
         informationViewModel = ViewModelProviders.of(this).get(InformationViewModel.class);

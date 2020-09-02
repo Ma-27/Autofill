@@ -52,6 +52,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                             public void onComplete(@NonNull Task<InstanceIdResult> task) {
                                 if (!task.isSuccessful()) {
                                     Log.w(TAG, "getInstanceId 失败", task.getException());
+                                    Toast.makeText(getContext(), "getInstanceId 失败", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
 
@@ -64,12 +65,13 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                                 Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
                             }
                         });
-
-                break;
+            break;
             case "send_service":
                 /**
                  * 启用gms
                  */
+
+                break;
             case "title_empty_data":
                 /**
                  * 清空所有数据
@@ -100,7 +102,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     }
                 });
                 builder.show();
+
+                break;
             default:
+
         }
         return super.onPreferenceTreeClick(preference);
     }

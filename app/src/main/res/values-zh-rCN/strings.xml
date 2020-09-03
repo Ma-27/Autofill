@@ -51,5 +51,16 @@
     <string name="error_toast">出错了，请重试</string>
     <string name="string_empty_data">清空所有数据</string>
     <string name="summary_empty_data">注意：此举将会删除你已经填写所有数据并恢复数据到默认状态</string>
+    <string name="empty_data_warning">你确定要清空所有数据吗</string>
+    <string name="empty_data_warning_content">清空的数据将无法恢复,清空数据后，重启APP生效</string>
+    <string name="empty_data_successful">数据已清空</string>
+    <string name="empty_data_fail">数据未成功清空，请重试</string>
+    <string name="not_available_show">功能暂时不可用</string>
+    <string name="check_rethrive_registration">检索当前注册令牌</string>
+
+    <string name="summary_saved_data">在这里可以检查数据是否填写正确，请确保数据填写正确再提交</string>
+    <string name="theme">主题</string>
+    <string name="use_nightmood">启用夜间模式</string>
+    <string name="menu_confirm">确认</string>
 
 </resources>

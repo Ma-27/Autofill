@@ -7,8 +7,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.SwitchPreference;
 
 import com.example.autofill.MainActivity;
 import com.example.autofill.R;
@@ -28,10 +30,12 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     private static InformationRoomDatabase INSTANCE;
     private static final String TAG = "SettingsFragment成功";
+    //SwitchPreference GmsPreference;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.root_preferences,rootKey);
+       // GmsPreference = findPreference("retrieve_registration_switch");
     }
 
     /**
@@ -66,20 +70,32 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                             }
                         });
             break;
+
+
             case "send_service":
                 /**
                  * 启用gms
                  */
+                Toast.makeText(getContext(), R.string.not_available_show, Toast.LENGTH_SHORT).show();
+                /*
+                GmsPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                    @Override
+                    public boolean onPreferenceChange(Preference preference, Object newValue) {
+                        //启动统一推送服务，有缘再更
+                        return false;
+                    }
+                });
 
+                 */
                 break;
             case "title_empty_data":
                 /**
                  * 清空所有数据
                  */
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("你确定要清空所有数据吗");
-                builder.setMessage("清空的数据将无法恢复,清空数据后，重启APP生效");
-                builder.setPositiveButton("确认", new
+                builder.setTitle(R.string.empty_data_warning);
+                builder.setMessage(R.string.empty_data_warning_content);
+                builder.setPositiveButton(R.string.menu_confirm, new
                         DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 /**
@@ -89,13 +105,13 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                                 if(INSTANCE!=null){
                                     InformationDao informationDao = INSTANCE.informationDao();
                                     new InformationRepository.deleteAllStateAsyncTask(informationDao).execute();
-                                    Toast.makeText(getContext(),"数据已清空",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), R.string.empty_data_successful,Toast.LENGTH_SHORT).show();
                                 }else{
-                                    Toast.makeText(getContext(),"数据未成功清空，请重试",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), R.string.empty_data_fail,Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
-                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.menu_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -103,6 +119,26 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 });
                 builder.show();
 
+                break;
+
+            case "dark_mode":
+                Toast.makeText(getContext(), R.string.not_available_show, Toast.LENGTH_SHORT).show();
+                /*
+                SwitchPreference darkMoodPreference  = findPreference("dark_mode");
+                darkMoodPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                    @Override
+                    public boolean onPreferenceChange(Preference preference, Object newValue) {
+                        return false;
+                    }
+                });
+                // Get the night mode state of the app.
+                int nightMode = AppCompatDelegate.getDefaultNightMode();
+                //Set the theme mode for the restarted activity
+                if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
+                    AppCompatDelegate.setDefaultNightMode
+                            (AppCompatDelegate.MODE_NIGHT_NO);
+                }
+                 */
                 break;
             default:
 

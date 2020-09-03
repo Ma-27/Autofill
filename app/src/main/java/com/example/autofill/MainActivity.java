@@ -29,6 +29,7 @@ import android.os.PowerManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -320,5 +321,14 @@ public class MainActivity extends AppCompatActivity{
             }
         }
         return false;
+    }
+
+
+    /**
+     * 处理fab的点击响应
+     * @param view
+     */
+    public void resetSports(View view) {
+
     }
 }

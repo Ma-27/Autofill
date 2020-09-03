@@ -48,7 +48,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
     implementation 'androidx.navigation:navigation-fragment:2.3.0'
     implementation 'androidx.navigation:navigation-ui:2.3.0'
-    //设置支持
+    //支持设置菜单
     implementation 'androidx.preference:preference:1.1.1'
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

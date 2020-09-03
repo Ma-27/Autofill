@@ -28,7 +28,7 @@
 
         <Preference
             app:key="retrieve_registration_switch"
-            app:title="检索当前注册令牌"
+            app:title="@string/check_rethrive_registration"
             />
 
         <SwitchPreferenceCompat
@@ -41,4 +41,14 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory
+        app:title="@string/theme">
+
+        <SwitchPreferenceCompat
+            app:key="dark_mode"
+            app:title="@string/use_nightmood"
+            app:defaultValue="false"
+            />
+
+    </PreferenceCategory>
 </PreferenceScreen>

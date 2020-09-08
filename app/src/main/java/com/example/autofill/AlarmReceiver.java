@@ -30,12 +30,12 @@ public class AlarmReceiver extends BroadcastReceiver
             this.mcontext = context;
         mNotificationManager = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
-        Log.d(TAG, "执行一次通知推送成功");
+        //Log.d(TAG, "执行一次通知推送成功");
 
         SharedPreferences sharedPreferences = context.getSharedPreferences(sharedPrefFile,
                 MODE_PRIVATE);
         mData = sharedPreferences.getString("JSONSeniorString", "");
-        Log.d(TAG, "成功恢复数据"+mData);
+        //Log.d(TAG, "成功恢复数据"+mData);
         mSchoolNumber = sharedPreferences.getString("SchoolnumberString", "");
 
 

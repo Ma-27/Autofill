@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         final PendingIntent notifyPendingIntent = PendingIntent.getBroadcast
                 (this,NOTIFICATION_ID,notifyIntent,PendingIntent.FLAG_UPDATE_CURRENT);
         //看看之前是不是已经打开了这个app
-        Log.d(TAG, "is alarm up"+isAlarmup);
+
         if(isAlarmup){
             //要是根本没有数据，第一次启动
             alarmUp = (PendingIntent.getBroadcast(this, NOTIFICATION_ID,
@@ -146,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
                             preferencesEditor.putString("CurrentLocation",m_editCurrentLocation.getText().toString());
                             preferencesEditor.putString("SchoolnumberString",m_editSchoolNumber.getText().toString());
                             preferencesEditor.apply();
+
                             //设置间隔启动
                             long repeatInterval =  //1;//一分钟
                                     AlarmManager.INTERVAL_HALF_DAY;
@@ -459,5 +460,4 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 }

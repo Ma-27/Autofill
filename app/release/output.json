@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.example.autofill",
+  "applicationId": "com.example.autofill.school",
   "variantName": "release",
   "elements": [
     {
